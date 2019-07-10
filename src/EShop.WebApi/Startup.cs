@@ -1,4 +1,7 @@
-﻿using EShop.DataAccess;
+﻿using System.Reflection;
+using EShop.Application.Products.Queries;
+using EShop.DataAccess;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +25,8 @@ namespace EShop.WebApi
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ProductsDbContext>(options => options.UseSqlServer(connectionString));
 
+            services.AddMediatR(typeof(GetAllProductsQuery).GetTypeInfo().Assembly);
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
         
