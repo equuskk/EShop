@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore;
+﻿using EShop.DataAccess;
+using EShop.WebApi.Extensions;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace EShop.WebApi
@@ -7,7 +9,9 @@ namespace EShop.WebApi
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateWebHostBuilder(args).Build()
+                                      .InitializeDatabase<ProductsDbContext>()
+                                      .Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
