@@ -26,6 +26,8 @@ namespace EShop.WebApi
             services.AddDbContext<ProductsDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddMediatR(typeof(GetAllProductsQuery).GetTypeInfo().Assembly);
+
+            services.AddSwaggerDocument();
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -35,6 +37,13 @@ namespace EShop.WebApi
             if(env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+
+                app.UseOpenApi();
+                app.UseSwaggerUi3(settings =>
+                {
+                    settings.Path = "/api";
+                });
             }
             else
             {
