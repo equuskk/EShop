@@ -15,7 +15,7 @@ namespace EShop.Application.Tests.Products.Queries
                 Id = 1
             };
 
-            var handler = new GetProductByIdHandler(GetDbContext());
+            var handler = new GetProductByIdQueryHandler(GetDbContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.NotNull(result);
@@ -31,7 +31,7 @@ namespace EShop.Application.Tests.Products.Queries
                 Id = 0
             };
 
-            var handler = new GetProductByIdHandler(GetDbContext());
+            var handler = new GetProductByIdQueryHandler(GetDbContext());
             await Assert.ThrowsAsync<NotFoundException>(async () => 
                                                           await handler.Handle(cmd, CancellationToken.None));
         }
