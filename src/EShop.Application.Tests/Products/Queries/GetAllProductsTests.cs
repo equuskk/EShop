@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading;
 using EShop.Application.Products.Queries;
+using EShop.Application.Products.Queries.GetAllProducts;
 using Xunit;
 
 namespace EShop.Application.Tests.Products.Queries

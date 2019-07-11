@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using EShop.Application.Products.Queries;
+using EShop.Application.Products.Queries.GetAllProducts;
 using EShop.DataAccess;
 using MediatR;
 using Microsoft.AspNetCore.Builder;

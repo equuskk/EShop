@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using EShop.DataAccess;
 using MediatR;
 
-namespace EShop.Application.Products.Queries
+namespace EShop.Application.Products.Queries.GetAllProducts
 {
     public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, ProductsViewModel>
     {
