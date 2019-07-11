@@ -22,7 +22,7 @@ namespace EShop.Application.Tests
 
         private void InitProducts(ProductsDbContext context)
         {
-            context.AddRange(new Product
+            context.Products.AddRange(new Product
                     {
                         Title = "Продукт1",
                         Description = "Описание1",
