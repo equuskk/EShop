@@ -30,7 +30,7 @@ namespace EShop.WebApi
 
             services.AddIdentity<ShopUser, IdentityRole>() // TODO: settings
                     .AddEntityFrameworkStores<UsersDbContext>()
-                    .AddDefaultTokenProviders();;
+                    .AddDefaultTokenProviders();
 
 
             services.AddMediatR(typeof(GetAllProductsQuery).GetTypeInfo().Assembly);
