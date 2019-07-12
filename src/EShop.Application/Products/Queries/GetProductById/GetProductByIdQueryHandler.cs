@@ -20,7 +20,7 @@ namespace EShop.Application.Products.Queries.GetProductById
         public async Task<Product> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
             var product = await _db.Products.SingleOrDefaultAsync(x => x.Id == request.Id,
-                                                                 cancellationToken);
+                                                                  cancellationToken);
             if(product is null)
             {
                 throw new NotFoundException(nameof(Product), request.Id);

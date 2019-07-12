@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using EShop.Application.Products.Queries;
 using EShop.Application.Products.Queries.GetAllProducts;
 using EShop.DataAccess;
 using MediatR;
@@ -29,10 +28,10 @@ namespace EShop.WebApi
             services.AddMediatR(typeof(GetAllProductsQuery).GetTypeInfo().Assembly);
 
             services.AddSwaggerDocument();
-            
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
-        
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if(env.IsDevelopment())
@@ -41,10 +40,7 @@ namespace EShop.WebApi
                 app.UseDatabaseErrorPage();
 
                 app.UseOpenApi();
-                app.UseSwaggerUi3(settings =>
-                {
-                    settings.Path = "/api";
-                });
+                app.UseSwaggerUi3(settings => { settings.Path = "/api"; });
             }
             else
             {

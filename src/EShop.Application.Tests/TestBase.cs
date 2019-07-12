@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using EShop.DataAccess;
 using EShop.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -23,19 +23,19 @@ namespace EShop.Application.Tests
         private void InitProducts(ProductsDbContext context)
         {
             context.Products.AddRange(new Product
-                    {
-                        Id = 100,
-                        Title = "Продукт1",
-                        Description = "Описание1",
-                        Price = 111.11
-                    },
-                    new Product
-                    {
-                        Id = 101,
-                        Title = "Продукт2",
-                        Description = "Описание2",
-                        Price = 222.22
-                    });
+                                      {
+                                          Id = 100,
+                                          Title = "РџСЂРѕРґСѓРєС‚1",
+                                          Description = "РћРїРёСЃР°РЅРёРµ1",
+                                          Price = 111.11
+                                      },
+                                      new Product
+                                      {
+                                          Id = 101,
+                                          Title = "РџСЂРѕРґСѓРєС‚2",
+                                          Description = "РћРїРёСЃР°РЅРёРµ2",
+                                          Price = 222.22
+                                      });
 
             context.SaveChanges();
         }

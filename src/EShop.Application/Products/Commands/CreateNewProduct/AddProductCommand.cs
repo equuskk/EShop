@@ -1,5 +1,4 @@
-﻿using EShop.Domain.Entities;
-using MediatR;
+﻿using MediatR;
 
 namespace EShop.Application.Products.Commands.CreateNewProduct
 {

@@ -7,6 +7,8 @@ namespace EShop.DataAccess
     {
         public DbSet<Product> Products { get; set; }
 
-        public ProductsDbContext(DbContextOptions<ProductsDbContext> options) : base(options) { }
+        public ProductsDbContext(DbContextOptions<ProductsDbContext> options) : base(options)
+        {
+        }
     }
 }

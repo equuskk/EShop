@@ -17,7 +17,7 @@ namespace EShop.Application.Products.Queries.GetAllProducts
 
         public async Task<ProductsViewModel> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
-            return new ProductsViewModel()
+            return new ProductsViewModel
             {
                 Products = _db.Products.ToArray()
             };
