@@ -6,7 +6,7 @@ using MediatR;
 
 namespace EShop.Application.Products.Commands.CreateNewProduct
 {
-    public class AddProductCommandHandler : IRequestHandler<AddProductCommand, Product>
+    public class AddProductCommandHandler : IRequestHandler<AddProductCommand, int>
     {
         private readonly ProductsDbContext _db;
 
@@ -15,20 +15,19 @@ namespace EShop.Application.Products.Commands.CreateNewProduct
             _db = db;
         }
 
-        public async Task<Product> Handle(AddProductCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(AddProductCommand request, CancellationToken cancellationToken)
         {
-            var pr = new Product
+            var product = new Product
             {
-                Id = request.Id,
                 Description = request.Description,
                 Price = request.Price,
                 Title = request.Title
             };
 
-            _db.Products.Add(pr);
-            await _db.SaveChangesAsync();
+            _db.Products.Add(product);
+            await _db.SaveChangesAsync(cancellationToken);
 
-            return pr;
+            return product.Id;
         }
     }
 }

@@ -12,14 +12,14 @@ namespace EShop.Application.Tests.Products.Queries
         {
             var cmd = new GetProductByIdQuery
             {
-                Id = 1
+                Id = 100
             };
 
             var handler = new GetProductByIdQueryHandler(GetDbContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.NotNull(result);
-            Assert.Equal(1, result.Id);
+            Assert.Equal(100, result.Id);
             Assert.Equal(111.11, result.Price);
         }
 

@@ -24,14 +24,14 @@ namespace EShop.Application.Tests
         {
             context.Products.AddRange(new Product
                     {
-                        Id = 1,
+                        Id = 100,
                         Title = "Продукт1",
                         Description = "Описание1",
                         Price = 111.11
                     },
                     new Product
                     {
-                        Id = 2,
+                        Id = 101,
                         Title = "Продукт2",
                         Description = "Описание2",
                         Price = 222.22
