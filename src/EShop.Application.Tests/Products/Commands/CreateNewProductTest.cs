@@ -21,19 +21,12 @@ namespace EShop.Application.Tests.Products.Commands
                 Price = 12
             };
 
-            var thisProduct = new Product
-            {
-                Description = "Моё описание",
-                Title = "Мой заголовок",
-                Price = 12
-            };
-
             var handler = new CreateNewProductHandler(GetDbContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.NotNull(result);
-            Assert.Equal(thisProduct.Price, result.Price);
-            Assert.Equal(thisProduct.Title, result.Title);
+            Assert.Equal(cmd.Price, result.Price);
+            Assert.Equal(cmd.Title, result.Title);
         }
     }
 }

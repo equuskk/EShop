@@ -19,7 +19,7 @@ namespace EShop.Application.Products.Commands.CreateNewProduct
         }
         public async Task<Product> Handle(CreateNewProductCommand request, CancellationToken cancellationToken)
         {
-            Product pr = new Product
+            var pr = new Product
             {
                 Id = request.Id,
                 Description = request.Description,
