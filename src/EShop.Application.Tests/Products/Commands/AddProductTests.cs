@@ -1,27 +1,23 @@
-﻿using EShop.Application.Products.Commands.CreateNewProduct;
-using EShop.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
+using EShop.Application.Products.Commands.CreateNewProduct;
 using Xunit;
 
 namespace EShop.Application.Tests.Products.Commands
 {
-    public class CreateNewProductTest : TestBase
+    public class AddProductTests : TestBase
     {
         [Fact]
         public async void CreateNewProduct_CorrectProduct_ReturnsProduct()
         {
-            var cmd = new CreateNewProductCommand
+            var cmd = new AddProductCommand
             {
                 Id = 3,
-                Description ="Моё описание",
+                Description = "Моё описание",
                 Title = "Мой заголовок",
                 Price = 12
             };
 
-            var handler = new CreateNewProductHandler(GetDbContext());
+            var handler = new AddProductCommandHandler(GetDbContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.NotNull(result);

@@ -1,30 +1,28 @@
-﻿using EShop.DataAccess;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using EShop.DataAccess;
 using EShop.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace EShop.Application.Products.Commands.CreateNewProduct
 {
-    public class CreateNewProductHandler : IRequestHandler<CreateNewProductCommand, Product>
+    public class AddProductCommandHandler : IRequestHandler<AddProductCommand, Product>
     {
         private readonly ProductsDbContext _db;
 
-        public CreateNewProductHandler(ProductsDbContext db)
+        public AddProductCommandHandler(ProductsDbContext db)
         {
             _db = db;
         }
-        public async Task<Product> Handle(CreateNewProductCommand request, CancellationToken cancellationToken)
+
+        public async Task<Product> Handle(AddProductCommand request, CancellationToken cancellationToken)
         {
             var pr = new Product
             {
                 Id = request.Id,
                 Description = request.Description,
                 Price = request.Price,
-                Title = request.Title,
+                Title = request.Title
             };
 
             _db.Products.Add(pr);
@@ -34,4 +32,3 @@ namespace EShop.Application.Products.Commands.CreateNewProduct
         }
     }
 }
-
