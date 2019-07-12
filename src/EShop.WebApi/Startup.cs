@@ -1,9 +1,11 @@
 ﻿using System.Reflection;
 using EShop.Application.Products.Queries.GetAllProducts;
 using EShop.DataAccess;
+using EShop.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +26,12 @@ namespace EShop.WebApi
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ProductsDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<UsersDbContext>(options => options.UseSqlServer(connectionString));
+
+            services.AddIdentity<ShopUser, IdentityRole>() // TODO: settings
+                    .AddEntityFrameworkStores<UsersDbContext>()
+                    .AddDefaultTokenProviders();;
+
 
             services.AddMediatR(typeof(GetAllProductsQuery).GetTypeInfo().Assembly);
 
@@ -46,6 +54,8 @@ namespace EShop.WebApi
             {
                 app.UseHsts();
             }
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
             app.UseMvc();

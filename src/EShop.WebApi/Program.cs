@@ -10,6 +10,7 @@ namespace EShop.WebApi
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build()
+                                      .InitializeDatabase<UsersDbContext>()
                                       .InitializeDatabase<ProductsDbContext>()
                                       .Run();
         }
