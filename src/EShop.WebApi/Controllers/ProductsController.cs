@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using EShop.Application.Products.Queries.GetAllProducts;
+using EShop.Application.Products.Queries.GetProductById;
+using EShop.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +22,12 @@ namespace EShop.WebApi.Controllers
         public async Task<ActionResult<ProductsViewModel>> GetAllProducts()
         {
             return Ok(await _mediator.Send(new GetAllProductsQuery()));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Product>> GetProductById(int id)
+        {
+            return Ok(await _mediator.Send(new GetProductByIdQuery { Id = id}));
         }
     }
 }
