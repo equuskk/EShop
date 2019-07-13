@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using EShop.Application.Products.Commands.CreateNewProduct;
+using EShop.Application.Products.Commands.EditProduct;
 using EShop.Application.Products.Queries.GetAllProducts;
 using EShop.Application.Products.Queries.GetProductById;
 using EShop.Domain.Entities;
@@ -33,6 +34,12 @@ namespace EShop.WebApi.Controllers
 
         [HttpPost]
         public async Task<ActionResult<int>> AddProduct([FromBody] AddProductCommand cmd)
+        {
+            return Ok(await _mediator.Send(cmd));
+        }
+
+        [HttpPost("Edit")]
+        public async Task<ActionResult<Product>> EditProduct([FromBody] EditProductCommand cmd)
         {
             return Ok(await _mediator.Send(cmd));
         }
