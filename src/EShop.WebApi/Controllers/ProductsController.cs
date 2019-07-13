@@ -45,7 +45,7 @@ namespace EShop.WebApi.Controllers
             return Ok(await _mediator.Send(cmd));
         }
 
-        [HttpPost("Delete")]
+        [HttpDelete]
         public async Task<ActionResult<Product>> EditProduct([FromBody] DeleteProductCommand cmd)
         {
             return Ok(await _mediator.Send(cmd));
