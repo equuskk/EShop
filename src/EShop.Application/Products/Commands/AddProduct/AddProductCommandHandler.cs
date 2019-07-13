@@ -30,7 +30,8 @@ namespace EShop.Application.Products.Commands.AddProduct
                 throw new NotFoundException(nameof(category), request.CategoryId);
             }
 
-            var product = new Product(request.Title, request.Description, request.Price, vendor, category);
+            var product = new Product(request.Title, request.Description, request.Price,
+                                      request.VendorId, request.CategoryId);
 
             _db.Products.Add(product);
             await _db.SaveChangesAsync(cancellationToken);

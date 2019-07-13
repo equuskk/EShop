@@ -38,8 +38,10 @@ namespace EShop.Application.Tests
             var secondCategory = new Category("Second Category");
             context.Categories.AddRange(firstCategory, secondCategory);
 
-            context.Products.AddRange(new Product("Продукт1", "Описание1", 111.11, firstVendor, firstCategory),
-                                      new Product("Продукт2", "Описание2", 222.22, secondVendor, secondCategory));
+            context.SaveChanges();
+
+            context.Products.AddRange(new Product("Продукт1", "Описание1", 111.11, 1, 1),
+                                      new Product("Продукт2", "Описание2", 222.22, 2, 2));
 
             context.SaveChanges();
         }

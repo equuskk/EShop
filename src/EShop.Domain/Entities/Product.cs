@@ -10,20 +10,23 @@ namespace EShop.Domain.Entities
         public string Description { get; private set; }
         public double Price { get; private set; }
 
-        public Vendor Vendor { get; private set; }
-        public Category Category { get; private set; }
+        public int VendorId { get; private set; }
+        public int CategoryId { get; private set; }
+
+        public virtual Vendor Vendor { get; private set; }
+        public virtual Category Category { get; private set; }
 
         //TODO: category & image
 
         private Product() { }
 
-        public Product(string title, string description, double price, Vendor vendor, Category category)
+        public Product(string title, string description, double price, int vendorId, int categoryId)
         {
             SetPrice(price);
             SetTitle(title);
             SetDescription(description);
-            SetVendor(vendor);
-            SetCategory(category);
+            SetVendorId(vendorId);
+            SetCategoryId(categoryId);
         }
 
         public void SetTitle(string title)
@@ -56,14 +59,26 @@ namespace EShop.Domain.Entities
             Price = price;
         }
 
-        public void SetVendor(Vendor vendor)
+        public void SetVendorId(int vendorId)
         {
-            Vendor = vendor ?? throw new ArgumentNullException(nameof(vendor), "Vendor is null");
+            if(vendorId <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(vendorId), vendorId,
+                                                      "vendorId cannot be less than or equal to 0");
+            }
+
+            VendorId = vendorId;
         }
 
-        private void SetCategory(Category category)
+        private void SetCategoryId(int categoryId)
         {
-            Category = category ?? throw new ArgumentNullException(nameof(category), "category is null");
+            if(categoryId <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(categoryId), categoryId,
+                                                      "categoryId cannot be less than or equal to 0");
+            }
+
+            CategoryId = categoryId;
         }
     }
 }
