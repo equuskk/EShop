@@ -4,7 +4,7 @@ using EShop.DataAccess;
 using EShop.Domain.Entities;
 using MediatR;
 
-namespace EShop.Application.Products.Commands.CreateNewProduct
+namespace EShop.Application.Products.Commands.AddProduct
 {
     public class AddProductCommandHandler : IRequestHandler<AddProductCommand, int>
     {

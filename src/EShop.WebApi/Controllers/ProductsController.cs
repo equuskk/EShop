@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using EShop.Application.Products.Commands.CreateNewProduct;
+using EShop.Application.Products.Commands.AddProduct;
 using EShop.Application.Products.Commands.DeleteProduct;
 using EShop.Application.Products.Commands.EditProduct;
 using EShop.Application.Products.Queries.GetAllProducts;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace EShop.DataAccess.Migrations
+namespace EShop.DataAccess.Migrations.ProductsDb
 {
     public partial class Init : Migration
     {

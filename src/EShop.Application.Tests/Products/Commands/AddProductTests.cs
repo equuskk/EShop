@@ -1,5 +1,5 @@
 ﻿using System.Threading;
-using EShop.Application.Products.Commands.CreateNewProduct;
+using EShop.Application.Products.Commands.AddProduct;
 using Xunit;
 
 namespace EShop.Application.Tests.Products.Commands
