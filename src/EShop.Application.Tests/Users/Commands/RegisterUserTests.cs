@@ -3,7 +3,7 @@
 
 //namespace EShop.Application.Tests.Users.Commands
 //{
-//    public class RegisterUserTests : TestBase
+//    public class RegisterUserTests : ProductsDbContextFixture
 //    {
 //        [Fact]
 //        public async void RegisterUser_CorrectData_ReturnsGuid()

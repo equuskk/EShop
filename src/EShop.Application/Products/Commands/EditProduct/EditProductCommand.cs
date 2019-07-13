@@ -1,8 +1,5 @@
 ﻿using EShop.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EShop.Application.Products.Commands.EditProduct
 {
@@ -12,5 +9,8 @@ namespace EShop.Application.Products.Commands.EditProduct
         public string Title { get; set; }
         public double Price { get; set; }
         public string Description { get; set; }
+
+        public int VendorId { get; set; }
+        public int CategoryId { get; set; }
     }
 }

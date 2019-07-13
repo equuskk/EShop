@@ -18,10 +18,8 @@ namespace EShop.Application.Users.Commands.RegisterUser
 
         public async Task<string> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
-            var user = new ShopUser()
-            {
-                UserName = request.Login
-            };
+            var user = new ShopUser(request.Login, request.FirstName, request.LastName, request.Phone,
+                                    request.Email, request.Address);
             var result = await _manager.CreateAsync(user, request.Password);
 
             if(result.Succeeded)

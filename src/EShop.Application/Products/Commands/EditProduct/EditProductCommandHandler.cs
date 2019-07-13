@@ -27,9 +27,9 @@ namespace EShop.Application.Products.Commands.EditProduct
                 throw new NotFoundException(nameof(Product), request.Id);
             }
 
-            product.Price = request.Price;
-            product.Title = request.Title;
-            product.Description = request.Description; //TODO: automapper
+            product.SetPrice(request.Price);
+            product.SetTitle(request.Title);
+            product.SetDescription(request.Description);
 
             await _db.SaveChangesAsync(cancellationToken);
 
