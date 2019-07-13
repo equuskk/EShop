@@ -19,7 +19,7 @@ namespace EShop.Application.Products.Queries.GetProductById
 
         public async Task<Product> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
-            var product = await _db.Products.SingleOrDefaultAsync(x => x.Id == request.Id,
+            var product = await _db.Products.Include(x => x.Vendor).Include(x => x.Category).SingleOrDefaultAsync(x => x.Id == request.Id,
                                                                   cancellationToken);
             if(product is null)
             {
