@@ -39,7 +39,7 @@ namespace EShop.WebApi.Controllers
             return Ok(await _mediator.Send(cmd));
         }
 
-        [HttpPost("Edit")]
+        [HttpPut]
         public async Task<ActionResult<Product>> EditProduct([FromBody] EditProductCommand cmd)
         {
             return Ok(await _mediator.Send(cmd));
