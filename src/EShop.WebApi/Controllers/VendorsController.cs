@@ -1,17 +1,13 @@
-﻿using EShop.Application.Products.Commands.AddVendor;
-using EShop.Application.Products.Commands.DeleteVendor;
-using EShop.Application.Products.Commands.EditVendor;
+﻿using System.Threading.Tasks;
+using EShop.Application.Vendors.Commands.AddVendor;
+using EShop.Application.Vendors.Commands.DeleteVendor;
+using EShop.Application.Vendors.Commands.EditVendor;
 using EShop.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EShop.WebApi.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class VendorsController : ControllerBase

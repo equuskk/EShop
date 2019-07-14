@@ -1,10 +1,7 @@
 ﻿using EShop.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace EShop.Application.Products.Commands.EditVendor
+namespace EShop.Application.Vendors.Commands.EditVendor
 {
     public class EditVendorCommand : IRequest<Vendor>
     {

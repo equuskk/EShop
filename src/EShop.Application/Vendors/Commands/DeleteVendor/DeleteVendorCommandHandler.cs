@@ -1,14 +1,11 @@
-﻿using EShop.DataAccess;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using EShop.DataAccess;
 using EShop.Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace EShop.Application.Products.Commands.DeleteVendor
+namespace EShop.Application.Vendors.Commands.DeleteVendor
 {
     public class DeleteVendorCommandHandler : IRequestHandler<DeleteVendorCommand, bool>
     {

@@ -1,15 +1,12 @@
-﻿using EShop.DataAccess;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using EShop.DataAccess;
 using EShop.Domain.Entities;
 using EShop.Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace EShop.Application.Products.Commands.EditCategory
+namespace EShop.Application.Categories.Commands.EditCategory
 {
     class EditCategoryCommandHandler : IRequestHandler<EditCategoryCommand, Category>
     {

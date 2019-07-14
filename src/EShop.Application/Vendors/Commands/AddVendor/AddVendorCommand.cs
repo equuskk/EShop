@@ -1,9 +1,6 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace EShop.Application.Products.Commands.AddVendor
+namespace EShop.Application.Vendors.Commands.AddVendor
 {
     public class AddVendorCommand : IRequest<int>
     {

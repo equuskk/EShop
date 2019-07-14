@@ -1,10 +1,7 @@
 ﻿using EShop.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace EShop.Application.Products.Commands.EditCategory
+namespace EShop.Application.Categories.Commands.EditCategory
 {
     public class EditCategoryCommand : IRequest<Category>
     {

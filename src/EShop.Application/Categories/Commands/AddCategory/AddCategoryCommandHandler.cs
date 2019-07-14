@@ -1,13 +1,10 @@
-﻿using EShop.DataAccess;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using EShop.DataAccess;
 using EShop.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace EShop.Application.Products.Commands.AddCategory
+namespace EShop.Application.Categories.Commands.AddCategory
 {
     public class AddCategoryCommandHandler : IRequestHandler<AddCategoryCommand, int>
     {
