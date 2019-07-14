@@ -4,6 +4,7 @@ using EShop.Application.Products.Commands.DeleteProduct;
 using EShop.Application.Products.Commands.EditProduct;
 using EShop.Application.Products.Queries.GetAllProducts;
 using EShop.Application.Products.Queries.GetProductById;
+using EShop.Application.Products.Queries.GetProductByVendor;
 using EShop.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,12 @@ namespace EShop.WebApi.Controllers
         public async Task<ActionResult<Product>> GetProductById(int id)
         {
             return Ok(await _mediator.Send(new GetProductByIdQuery { Id = id }));
+        }
+
+        [HttpGet("byVendor/{id}")]
+        public async Task<ActionResult<Product>> GetProductByVendor(int id)
+        {
+            return Ok(await _mediator.Send(new GetProductByVendorQuery { VendorId = id}));
         }
 
         [HttpPost]
