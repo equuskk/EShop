@@ -1,10 +1,6 @@
-﻿using EShop.Application.Vendors.Queries.GetAllVendors;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MediatR;
 
-namespace EShop.Application.Vendors.Queries
+namespace EShop.Application.Vendors.Queries.GetAllVendors
 {
     public class GetAllVendorsQuery : IRequest<VendorsViewModel>
     {

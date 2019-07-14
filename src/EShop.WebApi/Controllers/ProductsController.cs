@@ -36,15 +36,15 @@ namespace EShop.WebApi.Controllers
         }
 
         [HttpGet("byVendor/{id}")]
-        public async Task<ActionResult<Product>> GetProductByVendor(int id)
+        public async Task<ActionResult<ProductsViewModel>> GetProductsByVendor(int id)
         {
-            return Ok(await _mediator.Send(new GetProductByVendorQuery { VendorId = id}));
+            return Ok(await _mediator.Send(new GetProductByVendorQuery { VendorId = id }));
         }
 
         [HttpGet("byCategory/{id}")]
-        public async Task<ActionResult<Product>> GetProductByCategory(int id)
+        public async Task<ActionResult<ProductsViewModel>> GetProductsByCategory(int id)
         {
-            return Ok(await _mediator.Send(new GetProductByCategoryQuery { CategooryId = id }));
+            return Ok(await _mediator.Send(new GetProductByCategoryQuery { CategoryId = id }));
         }
 
         [HttpPost]

@@ -2,7 +2,6 @@
 using EShop.Application.Vendors.Commands.AddVendor;
 using EShop.Application.Vendors.Commands.DeleteVendor;
 using EShop.Application.Vendors.Commands.EditVendor;
-using EShop.Application.Vendors.Queries;
 using EShop.Application.Vendors.Queries.GetAllVendors;
 using EShop.Domain.Entities;
 using MediatR;

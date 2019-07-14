@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using EShop.DataAccess;
 using EShop.Domain.Exceptions;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace EShop.Application.Vendors.Commands.DeleteVendor
 {
@@ -18,10 +17,9 @@ namespace EShop.Application.Vendors.Commands.DeleteVendor
 
         public async Task<bool> Handle(DeleteVendorCommand request, CancellationToken cancellationToken)
         {
-            var vendor = await _db.Vendors.FirstOrDefaultAsync(x => x.Id == request.Id,
-                                                                cancellationToken);
+            var vendor = await _db.Vendors.FindAsync(request.Id);
 
-            if (vendor is null)
+            if(vendor is null)
             {
                 throw new NotFoundException(nameof(vendor), request.Id);
             }

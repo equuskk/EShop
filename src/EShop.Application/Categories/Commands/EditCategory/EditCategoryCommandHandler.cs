@@ -4,7 +4,6 @@ using EShop.DataAccess;
 using EShop.Domain.Entities;
 using EShop.Domain.Exceptions;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace EShop.Application.Categories.Commands.EditCategory
 {
@@ -17,12 +16,11 @@ namespace EShop.Application.Categories.Commands.EditCategory
             _db = db;
         }
 
-        public  async Task<Category> Handle(EditCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<Category> Handle(EditCategoryCommand request, CancellationToken cancellationToken)
         {
-            var category = await _db.Categories.FirstOrDefaultAsync(x => x.Id == request.Id,
-                                                                cancellationToken);
+            var category = await _db.Categories.FindAsync(request.Id);
 
-            if (category is null)
+            if(category is null)
             {
                 throw new NotFoundException(nameof(Product), request.Id);
             }

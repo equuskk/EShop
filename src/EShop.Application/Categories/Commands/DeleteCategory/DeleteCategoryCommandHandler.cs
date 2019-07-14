@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using EShop.DataAccess;
 using EShop.Domain.Exceptions;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace EShop.Application.Categories.Commands.DeleteCategory
 {
@@ -15,12 +14,12 @@ namespace EShop.Application.Categories.Commands.DeleteCategory
         {
             _db = db;
         }
+
         public async Task<bool> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
         {
-            var category = await _db.Categories.FirstOrDefaultAsync(x => x.Id == request.Id,
-                                                                cancellationToken);
+            var category = await _db.Categories.FindAsync(request.Id);
 
-            if (category is null)
+            if(category is null)
             {
                 throw new NotFoundException(nameof(category), request.Id);
             }

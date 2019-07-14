@@ -4,7 +4,6 @@ using EShop.DataAccess;
 using EShop.Domain.Entities;
 using EShop.Domain.Exceptions;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace EShop.Application.Vendors.Commands.EditVendor
 {
@@ -16,12 +15,12 @@ namespace EShop.Application.Vendors.Commands.EditVendor
         {
             _db = db;
         }
+
         public async Task<Vendor> Handle(EditVendorCommand request, CancellationToken cancellationToken)
         {
-            var vendor = await _db.Vendors.FirstOrDefaultAsync(x => x.Id == request.Id,
-                                                                  cancellationToken);
+            var vendor = await _db.Vendors.FindAsync(request.Id);
 
-            if (vendor is null)
+            if(vendor is null)
             {
                 throw new NotFoundException(nameof(Vendor), request.Id);
             }

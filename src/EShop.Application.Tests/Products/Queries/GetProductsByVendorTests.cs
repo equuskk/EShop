@@ -7,17 +7,17 @@ using Xunit;
 
 namespace EShop.Application.Tests.Products.Queries
 {
-    public class GetProductByVendorTests : IClassFixture<ProductsDbContextFixture>
+    public class GetProductsByVendorTests : IClassFixture<ProductsDbContextFixture>
     {
         private readonly ProductsDbContext context;
 
-        public GetProductByVendorTests(ProductsDbContextFixture fixture)
+        public GetProductsByVendorTests(ProductsDbContextFixture fixture)
         {
             context = fixture.Context;
         }
 
         [Fact]
-        public async void GetProductById_CorrectId_ReturnsProduct()
+        public async void GetProductsByVendorId_CorrectId_ReturnsProduct()
         {
             var cmd = new GetProductByVendorQuery
             {
@@ -29,19 +29,6 @@ namespace EShop.Application.Tests.Products.Queries
 
             Assert.NotNull(result);
             Assert.Equal(result.Products.First().VendorId, cmd.VendorId);
-        }
-
-        [Fact]
-        public async void GetProductById_IncorrectId_ThrowsException()
-        {
-            var cmd = new GetProductByVendorQuery
-            {
-                VendorId = -1
-            };
-
-            var handler = new GetProductByVendorQueryHandler(context);
-            await Assert.ThrowsAsync<NotFoundException>(async () =>
-                                                            await handler.Handle(cmd, CancellationToken.None));
         }
     }
 }
