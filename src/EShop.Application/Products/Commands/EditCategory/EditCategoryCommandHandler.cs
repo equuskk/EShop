@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EShop.Application.Products.Commands.EditCategory
 {
-    class EditCategoryCommandHandler : IRequestHandler<EditCategoryCommand, Category>
+    public class EditCategoryCommandHandler : IRequestHandler<EditCategoryCommand, Category>
     {
         private readonly ProductsDbContext _db;
 

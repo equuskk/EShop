@@ -15,7 +15,7 @@ namespace EShop.Application.Tests.Products.Commands
         }
 
         [Fact]
-        public async void AddProduct_CorrectProduct_ReturnsProduct()
+        public async void AddProduct_CorrectProduct_ReturnsIdProduct()
         {
             var cmd = new AddProductCommand
             {
