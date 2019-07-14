@@ -1,4 +1,4 @@
-﻿using EShop.Application.Products.Commands.EditCategory;
+﻿using EShop.Application.Categories.Commands.EditCategory;
 using EShop.DataAccess;
 using EShop.Domain.Exceptions;
 using System;

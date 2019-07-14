@@ -1,4 +1,4 @@
-﻿using EShop.Application.Products.Commands.DeleteCategory;
+﻿using EShop.Application.Categories.Commands.DeleteCategory;
 using EShop.DataAccess;
 using EShop.Domain.Exceptions;
 using System;

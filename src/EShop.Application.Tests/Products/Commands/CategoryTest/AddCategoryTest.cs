@@ -1,4 +1,4 @@
-﻿using EShop.Application.Products.Commands.AddCategory;
+﻿using EShop.Application.Categories.Commands.AddCategory;
 using EShop.DataAccess;
 using System;
 using System.Collections.Generic;
