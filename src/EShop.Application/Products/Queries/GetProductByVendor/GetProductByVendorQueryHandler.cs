@@ -16,7 +16,8 @@ namespace EShop.Application.Products.Queries.GetProductByVendor
             _db = db;
         }
 
-        public async Task<ProductsViewModel> Handle(GetProductByVendorQuery request, CancellationToken cancellationToken)
+        public async Task<ProductsViewModel> Handle(GetProductByVendorQuery request,
+                                                    CancellationToken cancellationToken)
         {
             return new ProductsViewModel
             {

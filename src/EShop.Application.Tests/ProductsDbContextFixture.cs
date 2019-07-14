@@ -9,6 +9,7 @@ namespace EShop.Application.Tests
     public class ProductsDbContextFixture : IDisposable
     {
         public readonly ProductsDbContext Context;
+
         public ProductsDbContextFixture()
         {
             var connection = new SqliteConnection("DataSource=:memory:");

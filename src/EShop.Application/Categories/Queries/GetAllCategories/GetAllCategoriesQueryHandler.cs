@@ -14,7 +14,9 @@ namespace EShop.Application.Categories.Queries.GetAllCategories
         {
             _db = db;
         }
-        public async Task<CategoriesViewModel> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
+
+        public async Task<CategoriesViewModel> Handle(GetAllCategoriesQuery request,
+                                                      CancellationToken cancellationToken)
         {
             return new CategoriesViewModel
             {

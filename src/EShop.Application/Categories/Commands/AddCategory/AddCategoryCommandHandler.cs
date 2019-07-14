@@ -14,6 +14,7 @@ namespace EShop.Application.Categories.Commands.AddCategory
         {
             _db = db;
         }
+
         public async Task<int> Handle(AddCategoryCommand request, CancellationToken cancellationToken)
         {
             var category = new Category(request.Name);

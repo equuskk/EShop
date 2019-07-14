@@ -2,7 +2,6 @@
 using System.Threading;
 using EShop.Application.Products.Queries.GetProductByCategory;
 using EShop.DataAccess;
-using EShop.Domain.Exceptions;
 using Xunit;
 
 namespace EShop.Application.Tests.Products.Queries

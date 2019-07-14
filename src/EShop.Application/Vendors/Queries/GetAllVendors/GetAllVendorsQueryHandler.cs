@@ -1,16 +1,11 @@
-﻿using EShop.Application.Products.Queries.GetAllProducts;
-using EShop.DataAccess;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using EShop.DataAccess;
+using MediatR;
 
 namespace EShop.Application.Vendors.Queries.GetAllVendors
 {
-
     public class GetAllVendorsQueryHandler : IRequestHandler<GetAllVendorsQuery, VendorsViewModel>
     {
         private readonly ProductsDbContext _db;
