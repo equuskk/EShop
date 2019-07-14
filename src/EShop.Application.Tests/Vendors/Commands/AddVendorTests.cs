@@ -1,18 +1,15 @@
-﻿using EShop.Application.Vendors.Commands.AddVendor;
+﻿using System.Threading;
+using EShop.Application.Vendors.Commands.AddVendor;
 using EShop.DataAccess;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using Xunit;
 
 namespace EShop.Application.Tests.Vendors.Commands
 {
-    public class AddVendorTest : IClassFixture<ProductsDbContextFixture>
+    public class AddVendorTests : IClassFixture<ProductsDbContextFixture>
     {
         private readonly ProductsDbContext context;
 
-        public AddVendorTest(ProductsDbContextFixture fixture)
+        public AddVendorTests(ProductsDbContextFixture fixture)
         {
             context = fixture.Context;
         }

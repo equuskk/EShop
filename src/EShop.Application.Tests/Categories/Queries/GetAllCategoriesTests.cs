@@ -1,19 +1,16 @@
-﻿using EShop.Application.Categories.Queries.GetAllCategories;
-using EShop.DataAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading;
+using EShop.Application.Categories.Queries.GetAllCategories;
+using EShop.DataAccess;
 using Xunit;
 
 namespace EShop.Application.Tests.Categories.Queries
 {
-    public class GetAllCategoriesTest : IClassFixture<ProductsDbContextFixture>
+    public class GetAllCategoriesTests : IClassFixture<ProductsDbContextFixture>
     {
         private readonly ProductsDbContext context;
 
-        public GetAllCategoriesTest(ProductsDbContextFixture fixture)
+        public GetAllCategoriesTests(ProductsDbContextFixture fixture)
         {
             context = fixture.Context;
         }

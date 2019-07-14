@@ -1,19 +1,17 @@
-﻿using EShop.Application.Categories.Commands.EditCategory;
+﻿using System.Threading;
+using EShop.Application.Vendors.Commands.EditVendor;
 using EShop.DataAccess;
+using EShop.Domain.Entities;
 using EShop.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using Xunit;
 
-namespace EShop.Application.Tests.Products.Commands.CategoryTest
+namespace EShop.Application.Tests.Vendors.Commands
 {
-    public class EditCategoryTest : IClassFixture<ProductsDbContextFixture>
+    public class EditVendorTests : IClassFixture<ProductsDbContextFixture>
     {
         private readonly ProductsDbContext context;
 
-        public EditCategoryTest(ProductsDbContextFixture fixture)
+        public EditVendorTests(ProductsDbContextFixture fixture)
         {
             context = fixture.Context;
         }
@@ -21,16 +19,17 @@ namespace EShop.Application.Tests.Products.Commands.CategoryTest
         [Fact]
         public async void EditCategory_CorrectData_ReturnsCategory()
         {
-            var cmd = new EditCategoryCommand
+            var cmd = new EditVendorCommand
             {
                 Id = 1,
-                Name = "New Name"
+                Name = "New Name",
+                Description = "New Description"
             };
 
-            var handler = new EditCategoryCommandHandler(context);
+            var handler = new EditVendorCommandHandler(context);
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.IsType<EShop.Domain.Entities.Category>(result);
+            Assert.IsType<Vendor>(result);
             Assert.Equal(cmd.Id, result.Id);
             Assert.Equal(cmd.Name, result.Name);
         }
@@ -38,13 +37,13 @@ namespace EShop.Application.Tests.Products.Commands.CategoryTest
         [Fact]
         public async void EditCategory_IncorrectData_ThrowsException()
         {
-            var cmd = new EditCategoryCommand
+            var cmd = new EditVendorCommand
             {
                 Id = -1,
                 Name = "Test"
             };
 
-            var handler = new EditCategoryCommandHandler(context);
+            var handler = new EditVendorCommandHandler(context);
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                             await handler.Handle(cmd, CancellationToken.None));
         }

@@ -1,18 +1,15 @@
-﻿using EShop.Application.Categories.Commands.AddCategory;
+﻿using System.Threading;
+using EShop.Application.Categories.Commands.AddCategory;
 using EShop.DataAccess;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using Xunit;
 
-namespace EShop.Application.Tests.Products.Commands.Category
+namespace EShop.Application.Tests.Categories.Commands
 {
-    public class AddCategoryTest : IClassFixture<ProductsDbContextFixture>
+    public class AddCategoryTests : IClassFixture<ProductsDbContextFixture>
     {
         private readonly ProductsDbContext context;
 
-        public AddCategoryTest(ProductsDbContextFixture fixture)
+        public AddCategoryTests(ProductsDbContextFixture fixture)
         {
             context = fixture.Context;
         }
@@ -22,7 +19,7 @@ namespace EShop.Application.Tests.Products.Commands.Category
         {
             var cmd = new AddCategoryCommand
             {
-               Name = "Тест"
+                Name = "Тест"
             };
 
             var handler = new AddCategoryCommandHandler(context);

@@ -1,20 +1,17 @@
-﻿using EShop.Application.Products.Queries.GetProductByVendor;
+﻿using System.Linq;
+using System.Threading;
+using EShop.Application.Products.Queries.GetProductByVendor;
 using EShop.DataAccess;
 using EShop.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using Xunit;
 
 namespace EShop.Application.Tests.Products.Queries
 {
-    public class GetProductByVendorTest : IClassFixture<ProductsDbContextFixture>
+    public class GetProductByVendorTests : IClassFixture<ProductsDbContextFixture>
     {
         private readonly ProductsDbContext context;
 
-        public GetProductByVendorTest(ProductsDbContextFixture fixture)
+        public GetProductByVendorTests(ProductsDbContextFixture fixture)
         {
             context = fixture.Context;
         }
