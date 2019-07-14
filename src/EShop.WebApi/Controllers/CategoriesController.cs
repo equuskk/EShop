@@ -2,6 +2,7 @@
 using EShop.Application.Categories.Commands.AddCategory;
 using EShop.Application.Categories.Commands.DeleteCategory;
 using EShop.Application.Categories.Commands.EditCategory;
+using EShop.Application.Categories.Queries.GetAllCategories;
 using EShop.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,12 @@ namespace EShop.WebApi.Controllers
         public CategoriesController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<CategoriesViewModel>> GetAllCategories()
+        {
+            return Ok(await _mediator.Send(new GetAllCategoriesQuery()));
         }
 
         [HttpPost]
