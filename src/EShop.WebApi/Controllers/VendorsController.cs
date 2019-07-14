@@ -24,7 +24,7 @@ namespace EShop.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> AddVender([FromBody] AddVendorCommand cmd)
+        public async Task<ActionResult<int>> AddVendor([FromBody] AddVendorCommand cmd)
         {
             return Ok(await _mediator.Send(cmd));
         }
