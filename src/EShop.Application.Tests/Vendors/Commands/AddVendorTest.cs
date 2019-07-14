@@ -22,7 +22,8 @@ namespace EShop.Application.Tests.Vendors.Commands
         {
             var cmd = new AddVendorCommand
             {
-                Name = "Тест"
+                Name = "Тест",
+                Description = "Описание"
             };
 
             var handler = new AddVendorCommandHandler(context);

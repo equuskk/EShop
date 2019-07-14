@@ -24,7 +24,8 @@ namespace EShop.Application.Tests.Vendors.Commands
             var cmd = new EditVendorCommand
             {
                 Id = 1,
-                Name = "New Name"
+                Name = "New Name",
+                Description = "New Description"    
             };
 
             var handler = new EditVendorCommandHandler(context);
