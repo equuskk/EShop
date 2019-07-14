@@ -21,4 +21,8 @@
     <ProjectReference Include="..\EShop.Application\EShop.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Categories\Queries\" />
+  </ItemGroup>
+
 </Project>
