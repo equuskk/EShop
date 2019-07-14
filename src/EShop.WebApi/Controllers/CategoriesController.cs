@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EShop.Application.Products.Commands.AddCategory;
-using EShop.Application.Products.Commands.DeleteCategory;
-using EShop.Application.Products.Commands.EditCategory;
-using EShop.Application.Products.Queries.GetAllCategories;
-using EShop.Application.Products.Queries.GetAllProducts;
+﻿using System.Threading.Tasks;
+using EShop.Application.Categories.Commands.AddCategory;
+using EShop.Application.Categories.Commands.DeleteCategory;
+using EShop.Application.Categories.Commands.EditCategory;
+using EShop.Application.Categories.Queries.GetAllCategories;
 using EShop.Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.WebApi.Controllers

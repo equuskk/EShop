@@ -1,13 +1,10 @@
-﻿using EShop.DataAccess;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using EShop.DataAccess;
 using EShop.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace EShop.Application.Products.Commands.AddVendor
+namespace EShop.Application.Vendors.Commands.AddVendor
 {
     public class AddVendorCommandHandler : IRequestHandler<AddVendorCommand, int>
     {

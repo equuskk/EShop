@@ -1,6 +1,6 @@
 ﻿using EShop.Domain.Entities;
 
-namespace EShop.Application.Products.Queries.GetAllProducts
+namespace EShop.Application.Categories.Queries.GetAllCategories
 {
     public class CategoriesViewModel
     {

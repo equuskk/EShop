@@ -1,14 +1,10 @@
-﻿using EShop.Application.Products.Queries.GetAllProducts;
-using EShop.DataAccess;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using EShop.DataAccess;
+using MediatR;
 
-namespace EShop.Application.Products.Queries.GetAllCategories
+namespace EShop.Application.Categories.Queries.GetAllCategories
 {
     public class GetAllCategoriesQueryHandler : IRequestHandler<GetAllCategoriesQuery, CategoriesViewModel>
     {

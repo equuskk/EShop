@@ -1,9 +1,6 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace EShop.Application.Products.Commands.AddCategory
+namespace EShop.Application.Categories.Commands.AddCategory
 {
     public class AddCategoryCommand : IRequest<int>
     {
