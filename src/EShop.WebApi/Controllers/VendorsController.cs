@@ -1,4 +1,7 @@
 ﻿using EShop.Application.Products.Commands.AddVendor;
+using EShop.Application.Products.Commands.DeleteVendor;
+using EShop.Application.Products.Commands.EditVendor;
+using EShop.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,6 +25,18 @@ namespace EShop.WebApi.Controllers
 
         [HttpPost]
         public async Task<ActionResult<int>> AddVender([FromBody] AddVendorCommand cmd)
+        {
+            return Ok(await _mediator.Send(cmd));
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<Vendor>> EditVendor([FromBody] EditVendorCommand cmd)
+        {
+            return Ok(await _mediator.Send(cmd));
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<bool>> DeleteVendor([FromBody] DeleteVendorCommand cmd)
         {
             return Ok(await _mediator.Send(cmd));
         }

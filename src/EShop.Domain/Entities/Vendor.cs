@@ -20,7 +20,7 @@ namespace EShop.Domain.Entities
             SetDescription(description);
         }
 
-        private void SetDescription(string description)
+        public void SetDescription(string description)
         {
             if(string.IsNullOrWhiteSpace(description))
             {
