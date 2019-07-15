@@ -1,6 +1,7 @@
-﻿using System;
+﻿using System.Security.Authentication;
 using System.Threading;
 using System.Threading.Tasks;
+using EShop.Application.Users.Services;
 using EShop.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -10,10 +11,12 @@ namespace EShop.Application.Users.Commands.RegisterUser
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, string>
     {
         private readonly UserManager<ShopUser> _manager;
+        private readonly GenerateTokenService _tokenService;
 
-        public RegisterUserCommandHandler(UserManager<ShopUser> manager)
+        public RegisterUserCommandHandler(UserManager<ShopUser> manager, GenerateTokenService tokenService)
         {
             _manager = manager;
+            _tokenService = tokenService;
         }
 
         public async Task<string> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
@@ -24,10 +27,11 @@ namespace EShop.Application.Users.Commands.RegisterUser
 
             if(result.Succeeded)
             {
-                return user.Id;
+                return _tokenService.GenerateJwtToken(user);
             }
 
-            throw new ArgumentException(); //TODO:
+            var msg = string.Join('\n', result.Errors);
+            throw new AuthenticationException(msg);
         }
     }
 }
