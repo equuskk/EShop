@@ -58,6 +58,22 @@ namespace EShop.Domain.Entities
             Quantity += quantity;
         }
 
+        public void SubQuantity(int quantity)
+        {
+            if (quantity <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(quantity), quantity,
+                                                      "quantity cannot be less than or equal to 0");
+            }
+
+            if (OrderId > 0) // если заказ уже оформлен
+            {
+                throw new ArgumentException("order has already been issued");
+            }
+
+            Quantity -= quantity;
+        }
+
         private void SetUserId(string userId)
         {
             if(string.IsNullOrWhiteSpace(userId))

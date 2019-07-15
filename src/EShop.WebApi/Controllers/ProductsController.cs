@@ -1,7 +1,9 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using EShop.Application.Products.Commands.AddProduct;
+using EShop.Application.Products.Commands.AddProductInCart;
 using EShop.Application.Products.Commands.DeleteProduct;
+using EShop.Application.Products.Commands.DeleteProductFromCart;
 using EShop.Application.Products.Commands.EditProduct;
 using EShop.Application.Products.Queries.GetAllProducts;
 using EShop.Application.Products.Queries.GetProductByCategory;
@@ -86,6 +88,22 @@ namespace EShop.WebApi.Controllers
         [Authorize]
         [HttpPost("AddReview")]
         public async Task<ActionResult<int>> AddReview([FromBody] AddReviewCommand cmd)
+        {
+            cmd.ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return Ok(await _mediator.Send(cmd));
+        }
+
+        [Authorize]
+        [HttpPost("AddProductInCart")]
+        public async Task<ActionResult<int>> AddProductInCart([FromBody] AddProductInCartCommand cmd)
+        {
+            cmd.ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return Ok(await _mediator.Send(cmd));
+        }
+
+        [Authorize]
+        [HttpDelete("DeleteProductFromCart")]
+        public async Task<ActionResult<bool>> DeleteProductFromCart([FromBody] DeleteProductFromCartCommand cmd)
         {
             cmd.ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return Ok(await _mediator.Send(cmd));
