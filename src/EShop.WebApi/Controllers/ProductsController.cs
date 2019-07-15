@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
 using EShop.Application.Products.Commands.AddProduct;
 using EShop.Application.Products.Commands.DeleteProduct;
 using EShop.Application.Products.Commands.EditProduct;
@@ -6,8 +7,12 @@ using EShop.Application.Products.Queries.GetAllProducts;
 using EShop.Application.Products.Queries.GetProductByCategory;
 using EShop.Application.Products.Queries.GetProductById;
 using EShop.Application.Products.Queries.GetProductByVendor;
+using EShop.Application.Reviews.Commands.AddReview;
+using EShop.Application.Reviews.Commands.DeleteReview;
+using EShop.Application.Reviews.Queries.GetAllReviewsByProductId;
 using EShop.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.WebApi.Controllers
@@ -60,8 +65,29 @@ namespace EShop.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult<Product>> DeleteProduct([FromBody] DeleteProductCommand cmd)
+        public async Task<ActionResult<bool>> DeleteProduct([FromBody] DeleteProductCommand cmd)
         {
+            return Ok(await _mediator.Send(cmd));
+        }
+
+        [HttpGet("Reviews/{id}")]
+        public async Task<ActionResult<ReviewsViewModel>> GetReviewsById(int id)
+        {
+            return Ok(await _mediator.Send(new GetAllReviewsByBpoductIdQuery { ProductId = id }));
+        }
+
+        [Authorize]
+        [HttpDelete("Review/{id}")]
+        public async Task<ActionResult<bool>> DeleteReview(int id)
+        {
+            return Ok(await _mediator.Send(new DeleteReviewCommand { Id = id, ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier) }));
+        }
+
+        [Authorize]
+        [HttpPost("AddReview")]
+        public async Task<ActionResult<int>> AddReview([FromBody] AddReviewCommand cmd)
+        {
+            cmd.ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return Ok(await _mediator.Send(cmd));
         }
     }
