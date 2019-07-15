@@ -6,6 +6,7 @@ using EShop.Application.Products.Queries.GetAllProducts;
 using EShop.Application.Users.Services;
 using EShop.DataAccess;
 using EShop.Domain.Entities;
+using EShop.WebApi.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -39,34 +40,11 @@ namespace EShop.WebApi
                     .AddEntityFrameworkStores<UsersDbContext>()
                     .AddDefaultTokenProviders();
 
+            services.AddJwtAuth(Configuration);
 
             services.AddMediatR(typeof(GetAllProductsQuery).GetTypeInfo().Assembly);
 
             services.AddSwaggerDocument();
-
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
-            services
-                .AddAuthentication(options =>
-                {
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(cfg =>
-                {
-                    cfg.RequireHttpsMetadata = false;
-                    cfg.SaveToken = true;
-                    cfg.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidIssuer = Configuration["JwtAuth:Issuer"],
-                        ValidAudience = Configuration["JwtAuth:Issuer"],
-                        IssuerSigningKey =
-                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtAuth:Key"])),
-                        ClockSkew = TimeSpan.Zero // remove delay of token when expire
-                    };
-                });
-            services.AddScoped<GenerateTokenService>();
-
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
