@@ -5,20 +5,20 @@ namespace EShop.Domain.Entities
     public class ProductInCart
     {
         public int Id { get; private set; }
-        public int ShopUserId { get; private set; }
+        public string ShopUserId { get; private set; }
         public int ProductId { get; private set; }
         public int OrderId { get; private set; }
         
         public int Quantity { get; private set; }
         
 
-        public virtual ShopUser User { get; }
-        public virtual Product Product { get; }
+        public virtual ShopUser User { get; private set; }
+        public virtual Product Product { get; private set; }
         public virtual Order Order { get; private set; }
 
         private ProductInCart() { }
 
-        public ProductInCart(int userId, int productId, int quantity, int orderId = 0)
+        public ProductInCart(string userId, int productId, int quantity, int orderId = 0)
         {
             SetUserId(userId);
             SetProductId(productId);
@@ -58,12 +58,16 @@ namespace EShop.Domain.Entities
             Quantity += quantity;
         }
 
-        private void SetUserId(int userId)
+        private void SetUserId(string userId)
         {
-            if(userId <= 0)
+            if(string.IsNullOrWhiteSpace(userId))
             {
-                throw new ArgumentOutOfRangeException(nameof(userId), userId,
-                                                      "userId cannot be less than or equal to 0");
+                throw new ArgumentException("userId is empty", nameof(userId));
+            }
+
+            if(!Guid.TryParse(userId, out _))
+            {
+                throw new ArgumentException("incorrect GUID", nameof(userId));
             }
 
             ShopUserId = userId;

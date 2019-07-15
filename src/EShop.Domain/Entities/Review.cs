@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 
 namespace EShop.Domain.Entities
 {
     public class Review
     {
         public int Id { get; private set; }
-
-        public int ShopUserId { get; private set; }
+        public string ShopUserId { get; private set; }
         public int ProductId { get; private set; }
 
         public string Text { get; private set; }
@@ -22,7 +20,7 @@ namespace EShop.Domain.Entities
             Date = DateTime.UtcNow;
         }
 
-        public Review(string text, int rate, int userId, int productId) : this()
+        public Review(string text, int rate, string userId, int productId) : this()
         {
             SetText(text);
             SetRate(rate);
@@ -50,12 +48,11 @@ namespace EShop.Domain.Entities
             Rate = rate;
         }
 
-        private void SetUserId(int userId)
+        private void SetUserId(string userId)
         {
-            if(userId <= 0)
+            if(string.IsNullOrWhiteSpace(userId) || !Guid.TryParse(userId, out _))
             {
-                throw new ArgumentOutOfRangeException(nameof(userId), userId,
-                                                      "userId cannot be less than or equal to 0");
+                throw new ArgumentException("userId is empty or incorrect GUID", nameof(userId));
             }
 
             ShopUserId = userId;

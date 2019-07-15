@@ -10,6 +10,9 @@ namespace EShop.DataAccess
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<Review> Reviews { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<ProductInCart> ProductsInCarts { get; set; }
+
         public ProductsDbContext(DbContextOptions<ProductsDbContext> options) : base(options)
         {
         }
