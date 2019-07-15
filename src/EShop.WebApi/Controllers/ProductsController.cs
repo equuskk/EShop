@@ -5,6 +5,7 @@ using EShop.Application.Products.Commands.AddProductInCart;
 using EShop.Application.Products.Commands.DeleteProduct;
 using EShop.Application.Products.Commands.DeleteProductFromCart;
 using EShop.Application.Products.Commands.EditProduct;
+using EShop.Application.Products.Commands.Payment;
 using EShop.Application.Products.Queries.GetAllProducts;
 using EShop.Application.Products.Queries.GetProductByCategory;
 using EShop.Application.Products.Queries.GetProductById;
@@ -107,6 +108,13 @@ namespace EShop.WebApi.Controllers
         {
             cmd.ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return Ok(await _mediator.Send(cmd));
+        }
+
+        [Authorize]
+        [HttpGet("Payment")]
+        public async Task<ActionResult<ProductsViewModel>> OrderPayment()
+        {
+            return Ok(await _mediator.Send(new OrderPaymentCommand { ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier) }));
         }
     }
 }
