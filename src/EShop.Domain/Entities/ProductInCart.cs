@@ -5,22 +5,44 @@ namespace EShop.Domain.Entities
     public class ProductInCart
     {
         public int Id { get; private set; }
-
-        public ShopUser User { get; }
-        public Product Product { get; }
+        public int ShopUserId { get; private set; }
+        public int ProductId { get; private set; }
+        public int OrderId { get; private set; }
+        
         public int Quantity { get; private set; }
-        public Order Order { get; private set; }
+        
+
+        public virtual ShopUser User { get; }
+        public virtual Product Product { get; }
+        public virtual Order Order { get; private set; }
 
         private ProductInCart() { }
 
-        public ProductInCart(ShopUser user, Product product, int quantity, Order order = null)
+        public ProductInCart(int userId, int productId, int quantity, int orderId = 0)
         {
-            User = user ?? throw new ArgumentNullException(nameof(user), "user is null");
-            Product = product ?? throw new ArgumentNullException(nameof(product), "product is null");
+            SetUserId(userId);
+            SetProductId(productId);
             AddQuantity(quantity);
+            SetOrderId(orderId);
         }
 
-        private void AddQuantity(int quantity)
+        public void SetOrderId(int orderId)
+        {
+            if(orderId <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(orderId), orderId,
+                                                      "orderId cannot be less than or equal to 0");
+            }
+
+            if(OrderId > 0) // если заказ уже оформлен
+            {
+                throw new ArgumentException("order has already been issued", nameof(orderId));
+            }
+
+            OrderId = orderId;
+        }
+
+        public void AddQuantity(int quantity)
         {
             if(quantity <= 0)
             {
@@ -28,7 +50,34 @@ namespace EShop.Domain.Entities
                                                       "quantity cannot be less than or equal to 0");
             }
 
+            if(OrderId > 0) // если заказ уже оформлен
+            {
+                throw new ArgumentException("order has already been issued");
+            }
+
             Quantity += quantity;
+        }
+
+        private void SetUserId(int userId)
+        {
+            if(userId <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(userId), userId,
+                                                      "userId cannot be less than or equal to 0");
+            }
+
+            ShopUserId = userId;
+        }
+
+        private void SetProductId(int productId)
+        {
+            if(productId <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(productId), productId,
+                                                      "productId cannot be less than or equal to 0");
+            }
+
+            ProductId = productId;
         }
     }
 }
