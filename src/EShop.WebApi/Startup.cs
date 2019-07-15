@@ -1,14 +1,10 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Reflection;
-using System.Text;
+﻿using System.Reflection;
 using EShop.Application.Products.Queries.GetAllProducts;
-using EShop.Application.Users.Services;
 using EShop.DataAccess;
 using EShop.Domain.Entities;
 using EShop.WebApi.Extensions;
+using EShop.WebApi.Filters;
 using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -16,8 +12,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Logging;
-using Microsoft.IdentityModel.Tokens;
 
 namespace EShop.WebApi
 {
@@ -46,7 +40,8 @@ namespace EShop.WebApi
 
             services.AddSwaggerDocument();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
