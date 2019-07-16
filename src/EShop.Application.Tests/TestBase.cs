@@ -9,14 +9,15 @@ namespace EShop.Application.Tests
     public class TestBase
     {
         public string UserId { get; private set; }
-        private readonly ProductsDbContext ProductsContext;
-        private readonly UsersDbContext UsersContext;
+        public readonly ProductsDbContext ProductsContext;
+        public readonly UsersDbContext UsersContext;
 
         public TestBase()
         {
             ProductsContext = GetProductsContext();
             UsersContext = GetUsersContext();
             InitReviewContext(ProductsContext);
+            InitProductInCarts(ProductsContext);
         }
 
         public ProductsDbContext GetProductsContext()
@@ -96,6 +97,14 @@ namespace EShop.Application.Tests
         {
             var review = new Review("Тест", 5, UserId, ProductsContext.Products.First().Id);
             context.Reviews.Add(review);
+
+            context.SaveChanges();
+        }
+
+        private void InitProductInCarts(ProductsDbContext context)
+        {
+            var review = new ProductInCart(UserId, ProductsContext.Products.First().Id, 2);
+            context.ProductsInCarts.Add(review);
 
             context.SaveChanges();
         }
