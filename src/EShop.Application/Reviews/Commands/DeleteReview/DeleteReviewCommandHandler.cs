@@ -19,7 +19,8 @@ namespace EShop.Application.Reviews.Commands.DeleteReview
 
         public async Task<bool> Handle(DeleteReviewCommand request, CancellationToken cancellationToken)
         {
-            var review = await _db.Reviews.FirstOrDefaultAsync(x => x.Id == request.Id);
+            var review = await _db.Reviews.FirstOrDefaultAsync(x => x.Id == request.Id,
+                                                               cancellationToken);
 
             if(review is null)
             {

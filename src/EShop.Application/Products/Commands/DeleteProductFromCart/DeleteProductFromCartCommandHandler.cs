@@ -2,6 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using EShop.DataAccess;
+using EShop.Domain.Entities;
+using EShop.Domain.Exceptions;
 using MediatR;
 
 namespace EShop.Application.Products.Commands.DeleteProductFromCart
@@ -24,7 +26,7 @@ namespace EShop.Application.Products.Commands.DeleteProductFromCart
 
             if(productInCart is null)
             {
-                return false;
+                throw new NotFoundException(nameof(ProductInCart), request.ProductId);
             }
 
             if(productInCart.Quantity - request.Quantity <= 0)

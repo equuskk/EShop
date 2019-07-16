@@ -11,7 +11,7 @@ namespace EShop.Application.Tests.Reviews.Commands
         [Fact]
         public async void AddReview_CorrectData_ReturnsId()
         {
-            var cmd = new AddReviewCommand()
+            var cmd = new AddReviewCommand
             {
                 ProductId = 1,
                 Rate = 3,
@@ -28,7 +28,7 @@ namespace EShop.Application.Tests.Reviews.Commands
         [Fact]
         public async void AddReview_IncorrectProductId_ThrowsException()
         {
-            var cmd = new AddReviewCommand()
+            var cmd = new AddReviewCommand
             {
                 ProductId = 123456,
                 Rate = 3,
@@ -44,7 +44,7 @@ namespace EShop.Application.Tests.Reviews.Commands
         [Fact]
         public async void AddReview_IncorrectUserId_ThrowsException()
         {
-            var cmd = new AddReviewCommand()
+            var cmd = new AddReviewCommand
             {
                 ProductId = 123456,
                 Rate = 3,

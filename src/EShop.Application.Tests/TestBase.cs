@@ -2,7 +2,6 @@
 using EShop.Domain.Entities;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace EShop.Application.Tests
 {
@@ -14,10 +13,8 @@ namespace EShop.Application.Tests
 
         public TestBase()
         {
-            ProductsContext = GetProductsContext();
             UsersContext = GetUsersContext();
-            InitReviewContext(ProductsContext);
-            InitProductInCarts(ProductsContext);
+            ProductsContext = GetProductsContext();
         }
 
         public ProductsDbContext GetProductsContext()
@@ -49,6 +46,7 @@ namespace EShop.Application.Tests
             {
                 return UsersContext;
             }
+
             var connection = new SqliteConnection("DataSource=:memory:");
             connection.Open();
 
@@ -74,11 +72,18 @@ namespace EShop.Application.Tests
             var firstCategory = new Category("First Category");
             var secondCategory = new Category("Second Category");
             context.Categories.AddRange(firstCategory, secondCategory);
-
             context.SaveChanges();
 
-            context.Products.AddRange(new Product("Продукт1", "Описание1", 111.11, 1, 1),
-                                      new Product("Продукт2", "Описание2", 222.22, 2, 2));
+            var firstProduct = new Product("Продукт1", "Описание1", 111.11, 1, 1);
+            var secondProduct = new Product("Продукт2", "Описание2", 222.22, 2, 2);
+            context.Products.AddRange(firstProduct, secondProduct);
+            context.SaveChanges();
+
+            var review = new Review("Тест", 5, UserId, firstProduct.Id);
+            context.Reviews.Add(review);
+
+            var productInCart = new ProductInCart(UserId, firstProduct.Id, 2);
+            context.ProductsInCarts.Add(productInCart);
 
             context.SaveChanges();
         }
@@ -91,22 +96,6 @@ namespace EShop.Application.Tests
             context.SaveChanges();
 
             UserId = user.Id;
-        }
-
-        private void InitReviewContext(ProductsDbContext context)
-        {
-            var review = new Review("Тест", 5, UserId, ProductsContext.Products.First().Id);
-            context.Reviews.Add(review);
-
-            context.SaveChanges();
-        }
-
-        private void InitProductInCarts(ProductsDbContext context)
-        {
-            var review = new ProductInCart(UserId, ProductsContext.Products.First().Id, 2);
-            context.ProductsInCarts.Add(review);
-
-            context.SaveChanges();
         }
     }
 }

@@ -1,14 +1,11 @@
-﻿using EShop.Application.Products.Commands.DeleteProductFromCart;
+﻿using System.Threading;
+using EShop.Application.Products.Commands.DeleteProductFromCart;
 using EShop.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using Xunit;
 
 namespace EShop.Application.Tests.Products.Commands
 {
-    public class DeleteProductFromCartTest : TestBase
+    public class DeleteProductFromCartTests : TestBase
     {
         [Fact]
         public async void DeleteProduct_CorrectData_ReturnsTrue()
@@ -32,7 +29,7 @@ namespace EShop.Application.Tests.Products.Commands
         {
             var cmd = new DeleteProductFromCartCommand
             {
-               ProductId = -1
+                ProductId = -1
             };
 
             var handler = new DeleteProductFromCartCommandHandler(GetProductsContext());

@@ -1,14 +1,11 @@
-﻿using EShop.Application.Products.Commands.AddProductInCart;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading;
+using EShop.Application.Products.Commands.AddProductInCart;
 using Xunit;
 
 namespace EShop.Application.Tests.Products.Commands
 {
-    public class AddProductInCartTest : TestBase
+    public class AddProductInCartTests : TestBase
     {
         [Fact]
         public async void AddProductInCart_CorrectAddProduct_ReturnsIdProductInCart()
@@ -17,8 +14,7 @@ namespace EShop.Application.Tests.Products.Commands
             {
                 ProductId = ProductsContext.Products.First().Id,
                 Quantity = 2,
-                ShopUserId = UserId,
-
+                ShopUserId = UserId
             };
 
             var handler = new AddProductInCartCommandHandler(GetProductsContext());
