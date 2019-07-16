@@ -4,28 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EShop.DataAccess.Migrations.ProductsDb
 {
-    public partial class FixUsersKey : Migration
+    public partial class AddOrderReviewAndCart : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Reviews_ShopUser_ShopUserId1",
-                table: "Reviews");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Reviews_ShopUserId1",
-                table: "Reviews");
-
-            migrationBuilder.DropColumn(
-                name: "ShopUserId1",
-                table: "Reviews");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "ShopUserId",
-                table: "Reviews",
-                nullable: true,
-                oldClrType: typeof(int));
-
             migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
@@ -41,12 +23,35 @@ namespace EShop.DataAccess.Migrations.ProductsDb
                 });
 
             migrationBuilder.CreateTable(
+                name: "Reviews",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<string>(nullable: true),
+                    ProductId = table.Column<int>(nullable: false),
+                    Text = table.Column<string>(nullable: true),
+                    Rate = table.Column<int>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reviews_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProductsInCarts",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ShopUserId = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true),
                     ProductId = table.Column<int>(nullable: false),
                     OrderId = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false)
@@ -66,18 +71,7 @@ namespace EShop.DataAccess.Migrations.ProductsDb
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProductsInCarts_ShopUser_ShopUserId",
-                        column: x => x.ShopUserId,
-                        principalTable: "ShopUser",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Reviews_ShopUserId",
-                table: "Reviews",
-                column: "ShopUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductsInCarts_OrderId",
@@ -90,59 +84,21 @@ namespace EShop.DataAccess.Migrations.ProductsDb
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductsInCarts_ShopUserId",
-                table: "ProductsInCarts",
-                column: "ShopUserId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Reviews_ShopUser_ShopUserId",
+                name: "IX_Reviews_ProductId",
                 table: "Reviews",
-                column: "ShopUserId",
-                principalTable: "ShopUser",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Reviews_ShopUser_ShopUserId",
-                table: "Reviews");
-
             migrationBuilder.DropTable(
                 name: "ProductsInCarts");
 
             migrationBuilder.DropTable(
+                name: "Reviews");
+
+            migrationBuilder.DropTable(
                 name: "Orders");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Reviews_ShopUserId",
-                table: "Reviews");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "ShopUserId",
-                table: "Reviews",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldNullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "ShopUserId1",
-                table: "Reviews",
-                nullable: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Reviews_ShopUserId1",
-                table: "Reviews",
-                column: "ShopUserId1");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Reviews_ShopUser_ShopUserId1",
-                table: "Reviews",
-                column: "ShopUserId1",
-                principalTable: "ShopUser",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
     }
 }

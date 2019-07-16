@@ -19,6 +19,7 @@ namespace EShop.DataAccess
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Ignore<ShopUser>();
             base.OnModelCreating(builder);
         }
     }

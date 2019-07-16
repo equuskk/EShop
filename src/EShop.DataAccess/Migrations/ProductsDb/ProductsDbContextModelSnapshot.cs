@@ -84,15 +84,13 @@ namespace EShop.DataAccess.Migrations.ProductsDb
 
                     b.Property<int>("Quantity");
 
-                    b.Property<string>("ShopUserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("ShopUserId");
 
                     b.ToTable("ProductsInCarts");
                 });
@@ -109,63 +107,15 @@ namespace EShop.DataAccess.Migrations.ProductsDb
 
                     b.Property<int>("Rate");
 
-                    b.Property<string>("ShopUserId");
-
                     b.Property<string>("Text");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("ShopUserId");
-
                     b.ToTable("Reviews");
-                });
-
-            modelBuilder.Entity("EShop.Domain.Entities.ShopUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("Address");
-
-                    b.Property<string>("ConcurrencyStamp");
-
-                    b.Property<string>("Email");
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail");
-
-                    b.Property<string>("NormalizedUserName");
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<DateTime>("RegisterDate");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ShopUser");
                 });
 
             modelBuilder.Entity("EShop.Domain.Entities.Vendor", b =>
@@ -207,10 +157,6 @@ namespace EShop.DataAccess.Migrations.ProductsDb
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("EShop.Domain.Entities.ShopUser", "User")
-                        .WithMany()
-                        .HasForeignKey("ShopUserId");
                 });
 
             modelBuilder.Entity("EShop.Domain.Entities.Review", b =>
@@ -219,10 +165,6 @@ namespace EShop.DataAccess.Migrations.ProductsDb
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("EShop.Domain.Entities.ShopUser", "ShopUser")
-                        .WithMany()
-                        .HasForeignKey("ShopUserId");
                 });
 #pragma warning restore 612, 618
         }

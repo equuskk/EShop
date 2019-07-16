@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShop.DataAccess.Migrations.ProductsDb
 {
     [DbContext(typeof(ProductsDbContext))]
-    [Migration("20190715103350_AddReviews")]
-    partial class AddReviews
+    [Migration("20190716091624_AddOrderReviewAndCart")]
+    partial class AddOrderReviewAndCart
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,21 @@ namespace EShop.DataAccess.Migrations.ProductsDb
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("EShop.Domain.Entities.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("Cost");
+
+                    b.Property<DateTime>("OrderDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("EShop.Domain.Entities.Product", b =>
@@ -59,6 +74,29 @@ namespace EShop.DataAccess.Migrations.ProductsDb
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("EShop.Domain.Entities.ProductInCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<int>("ProductId");
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductsInCarts");
+                });
+
             modelBuilder.Entity("EShop.Domain.Entities.Review", b =>
                 {
                     b.Property<int>("Id")
@@ -71,65 +109,15 @@ namespace EShop.DataAccess.Migrations.ProductsDb
 
                     b.Property<int>("Rate");
 
-                    b.Property<int>("ShopUserId");
-
-                    b.Property<string>("ShopUserId1");
-
                     b.Property<string>("Text");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("ShopUserId1");
-
                     b.ToTable("Reviews");
-                });
-
-            modelBuilder.Entity("EShop.Domain.Entities.ShopUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("Address");
-
-                    b.Property<string>("ConcurrencyStamp");
-
-                    b.Property<string>("Email");
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail");
-
-                    b.Property<string>("NormalizedUserName");
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<DateTime>("RegisterDate");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ShopUser");
                 });
 
             modelBuilder.Entity("EShop.Domain.Entities.Vendor", b =>
@@ -160,16 +148,25 @@ namespace EShop.DataAccess.Migrations.ProductsDb
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("EShop.Domain.Entities.ProductInCart", b =>
+                {
+                    b.HasOne("EShop.Domain.Entities.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EShop.Domain.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("EShop.Domain.Entities.Review", b =>
                 {
                     b.HasOne("EShop.Domain.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("EShop.Domain.Entities.ShopUser", "ShopUser")
-                        .WithMany()
-                        .HasForeignKey("ShopUserId1");
                 });
 #pragma warning restore 612, 618
         }

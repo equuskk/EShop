@@ -26,7 +26,7 @@ namespace EShop.Application.Reviews.Commands.DeleteReview
                 throw new NotFoundException(nameof(Review), request.Id);
             }
 
-            if(request.ShopUserId != review.ShopUserId)
+            if(request.ShopUserId != review.UserId)
             {
                 return false;
             }

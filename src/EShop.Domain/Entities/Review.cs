@@ -5,7 +5,7 @@ namespace EShop.Domain.Entities
     public class Review
     {
         public int Id { get; private set; }
-        public string ShopUserId { get; private set; }
+        public string UserId { get; private set; }
         public int ProductId { get; private set; }
 
         public string Text { get; private set; }
@@ -55,7 +55,7 @@ namespace EShop.Domain.Entities
                 throw new ArgumentException("userId is empty or incorrect GUID", nameof(userId));
             }
 
-            ShopUserId = userId;
+            UserId = userId;
         }
 
         private void SetProductId(int productId)

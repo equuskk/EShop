@@ -5,7 +5,7 @@ namespace EShop.Domain.Entities
     public class ProductInCart
     {
         public int Id { get; private set; }
-        public string ShopUserId { get; private set; }
+        public string UserId { get; private set; }
         public int ProductId { get; private set; }
         public int OrderId { get; private set; }
 
@@ -88,7 +88,7 @@ namespace EShop.Domain.Entities
                 throw new ArgumentException("incorrect GUID", nameof(userId));
             }
 
-            ShopUserId = userId;
+            UserId = userId;
         }
 
         private void SetProductId(int productId)

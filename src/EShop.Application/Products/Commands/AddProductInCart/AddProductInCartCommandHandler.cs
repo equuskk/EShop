@@ -25,7 +25,7 @@ namespace EShop.Application.Products.Commands.AddProductInCart
 
             var productInCart =
                 _db.ProductsInCarts.FirstOrDefault(x => x.ProductId == request.ProductId &&
-                                                        x.ShopUserId == request.ShopUserId &&
+                                                        x.UserId == request.ShopUserId &&
                                                         x.OrderId == 0);
 
             if(productInCart is null)
