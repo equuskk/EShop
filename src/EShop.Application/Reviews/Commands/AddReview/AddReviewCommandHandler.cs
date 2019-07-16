@@ -1,12 +1,8 @@
-﻿using EShop.DataAccess;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using EShop.DataAccess;
 using EShop.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace EShop.Application.Reviews.Commands.AddReview
 {
@@ -21,7 +17,6 @@ namespace EShop.Application.Reviews.Commands.AddReview
 
         public async Task<int> Handle(AddReviewCommand request, CancellationToken cancellationToken)
         {
-
             var review = new Review(request.Text, request.Rate, request.ShopUserId, request.ProductId);
 
             _db.Reviews.Add(review);

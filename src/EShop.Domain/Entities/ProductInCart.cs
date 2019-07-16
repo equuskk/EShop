@@ -8,15 +8,17 @@ namespace EShop.Domain.Entities
         public string ShopUserId { get; private set; }
         public int ProductId { get; private set; }
         public int OrderId { get; private set; }
-        
+
         public int Quantity { get; private set; }
-        
+
 
         public virtual ShopUser User { get; private set; }
         public virtual Product Product { get; private set; }
         public virtual Order Order { get; private set; }
 
-        private ProductInCart() { }
+        private ProductInCart()
+        {
+        }
 
         public ProductInCart(string userId, int productId, int quantity, int orderId = 0)
         {
@@ -60,13 +62,13 @@ namespace EShop.Domain.Entities
 
         public void SubQuantity(int quantity)
         {
-            if (quantity <= 0)
+            if(quantity <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(quantity), quantity,
                                                       "quantity cannot be less than or equal to 0");
             }
 
-            if (OrderId > 0) // если заказ уже оформлен
+            if(OrderId > 0) // если заказ уже оформлен
             {
                 throw new ArgumentException("order has already been issued");
             }

@@ -8,7 +8,9 @@ namespace EShop.Domain.Entities
 
         public string Name { get; private set; }
 
-        private Category() { }
+        private Category()
+        {
+        }
 
         public Category(string name)
         {

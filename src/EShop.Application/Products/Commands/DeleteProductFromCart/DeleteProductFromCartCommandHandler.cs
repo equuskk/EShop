@@ -1,11 +1,8 @@
-﻿using EShop.DataAccess;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using EShop.DataAccess;
+using MediatR;
 
 namespace EShop.Application.Products.Commands.DeleteProductFromCart
 {
@@ -17,17 +14,20 @@ namespace EShop.Application.Products.Commands.DeleteProductFromCart
         {
             _db = db;
         }
+
         public async Task<bool> Handle(DeleteProductFromCartCommand request, CancellationToken cancellationToken)
         {
-           
-            var productInCart = _db.ProductsInCarts.FirstOrDefault(x => x.ProductId == request.ProductId && x.ShopUserId == request.ShopUserId && x.OrderId == 0);
+            var productInCart =
+                _db.ProductsInCarts.FirstOrDefault(x => x.ProductId == request.ProductId &&
+                                                        x.ShopUserId == request.ShopUserId &&
+                                                        x.OrderId == 0);
 
-            if (productInCart is null)
+            if(productInCart is null)
             {
                 return false;
             }
 
-            if (productInCart.Quantity - request.Quantity <= 0)
+            if(productInCart.Quantity - request.Quantity <= 0)
             {
                 _db.ProductsInCarts.Remove(productInCart);
             }

@@ -35,7 +35,6 @@ namespace EShop.WebApi.Extensions
                     };
                 });
             services.AddScoped<GenerateTokenService>();
-
         }
     }
 }

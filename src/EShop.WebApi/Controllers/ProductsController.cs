@@ -5,7 +5,7 @@ using EShop.Application.Products.Commands.AddProductInCart;
 using EShop.Application.Products.Commands.DeleteProduct;
 using EShop.Application.Products.Commands.DeleteProductFromCart;
 using EShop.Application.Products.Commands.EditProduct;
-using EShop.Application.Products.Commands.Payment;
+using EShop.Application.Products.Commands.MakeOrder;
 using EShop.Application.Products.Queries.GetAllProducts;
 using EShop.Application.Products.Queries.GetProductByCategory;
 using EShop.Application.Products.Queries.GetProductById;
@@ -76,14 +76,18 @@ namespace EShop.WebApi.Controllers
         [HttpGet("Reviews/{id}")]
         public async Task<ActionResult<ReviewsViewModel>> GetReviewsById(int id)
         {
-            return Ok(await _mediator.Send(new GetAllReviewsByBpoductIdQuery { ProductId = id }));
+            return Ok(await _mediator.Send(new GetReviewsByProductIdQuery { ProductId = id }));
         }
 
         [Authorize]
         [HttpDelete("Review/{id}")]
         public async Task<ActionResult<bool>> DeleteReview(int id)
         {
-            return Ok(await _mediator.Send(new DeleteReviewCommand { Id = id, ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier) }));
+            return Ok(await _mediator.Send(new DeleteReviewCommand
+            {
+                Id = id,
+                ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+            }));
         }
 
         [Authorize]
@@ -114,7 +118,10 @@ namespace EShop.WebApi.Controllers
         [HttpGet("Payment")]
         public async Task<ActionResult<ProductsViewModel>> OrderPayment()
         {
-            return Ok(await _mediator.Send(new OrderPaymentCommand { ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier) }));
+            return Ok(await _mediator.Send(new MakeOrderCommand
+            {
+                ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+            }));
         }
     }
 }

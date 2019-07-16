@@ -25,7 +25,7 @@ namespace EShop.Application.Users.Commands.AuthUser
         public async Task<string> Handle(AuthUserCommand request, CancellationToken cancellationToken)
         {
             var auth = await _signInManager.PasswordSignInAsync(request.UserName, request.Password,
-                                                          true, false);
+                                                                true, false);
             if(auth.Succeeded)
             {
                 var user = await _userManager.FindByNameAsync(request.UserName);

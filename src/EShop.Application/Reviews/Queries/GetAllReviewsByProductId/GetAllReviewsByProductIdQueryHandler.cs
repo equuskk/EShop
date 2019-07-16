@@ -1,24 +1,22 @@
-﻿using EShop.DataAccess;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using EShop.DataAccess;
+using MediatR;
 
 namespace EShop.Application.Reviews.Queries.GetAllReviewsByProductId
 {
-    public class GetAllReviewsByProductIdQueryHandler : IRequestHandler<GetAllReviewsByBpoductIdQuery, ReviewsViewModel>
+    public class GetAllReviewsByProductIdQueryHandler : IRequestHandler<GetReviewsByProductIdQuery, ReviewsViewModel>
     {
-
         private readonly ProductsDbContext _db;
 
         public GetAllReviewsByProductIdQueryHandler(ProductsDbContext db)
         {
             _db = db;
         }
-        public async Task<ReviewsViewModel> Handle(GetAllReviewsByBpoductIdQuery request, CancellationToken cancellationToken)
+
+        public async Task<ReviewsViewModel> Handle(GetReviewsByProductIdQuery request,
+                                                   CancellationToken cancellationToken)
         {
             return new ReviewsViewModel
             {
