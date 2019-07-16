@@ -7,7 +7,7 @@ namespace EShop.Domain.Entities
         public int Id { get; private set; }
         public string UserId { get; private set; }
         public int ProductId { get; private set; }
-        public int OrderId { get; private set; }
+        public int? OrderId { get; private set; }
 
         public int Quantity { get; private set; }
 
@@ -20,7 +20,7 @@ namespace EShop.Domain.Entities
         {
         }
 
-        public ProductInCart(string userId, int productId, int quantity, int orderId = 0)
+        public ProductInCart(string userId, int productId, int quantity, int? orderId = null)
         {
             SetUserId(userId);
             SetProductId(productId);
@@ -28,12 +28,12 @@ namespace EShop.Domain.Entities
             SetOrderId(orderId);
         }
 
-        public void SetOrderId(int orderId)
+        public void SetOrderId(int? orderId)
         {
-            if(orderId <= 0)
+            if(orderId <  0)
             {
                 throw new ArgumentOutOfRangeException(nameof(orderId), orderId,
-                                                      "orderId cannot be less than or equal to 0");
+                                                      "orderId cannot be less than to 0");
             }
 
             if(OrderId > 0) // если заказ уже оформлен

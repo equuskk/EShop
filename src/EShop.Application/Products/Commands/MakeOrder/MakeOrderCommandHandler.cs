@@ -20,7 +20,7 @@ namespace EShop.Application.Products.Commands.MakeOrder
         public async Task<bool> Handle(MakeOrderCommand request, CancellationToken cancellationToken)
         {
             var productsInCart = _db.ProductsInCarts.Include(x => x.Product)
-                                   .Where(x => x.UserId == request.ShopUserId && x.OrderId == 0);
+                                   .Where(x => x.UserId == request.ShopUserId && x.OrderId == null);
 
             if(!productsInCart.Any())
             {
