@@ -7,10 +7,23 @@ namespace EShop.Application.Tests
 {
     public class TestBase
     {
-        public readonly ProductsDbContext Context;
+        public string UserId { get; private set; }
+        private readonly ProductsDbContext ProductsContext;
+        private readonly UsersDbContext UsersContext;
+
+        public TestBase()
+        {
+            ProductsContext = GetProductsContext();
+            UsersContext = GetUsersContext();
+        }
 
         public ProductsDbContext GetProductsContext()
         {
+            if(ProductsContext != null)
+            {
+                return ProductsContext;
+            }
+
             var connection = new SqliteConnection("DataSource=:memory:");
             connection.Open();
 
@@ -20,10 +33,31 @@ namespace EShop.Application.Tests
 
             var context = new ProductsDbContext(options);
 
-            //  context.Database.EnsureDeleted();  
             context.Database.EnsureCreated();
 
             InitProductsContext(context);
+
+            return context;
+        }
+
+        public UsersDbContext GetUsersContext()
+        {
+            if(UsersContext != null)
+            {
+                return UsersContext;
+            }
+            var connection = new SqliteConnection("DataSource=:memory:");
+            connection.Open();
+
+            var options = new DbContextOptionsBuilder<UsersDbContext>()
+                          .UseSqlite(connection)
+                          .Options;
+
+            var context = new UsersDbContext(options);
+
+            context.Database.EnsureCreated();
+
+            InitUsersContext(context);
 
             return context;
         }
@@ -44,6 +78,16 @@ namespace EShop.Application.Tests
                                       new Product("Продукт2", "Описание2", 222.22, 2, 2));
 
             context.SaveChanges();
+        }
+
+        private void InitUsersContext(UsersDbContext context)
+        {
+            var user = new ShopUser("test", "test", "test", "+79588332197",
+                                    "test@test.com", "test");
+            context.Users.Add(user);
+            context.SaveChanges();
+
+            UserId = user.Id;
         }
     }
 }
