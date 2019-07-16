@@ -1,21 +1,13 @@
 ﻿using System.Threading;
 using EShop.Application.Products.Commands.EditProduct;
-using EShop.DataAccess;
 using EShop.Domain.Entities;
 using EShop.Domain.Exceptions;
 using Xunit;
 
 namespace EShop.Application.Tests.Products.Commands
 {
-    public class EditProductTests : IClassFixture<ProductsDbContextFixture>
+    public class EditProductTests : TestBase
     {
-        private readonly ProductsDbContext context;
-
-        public EditProductTests(ProductsDbContextFixture fixture)
-        {
-            context = fixture.Context;
-        }
-
         [Fact]
         public async void EditProduct_CorrectData_ReturnsProduct()
         {
@@ -29,7 +21,7 @@ namespace EShop.Application.Tests.Products.Commands
                 CategoryId = 2
             };
 
-            var handler = new EditProductCommandHandler(context);
+            var handler = new EditProductCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Product>(result);
@@ -51,7 +43,7 @@ namespace EShop.Application.Tests.Products.Commands
                 CategoryId = 0
             };
 
-            var handler = new EditProductCommandHandler(context);
+            var handler = new EditProductCommandHandler(GetProductsContext());
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                             await handler.Handle(cmd, CancellationToken.None));
         }

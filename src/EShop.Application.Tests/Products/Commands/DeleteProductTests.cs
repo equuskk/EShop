@@ -1,20 +1,12 @@
 ﻿using System.Threading;
 using EShop.Application.Products.Commands.DeleteProduct;
-using EShop.DataAccess;
 using EShop.Domain.Exceptions;
 using Xunit;
 
 namespace EShop.Application.Tests.Products.Commands
 {
-    public class DeleteProductTests : IClassFixture<ProductsDbContextFixture>
+    public class DeleteProductTests : TestBase
     {
-        private readonly ProductsDbContext context;
-
-        public DeleteProductTests(ProductsDbContextFixture fixture)
-        {
-            context = fixture.Context;
-        }
-
         [Fact]
         public async void DeleteProduct_CorrectData_ReturnsTrue()
         {
@@ -23,7 +15,7 @@ namespace EShop.Application.Tests.Products.Commands
                 Id = 1
             };
 
-            var handler = new DeleteProductCommandHandler(context);
+            var handler = new DeleteProductCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<bool>(result);
@@ -38,7 +30,7 @@ namespace EShop.Application.Tests.Products.Commands
                 Id = -1
             };
 
-            var handler = new DeleteProductCommandHandler(context);
+            var handler = new DeleteProductCommandHandler(GetProductsContext());
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                             await handler.Handle(cmd, CancellationToken.None));
         }

@@ -1,19 +1,11 @@
 ﻿using System.Threading;
 using EShop.Application.Products.Commands.AddProduct;
-using EShop.DataAccess;
 using Xunit;
 
 namespace EShop.Application.Tests.Products.Commands
 {
-    public class AddProductTests : IClassFixture<ProductsDbContextFixture>
+    public class AddProductTests : TestBase
     {
-        private readonly ProductsDbContext context;
-
-        public AddProductTests(ProductsDbContextFixture fixture)
-        {
-            context = fixture.Context;
-        }
-
         [Fact]
         public async void AddProduct_CorrectProduct_ReturnsIdProduct()
         {
@@ -26,7 +18,7 @@ namespace EShop.Application.Tests.Products.Commands
                 VendorId = 1
             };
 
-            var handler = new AddProductCommandHandler(context);
+            var handler = new AddProductCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<int>(result);

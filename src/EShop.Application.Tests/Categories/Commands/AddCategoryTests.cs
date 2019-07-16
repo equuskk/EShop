@@ -1,19 +1,11 @@
 ﻿using System.Threading;
 using EShop.Application.Categories.Commands.AddCategory;
-using EShop.DataAccess;
 using Xunit;
 
 namespace EShop.Application.Tests.Categories.Commands
 {
-    public class AddCategoryTests : IClassFixture<ProductsDbContextFixture>
+    public class AddCategoryTests : TestBase
     {
-        private readonly ProductsDbContext context;
-
-        public AddCategoryTests(ProductsDbContextFixture fixture)
-        {
-            context = fixture.Context;
-        }
-
         [Fact]
         public async void AddCategory_CorrectCategory_ReturnsIdCategory()
         {
@@ -22,7 +14,7 @@ namespace EShop.Application.Tests.Categories.Commands
                 Name = "Тест"
             };
 
-            var handler = new AddCategoryCommandHandler(context);
+            var handler = new AddCategoryCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<int>(result);

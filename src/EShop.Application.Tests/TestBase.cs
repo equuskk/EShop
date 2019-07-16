@@ -1,16 +1,15 @@
-﻿using System;
-using EShop.DataAccess;
+﻿using EShop.DataAccess;
 using EShop.Domain.Entities;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 namespace EShop.Application.Tests
 {
-    public class ProductsDbContextFixture : IDisposable
+    public class TestBase
     {
         public readonly ProductsDbContext Context;
 
-        public ProductsDbContextFixture()
+        public ProductsDbContext GetProductsContext()
         {
             var connection = new SqliteConnection("DataSource=:memory:");
             connection.Open();
@@ -26,7 +25,7 @@ namespace EShop.Application.Tests
 
             InitProductsContext(context);
 
-            Context = context;
+            return context;
         }
 
         private void InitProductsContext(ProductsDbContext context)
@@ -45,11 +44,6 @@ namespace EShop.Application.Tests
                                       new Product("Продукт2", "Описание2", 222.22, 2, 2));
 
             context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            Context.Dispose();
         }
     }
 }

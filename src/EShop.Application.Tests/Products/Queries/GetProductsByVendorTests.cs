@@ -1,20 +1,12 @@
 ﻿using System.Linq;
 using System.Threading;
 using EShop.Application.Products.Queries.GetProductByVendor;
-using EShop.DataAccess;
 using Xunit;
 
 namespace EShop.Application.Tests.Products.Queries
 {
-    public class GetProductsByVendorTests : IClassFixture<ProductsDbContextFixture>
+    public class GetProductsByVendorTests : TestBase
     {
-        private readonly ProductsDbContext context;
-
-        public GetProductsByVendorTests(ProductsDbContextFixture fixture)
-        {
-            context = fixture.Context;
-        }
-
         [Fact]
         public async void GetProductsByVendorId_CorrectId_ReturnsProduct()
         {
@@ -23,7 +15,7 @@ namespace EShop.Application.Tests.Products.Queries
                 VendorId = 1
             };
 
-            var handler = new GetProductByVendorQueryHandler(context);
+            var handler = new GetProductByVendorQueryHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.NotNull(result);

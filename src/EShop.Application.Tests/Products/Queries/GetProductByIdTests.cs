@@ -1,20 +1,12 @@
 ﻿using System.Threading;
 using EShop.Application.Products.Queries.GetProductById;
-using EShop.DataAccess;
 using EShop.Domain.Exceptions;
 using Xunit;
 
 namespace EShop.Application.Tests.Products.Queries
 {
-    public class GetProductByIdTests : IClassFixture<ProductsDbContextFixture>
+    public class GetProductByIdTests : TestBase
     {
-        private readonly ProductsDbContext context;
-
-        public GetProductByIdTests(ProductsDbContextFixture fixture)
-        {
-            context = fixture.Context;
-        }
-
         [Fact]
         public async void GetProductById_CorrectId_ReturnsProduct()
         {
@@ -23,7 +15,7 @@ namespace EShop.Application.Tests.Products.Queries
                 Id = 2
             };
 
-            var handler = new GetProductByIdQueryHandler(context);
+            var handler = new GetProductByIdQueryHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.NotNull(result);
@@ -38,7 +30,7 @@ namespace EShop.Application.Tests.Products.Queries
                 Id = 0
             };
 
-            var handler = new GetProductByIdQueryHandler(context);
+            var handler = new GetProductByIdQueryHandler(GetProductsContext());
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                             await handler.Handle(cmd, CancellationToken.None));
         }

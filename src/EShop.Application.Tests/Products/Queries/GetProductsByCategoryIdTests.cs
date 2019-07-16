@@ -1,20 +1,12 @@
 ﻿using System.Linq;
 using System.Threading;
 using EShop.Application.Products.Queries.GetProductByCategory;
-using EShop.DataAccess;
 using Xunit;
 
 namespace EShop.Application.Tests.Products.Queries
 {
-    public class GetProductsByCategoryIdTests : IClassFixture<ProductsDbContextFixture>
+    public class GetProductsByCategoryIdTests : TestBase
     {
-        private readonly ProductsDbContext context;
-
-        public GetProductsByCategoryIdTests(ProductsDbContextFixture fixture)
-        {
-            context = fixture.Context;
-        }
-
         [Fact]
         public async void GetProductsByCategoryId_CorrectId_ReturnsProduct()
         {
@@ -23,7 +15,7 @@ namespace EShop.Application.Tests.Products.Queries
                 CategoryId = 1
             };
 
-            var handler = new GetProductByCategoryQueryHandler(context);
+            var handler = new GetProductByCategoryQueryHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.NotNull(result);

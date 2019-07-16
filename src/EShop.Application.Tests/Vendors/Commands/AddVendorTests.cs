@@ -1,19 +1,11 @@
 ﻿using System.Threading;
 using EShop.Application.Vendors.Commands.AddVendor;
-using EShop.DataAccess;
 using Xunit;
 
 namespace EShop.Application.Tests.Vendors.Commands
 {
-    public class AddVendorTests : IClassFixture<ProductsDbContextFixture>
+    public class AddVendorTests : TestBase
     {
-        private readonly ProductsDbContext context;
-
-        public AddVendorTests(ProductsDbContextFixture fixture)
-        {
-            context = fixture.Context;
-        }
-
         [Fact]
         public async void AddVendor_CorrectVendor_ReturnsIdVendor()
         {
@@ -23,7 +15,7 @@ namespace EShop.Application.Tests.Vendors.Commands
                 Description = "Описание"
             };
 
-            var handler = new AddVendorCommandHandler(context);
+            var handler = new AddVendorCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<int>(result);

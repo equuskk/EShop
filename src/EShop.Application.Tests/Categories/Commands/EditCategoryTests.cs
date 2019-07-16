@@ -1,21 +1,13 @@
 ﻿using System.Threading;
 using EShop.Application.Categories.Commands.EditCategory;
-using EShop.DataAccess;
 using EShop.Domain.Entities;
 using EShop.Domain.Exceptions;
 using Xunit;
 
 namespace EShop.Application.Tests.Categories.Commands
 {
-    public class EditCategoryTests : IClassFixture<ProductsDbContextFixture>
+    public class EditCategoryTests : TestBase
     {
-        private readonly ProductsDbContext context;
-
-        public EditCategoryTests(ProductsDbContextFixture fixture)
-        {
-            context = fixture.Context;
-        }
-
         [Fact]
         public async void EditCategory_CorrectData_ReturnsCategory()
         {
@@ -25,7 +17,7 @@ namespace EShop.Application.Tests.Categories.Commands
                 Name = "New Name"
             };
 
-            var handler = new EditCategoryCommandHandler(context);
+            var handler = new EditCategoryCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Category>(result);
@@ -42,7 +34,7 @@ namespace EShop.Application.Tests.Categories.Commands
                 Name = "Test"
             };
 
-            var handler = new EditCategoryCommandHandler(context);
+            var handler = new EditCategoryCommandHandler(GetProductsContext());
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                             await handler.Handle(cmd, CancellationToken.None));
         }

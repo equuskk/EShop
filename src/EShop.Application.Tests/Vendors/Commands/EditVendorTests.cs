@@ -1,21 +1,13 @@
 ﻿using System.Threading;
 using EShop.Application.Vendors.Commands.EditVendor;
-using EShop.DataAccess;
 using EShop.Domain.Entities;
 using EShop.Domain.Exceptions;
 using Xunit;
 
 namespace EShop.Application.Tests.Vendors.Commands
 {
-    public class EditVendorTests : IClassFixture<ProductsDbContextFixture>
+    public class EditVendorTests : TestBase
     {
-        private readonly ProductsDbContext context;
-
-        public EditVendorTests(ProductsDbContextFixture fixture)
-        {
-            context = fixture.Context;
-        }
-
         [Fact]
         public async void EditCategory_CorrectData_ReturnsCategory()
         {
@@ -26,7 +18,7 @@ namespace EShop.Application.Tests.Vendors.Commands
                 Description = "New Description"
             };
 
-            var handler = new EditVendorCommandHandler(context);
+            var handler = new EditVendorCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Vendor>(result);
@@ -43,7 +35,7 @@ namespace EShop.Application.Tests.Vendors.Commands
                 Name = "Test"
             };
 
-            var handler = new EditVendorCommandHandler(context);
+            var handler = new EditVendorCommandHandler(GetProductsContext());
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                             await handler.Handle(cmd, CancellationToken.None));
         }
