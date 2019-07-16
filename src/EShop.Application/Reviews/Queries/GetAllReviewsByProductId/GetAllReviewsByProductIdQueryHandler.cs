@@ -6,7 +6,7 @@ using MediatR;
 
 namespace EShop.Application.Reviews.Queries.GetAllReviewsByProductId
 {
-    public class GetAllReviewsByProductIdQueryHandler : IRequestHandler<GetReviewsByProductIdQuery, ReviewsViewModel>
+    public class GetAllReviewsByProductIdQueryHandler : IRequestHandler<GetAllReviewsByProductIdQuery, ReviewsViewModel>
     {
         private readonly ProductsDbContext _db;
 
@@ -15,7 +15,7 @@ namespace EShop.Application.Reviews.Queries.GetAllReviewsByProductId
             _db = db;
         }
 
-        public async Task<ReviewsViewModel> Handle(GetReviewsByProductIdQuery request,
+        public async Task<ReviewsViewModel> Handle(GetAllReviewsByProductIdQuery request,
                                                    CancellationToken cancellationToken)
         {
             return new ReviewsViewModel

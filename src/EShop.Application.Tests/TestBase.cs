@@ -2,6 +2,7 @@
 using EShop.Domain.Entities;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace EShop.Application.Tests
 {
@@ -15,6 +16,7 @@ namespace EShop.Application.Tests
         {
             ProductsContext = GetProductsContext();
             UsersContext = GetUsersContext();
+            InitReviewContext(ProductsContext);
         }
 
         public ProductsDbContext GetProductsContext()
@@ -88,6 +90,14 @@ namespace EShop.Application.Tests
             context.SaveChanges();
 
             UserId = user.Id;
+        }
+
+        private void InitReviewContext(ProductsDbContext context)
+        {
+            var review = new Review("Тест", 5, UserId, ProductsContext.Products.First().Id);
+            context.Reviews.Add(review);
+
+            context.SaveChanges();
         }
     }
 }

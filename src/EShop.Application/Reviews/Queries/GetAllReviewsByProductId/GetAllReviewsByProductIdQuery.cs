@@ -2,7 +2,7 @@
 
 namespace EShop.Application.Reviews.Queries.GetAllReviewsByProductId
 {
-    public class GetReviewsByProductIdQuery : IRequest<ReviewsViewModel>
+    public class GetAllReviewsByProductIdQuery : IRequest<ReviewsViewModel>
     {
         public int ProductId { get; set; }
     }

@@ -76,7 +76,7 @@ namespace EShop.WebApi.Controllers
         [HttpGet("Reviews/{id}")]
         public async Task<ActionResult<ReviewsViewModel>> GetReviewsById(int id)
         {
-            return Ok(await _mediator.Send(new GetReviewsByProductIdQuery { ProductId = id }));
+            return Ok(await _mediator.Send(new GetAllReviewsByProductIdQuery { ProductId = id }));
         }
 
         [Authorize]
