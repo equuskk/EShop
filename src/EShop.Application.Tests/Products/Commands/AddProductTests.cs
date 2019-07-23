@@ -11,9 +11,9 @@ namespace EShop.Application.Tests.Products.Commands
         {
             var cmd = new AddProductCommand
             {
-                Description = "Моё описание",
-                Title = "Мой заголовок",
-                Price = 12,
+                Description = "test",
+                Title = "test",
+                Price = 123,
                 CategoryId = 1,
                 VendorId = 1
             };
@@ -21,7 +21,6 @@ namespace EShop.Application.Tests.Products.Commands
             var handler = new AddProductCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.IsType<int>(result);
             Assert.True(result > 0);
         }
     }

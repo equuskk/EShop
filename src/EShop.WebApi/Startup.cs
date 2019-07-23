@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using EShop.Application.Products.Queries.GetAllProducts;
+using EShop.Application.Products.Queries.GetProducts;
 using EShop.DataAccess;
 using EShop.Domain.Entities;
 using EShop.WebApi.Extensions;
@@ -45,7 +45,7 @@ namespace EShop.WebApi
 
             services.AddJwtAuth(Configuration);
 
-            services.AddMediatR(typeof(GetAllProductsQuery).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(GetProductsQuery).GetTypeInfo().Assembly);
 
             services.AddSwaggerDocument(x =>
             {

@@ -12,7 +12,7 @@ namespace EShop.Application.Tests.Reviews.Commands
         {
             var cmd = new DeleteReviewCommand
             {
-                Id = 1,
+                ReviewId = 1,
                 ShopUserId = UserId
             };
 
@@ -27,7 +27,7 @@ namespace EShop.Application.Tests.Reviews.Commands
         {
             var cmd = new DeleteReviewCommand
             {
-                Id = -1
+                ReviewId = -1
             };
 
             var handler = new DeleteReviewCommandHandler(GetProductsContext());

@@ -2,7 +2,7 @@
 using EShop.Application.Categories.Commands.AddCategory;
 using EShop.Application.Categories.Commands.DeleteCategory;
 using EShop.Application.Categories.Commands.EditCategory;
-using EShop.Application.Categories.Queries.GetAllCategories;
+using EShop.Application.Categories.Queries.GetCategories;
 using EShop.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -22,9 +22,9 @@ namespace EShop.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<CategoriesViewModel>> GetAllCategories()
+        public async Task<ActionResult<CategoriesViewModel>> GetCategories()
         {
-            return Ok(await _mediator.Send(new GetAllCategoriesQuery()));
+            return Ok(await _mediator.Send(new GetCategoriesQuery()));
         }
 
         [HttpPost]
@@ -47,7 +47,7 @@ namespace EShop.WebApi.Controllers
         {
             var cmd = new DeleteCategoryCommand
             {
-                Id = categoryId
+                CategoryId = categoryId
             };
             return Ok(await _mediator.Send(cmd));
         }

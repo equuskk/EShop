@@ -18,11 +18,11 @@ namespace EShop.Application.Products.Commands.DeleteProduct
 
         public async Task<bool> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
-            var product = await _db.Products.FindAsync(request.Id);
+            var product = await _db.Products.FindAsync(request.ProductId);
 
             if(product is null)
             {
-                throw new NotFoundException(nameof(Product), request.Id);
+                throw new NotFoundException(nameof(Product), request.ProductId);
             }
 
             _db.Products.Remove(product);

@@ -4,6 +4,6 @@ namespace EShop.Application.Products.Commands.DeleteProduct
 {
     public class DeleteProductCommand : IRequest<bool>
     {
-        public int Id { get; set; }
+        public int ProductId { get; set; }
     }
 }

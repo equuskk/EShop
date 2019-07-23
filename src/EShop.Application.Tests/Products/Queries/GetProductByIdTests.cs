@@ -12,14 +12,14 @@ namespace EShop.Application.Tests.Products.Queries
         {
             var cmd = new GetProductByIdQuery
             {
-                Id = 2
+                ProductId = 2
             };
 
             var handler = new GetProductByIdQueryHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.NotNull(result);
-            Assert.Equal(cmd.Id, result.Id);
+            Assert.Equal(cmd.ProductId, result.Id);
         }
 
         [Fact]
@@ -27,7 +27,7 @@ namespace EShop.Application.Tests.Products.Queries
         {
             var cmd = new GetProductByIdQuery
             {
-                Id = 0
+                ProductId = 0
             };
 
             var handler = new GetProductByIdQueryHandler(GetProductsContext());

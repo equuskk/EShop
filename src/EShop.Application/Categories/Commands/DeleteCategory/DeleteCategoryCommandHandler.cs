@@ -17,11 +17,11 @@ namespace EShop.Application.Categories.Commands.DeleteCategory
 
         public async Task<bool> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
         {
-            var category = await _db.Categories.FindAsync(request.Id);
+            var category = await _db.Categories.FindAsync(request.CategoryId);
 
             if(category is null)
             {
-                throw new NotFoundException(nameof(category), request.Id);
+                throw new NotFoundException(nameof(category), request.CategoryId);
             }
 
             _db.Categories.Remove(category);

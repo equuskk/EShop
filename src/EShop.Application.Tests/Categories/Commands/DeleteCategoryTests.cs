@@ -8,11 +8,11 @@ namespace EShop.Application.Tests.Categories.Commands
     public class DeleteCategoryTests : TestBase
     {
         [Fact]
-        public async void DeleteCategory_CorrectData_ReturnsTrue()
+        public async void DeleteCategory_CorrectId_ReturnsTrue()
         {
             var cmd = new DeleteCategoryCommand
             {
-                Id = 1
+                CategoryId = 1
             };
 
             var handler = new DeleteCategoryCommandHandler(GetProductsContext());
@@ -23,11 +23,11 @@ namespace EShop.Application.Tests.Categories.Commands
         }
 
         [Fact]
-        public async void DeleteCategory_IncorrectData_ThrowsException()
+        public async void DeleteCategory_IncorrectId_ThrowsException()
         {
             var cmd = new DeleteCategoryCommand
             {
-                Id = -1
+                CategoryId = -1
             };
 
             var handler = new DeleteCategoryCommandHandler(GetProductsContext());

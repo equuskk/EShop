@@ -20,11 +20,11 @@ namespace EShop.Application.Products.Queries.GetProductById
         public async Task<Product> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
             var product = await _db.Products.Include(x => x.Vendor).Include(x => x.Category)
-                                   .SingleOrDefaultAsync(x => x.Id == request.Id,
+                                   .SingleOrDefaultAsync(x => x.Id == request.ProductId,
                                                          cancellationToken);
             if(product is null)
             {
-                throw new NotFoundException(nameof(Product), request.Id);
+                throw new NotFoundException(nameof(Product), request.ProductId);
             }
 
             return product;

@@ -13,7 +13,7 @@ namespace EShop.Application.Tests.Vendors.Commands
         {
             var cmd = new EditVendorCommand
             {
-                Id = 1,
+                VendorId = 1,
                 Name = "New Name",
                 Description = "New Description"
             };
@@ -22,7 +22,7 @@ namespace EShop.Application.Tests.Vendors.Commands
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Vendor>(result);
-            Assert.Equal(cmd.Id, result.Id);
+            Assert.Equal(cmd.VendorId, result.Id);
             Assert.Equal(cmd.Name, result.Name);
         }
 
@@ -31,7 +31,7 @@ namespace EShop.Application.Tests.Vendors.Commands
         {
             var cmd = new EditVendorCommand
             {
-                Id = -1,
+                VendorId = -1,
                 Name = "Test"
             };
 

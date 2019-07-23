@@ -12,7 +12,7 @@ namespace EShop.Application.Tests.Vendors.Commands
         {
             var cmd = new DeleteVendorCommand
             {
-                Id = 1
+                VendorId = 1
             };
 
             var handler = new DeleteVendorCommandHandler(GetProductsContext());
@@ -27,7 +27,7 @@ namespace EShop.Application.Tests.Vendors.Commands
         {
             var cmd = new DeleteVendorCommand
             {
-                Id = -1
+                VendorId = -1
             };
 
             var handler = new DeleteVendorCommandHandler(GetProductsContext());

@@ -5,7 +5,7 @@ namespace EShop.Application.Categories.Commands.EditCategory
 {
     public class EditCategoryCommand : IRequest<Category>
     {
-        public int Id { get; set; }
+        public int CategoryId { get; set; }
         public string Name { get; set; }
     }
 }

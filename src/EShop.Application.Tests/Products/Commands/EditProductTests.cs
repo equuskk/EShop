@@ -13,7 +13,7 @@ namespace EShop.Application.Tests.Products.Commands
         {
             var cmd = new EditProductCommand
             {
-                Id = 1,
+                Product = 1,
                 Description = "Новое описание",
                 Title = "Новый заголовок",
                 Price = 999,
@@ -25,7 +25,7 @@ namespace EShop.Application.Tests.Products.Commands
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Product>(result);
-            Assert.Equal(cmd.Id, result.Id);
+            Assert.Equal(cmd.Product, result.Id);
             Assert.Equal(cmd.Price, result.Price);
             Assert.Equal(cmd.Description, result.Description);
         }
@@ -35,7 +35,7 @@ namespace EShop.Application.Tests.Products.Commands
         {
             var cmd = new EditProductCommand
             {
-                Id = -1,
+                Product = -1,
                 Description = "test",
                 Title = "test",
                 Price = 1,

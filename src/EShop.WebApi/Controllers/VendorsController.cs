@@ -2,7 +2,7 @@
 using EShop.Application.Vendors.Commands.AddVendor;
 using EShop.Application.Vendors.Commands.DeleteVendor;
 using EShop.Application.Vendors.Commands.EditVendor;
-using EShop.Application.Vendors.Queries.GetAllVendors;
+using EShop.Application.Vendors.Queries.GetVendors;
 using EShop.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -22,9 +22,9 @@ namespace EShop.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<VendorsViewModel>> GetAllVendors()
+        public async Task<ActionResult<VendorsViewModel>> GetVendors()
         {
-            return Ok(await _mediator.Send(new GetAllVendorsQuery()));
+            return Ok(await _mediator.Send(new GetVendorsQuery()));
         }
 
         [HttpPost]

@@ -18,11 +18,11 @@ namespace EShop.Application.Categories.Commands.EditCategory
 
         public async Task<Category> Handle(EditCategoryCommand request, CancellationToken cancellationToken)
         {
-            var category = await _db.Categories.FindAsync(request.Id);
+            var category = await _db.Categories.FindAsync(request.CategoryId);
 
             if(category is null)
             {
-                throw new NotFoundException(nameof(Product), request.Id);
+                throw new NotFoundException(nameof(Product), request.CategoryId);
             }
 
             category.SetName(request.Name);

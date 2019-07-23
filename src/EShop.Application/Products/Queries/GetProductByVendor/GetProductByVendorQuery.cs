@@ -1,4 +1,4 @@
-﻿using EShop.Application.Products.Queries.GetAllProducts;
+﻿using EShop.Application.Products.Queries.GetProducts;
 using MediatR;
 
 namespace EShop.Application.Products.Queries.GetProductByVendor

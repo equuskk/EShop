@@ -18,11 +18,11 @@ namespace EShop.Application.Products.Commands.EditProduct
 
         public async Task<Product> Handle(EditProductCommand request, CancellationToken cancellationToken)
         {
-            var product = await _db.Products.FindAsync(request.Id);
+            var product = await _db.Products.FindAsync(request.Product);
 
             if(product is null)
             {
-                throw new NotFoundException(nameof(Product), request.Id);
+                throw new NotFoundException(nameof(Product), request.Product);
             }
 
             product.SetPrice(request.Price);

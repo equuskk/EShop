@@ -2,10 +2,10 @@
 using EShop.Application.Products.Commands.AddProduct;
 using EShop.Application.Products.Commands.DeleteProduct;
 using EShop.Application.Products.Commands.EditProduct;
-using EShop.Application.Products.Queries.GetAllProducts;
 using EShop.Application.Products.Queries.GetProductByCategory;
 using EShop.Application.Products.Queries.GetProductById;
 using EShop.Application.Products.Queries.GetProductByVendor;
+using EShop.Application.Products.Queries.GetProducts;
 using EShop.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -25,15 +25,15 @@ namespace EShop.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ProductsViewModel>> GetAllProducts()
+        public async Task<ActionResult<ProductsViewModel>> GetProducts()
         {
-            return Ok(await _mediator.Send(new GetAllProductsQuery()));
+            return Ok(await _mediator.Send(new GetProductsQuery()));
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProductById(int productId)
         {
-            return Ok(await _mediator.Send(new GetProductByIdQuery { Id = productId }));
+            return Ok(await _mediator.Send(new GetProductByIdQuery { ProductId = productId }));
         }
 
         [HttpGet("byVendor/{vendorId}")]
@@ -68,7 +68,7 @@ namespace EShop.WebApi.Controllers
         {
             var cmd = new DeleteProductCommand()
             {
-                Id = productId
+                ProductId = productId
             };
             return Ok(await _mediator.Send(cmd));
         }

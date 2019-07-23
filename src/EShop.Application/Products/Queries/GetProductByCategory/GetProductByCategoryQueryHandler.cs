@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EShop.Application.Products.Queries.GetAllProducts;
+using EShop.Application.Products.Queries.GetProducts;
 using EShop.DataAccess;
 using MediatR;
 

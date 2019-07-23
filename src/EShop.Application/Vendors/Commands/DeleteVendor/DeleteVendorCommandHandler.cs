@@ -17,11 +17,11 @@ namespace EShop.Application.Vendors.Commands.DeleteVendor
 
         public async Task<bool> Handle(DeleteVendorCommand request, CancellationToken cancellationToken)
         {
-            var vendor = await _db.Vendors.FindAsync(request.Id);
+            var vendor = await _db.Vendors.FindAsync(request.VendorId);
 
             if(vendor is null)
             {
-                throw new NotFoundException(nameof(vendor), request.Id);
+                throw new NotFoundException(nameof(vendor), request.VendorId);
             }
 
             _db.Vendors.Remove(vendor);

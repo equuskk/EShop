@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using EShop.Application.Reviews.Commands.AddReview;
 using EShop.Application.Reviews.Commands.DeleteReview;
-using EShop.Application.Reviews.Queries.GetAllReviewsByProductId;
+using EShop.Application.Reviews.Queries.GetReviewsByProductId;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +23,7 @@ namespace EShop.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ReviewsViewModel>> GetReviewsByProductId(int productId)
         {
-            return Ok(await _mediator.Send(new GetAllReviewsByProductIdQuery { ProductId = productId }));
+            return Ok(await _mediator.Send(new GetReviewsByProductIdQuery { ProductId = productId }));
         }
 
         [HttpPost]
@@ -40,7 +40,7 @@ namespace EShop.WebApi.Controllers
         {
             return Ok(await _mediator.Send(new DeleteReviewCommand
             {
-                Id = reviewId,
+                ReviewId = reviewId,
                 ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
             }));
         }

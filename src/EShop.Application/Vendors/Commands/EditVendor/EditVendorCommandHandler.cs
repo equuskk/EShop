@@ -18,11 +18,11 @@ namespace EShop.Application.Vendors.Commands.EditVendor
 
         public async Task<Vendor> Handle(EditVendorCommand request, CancellationToken cancellationToken)
         {
-            var vendor = await _db.Vendors.FindAsync(request.Id);
+            var vendor = await _db.Vendors.FindAsync(request.VendorId);
 
             if(vendor is null)
             {
-                throw new NotFoundException(nameof(Vendor), request.Id);
+                throw new NotFoundException(nameof(Vendor), request.VendorId);
             }
 
             vendor.SetName(request.Name);
