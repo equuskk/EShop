@@ -47,7 +47,10 @@ namespace EShop.WebApi
 
             services.AddMediatR(typeof(GetAllProductsQuery).GetTypeInfo().Assembly);
 
-            services.AddSwaggerDocument();
+            services.AddSwaggerDocument(x =>
+            {
+                x.Title = "EShop API v1";
+            });
 
             services.AddMvc(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -61,7 +64,10 @@ namespace EShop.WebApi
                 app.UseDatabaseErrorPage();
 
                 app.UseOpenApi();
-                app.UseSwaggerUi3(settings => { settings.Path = "/api"; });
+                app.UseSwaggerUi3(settings =>
+                {
+                    settings.Path = "/api";
+                });
             }
             else
             {

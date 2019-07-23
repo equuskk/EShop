@@ -5,6 +5,7 @@ using EShop.Application.Vendors.Commands.EditVendor;
 using EShop.Application.Vendors.Queries.GetAllVendors;
 using EShop.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.WebApi.Controllers
@@ -20,7 +21,6 @@ namespace EShop.WebApi.Controllers
             _mediator = mediator;
         }
 
-
         [HttpGet]
         public async Task<ActionResult<VendorsViewModel>> GetAllVendors()
         {
@@ -28,18 +28,21 @@ namespace EShop.WebApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<int>> AddVendor([FromBody] AddVendorCommand cmd)
         {
             return Ok(await _mediator.Send(cmd));
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<ActionResult<Vendor>> EditVendor([FromBody] EditVendorCommand cmd)
         {
             return Ok(await _mediator.Send(cmd));
         }
 
         [HttpDelete]
+        [Authorize]
         public async Task<ActionResult<bool>> DeleteVendor([FromBody] DeleteVendorCommand cmd)
         {
             return Ok(await _mediator.Send(cmd));

@@ -2,6 +2,7 @@
 using EShop.Application.Users.Commands.AuthUser;
 using EShop.Application.Users.Commands.RegisterUser;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.WebApi.Controllers
@@ -18,12 +19,14 @@ namespace EShop.WebApi.Controllers
         }
 
         [HttpPost("register")]
+        [AllowAnonymous]
         public async Task<ActionResult<string>> Register([FromBody] RegisterUserCommand cmd)
         {
             return Ok(await _mediator.Send(cmd));
         }
 
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<ActionResult<string>> Authorize([FromBody] AuthUserCommand cmd)
         {
             return Ok(await _mediator.Send(cmd));
