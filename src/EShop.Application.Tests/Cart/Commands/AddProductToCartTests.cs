@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using EShop.Application.Cart.Commands.AddProductToCart;
 using Xunit;
 
@@ -8,11 +7,11 @@ namespace EShop.Application.Tests.Cart.Commands
     public class AddProductToCartTests : TestBase
     {
         [Fact]
-        public async void AddProductInCart_CorrectAddProduct_ReturnsIdProductInCart()
+        public async void AddProductInCart_CorrectData_ReturnsIdProductInCart()
         {
             var cmd = new AddProductToCartCommand
             {
-                ProductId = ProductsContext.Products.First().Id,
+                ProductId = 1,
                 Quantity = 2,
                 ShopUserId = UserId
             };
@@ -20,7 +19,6 @@ namespace EShop.Application.Tests.Cart.Commands
             var handler = new AddProductToCartCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.IsType<bool>(result);
             Assert.True(result);
         }
     }

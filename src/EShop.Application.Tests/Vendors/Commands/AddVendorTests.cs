@@ -7,18 +7,17 @@ namespace EShop.Application.Tests.Vendors.Commands
     public class AddVendorTests : TestBase
     {
         [Fact]
-        public async void AddVendor_CorrectVendor_ReturnsIdVendor()
+        public async void AddVendor_CorrectData_ReturnsIdVendor()
         {
             var cmd = new AddVendorCommand
             {
-                Name = "Тест",
-                Description = "Описание"
+                Name = "test",
+                Description = "test"
             };
 
             var handler = new AddVendorCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.IsType<int>(result);
             Assert.True(result > 0);
         }
     }

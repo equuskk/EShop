@@ -20,12 +20,11 @@ namespace EShop.Application.Tests.Cart.Commands
             var handler = new DeleteProductFromCartCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.IsType<bool>(result);
             Assert.True(result);
         }
 
         [Fact]
-        public async void DeleteProduct_IncorrectData_ThrowsException()
+        public async void DeleteProduct_IncorrectProductId_ThrowsException()
         {
             var cmd = new DeleteProductFromCartCommand
             {

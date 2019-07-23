@@ -15,7 +15,7 @@ namespace EShop.Application.Tests.Products.Queries
             var handler = new GetProductsQueryHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.True(result.Products.Any());
+            Assert.NotEmpty(result.Products);
         }
     }
 }

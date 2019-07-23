@@ -13,10 +13,10 @@ namespace EShop.Application.Tests.Products.Commands
         {
             var cmd = new EditProductCommand
             {
-                Product = 1,
-                Description = "Новое описание",
-                Title = "Новый заголовок",
-                Price = 999,
+                ProductId = 1,
+                Description = "test",
+                Title = "test",
+                Price = 123,
                 VendorId = 2,
                 CategoryId = 2
             };
@@ -25,22 +25,22 @@ namespace EShop.Application.Tests.Products.Commands
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Product>(result);
-            Assert.Equal(cmd.Product, result.Id);
+            Assert.Equal(cmd.ProductId, result.Id);
             Assert.Equal(cmd.Price, result.Price);
             Assert.Equal(cmd.Description, result.Description);
         }
 
         [Fact]
-        public async void EditProduct_IncorrectData_ThrowsException()
+        public async void EditProduct_IncorrectProductId_ThrowsException()
         {
             var cmd = new EditProductCommand
             {
-                Product = -1,
+                ProductId = -1,
                 Description = "test",
                 Title = "test",
                 Price = 1,
-                VendorId = 0,
-                CategoryId = 0
+                VendorId = 1,
+                CategoryId = 1
             };
 
             var handler = new EditProductCommandHandler(GetProductsContext());

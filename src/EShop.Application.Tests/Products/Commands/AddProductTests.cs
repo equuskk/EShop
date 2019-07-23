@@ -7,7 +7,7 @@ namespace EShop.Application.Tests.Products.Commands
     public class AddProductTests : TestBase
     {
         [Fact]
-        public async void AddProduct_CorrectProduct_ReturnsIdProduct()
+        public async void AddProduct_CorrectData_ReturnsIdProduct()
         {
             var cmd = new AddProductCommand
             {

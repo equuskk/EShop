@@ -14,8 +14,8 @@ namespace EShop.Application.Tests.Vendors.Commands
             var cmd = new EditVendorCommand
             {
                 VendorId = 1,
-                Name = "New Name",
-                Description = "New Description"
+                Name = "test",
+                Description = "test"
             };
 
             var handler = new EditVendorCommandHandler(GetProductsContext());
@@ -27,12 +27,12 @@ namespace EShop.Application.Tests.Vendors.Commands
         }
 
         [Fact]
-        public async void EditCategory_IncorrectData_ThrowsException()
+        public async void EditCategory_IncorrectVendorId_ThrowsException()
         {
             var cmd = new EditVendorCommand
             {
                 VendorId = -1,
-                Name = "Test"
+                Name = "test"
             };
 
             var handler = new EditVendorCommandHandler(GetProductsContext());

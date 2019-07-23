@@ -15,7 +15,7 @@ namespace EShop.Application.Tests.Reviews.Queries
             var handler = new GetReviewsByProductIdQueryHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.True(result.Reviews.Any());
+            Assert.NotEmpty(result.Reviews);
         }
     }
 }

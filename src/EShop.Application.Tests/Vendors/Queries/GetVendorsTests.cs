@@ -15,7 +15,7 @@ namespace EShop.Application.Tests.Vendors.Queries
             var handler = new GetVendorsQueryHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.True(result.Vendors.Any());
+            Assert.NotEmpty(result.Vendors);
         }
     }
 }

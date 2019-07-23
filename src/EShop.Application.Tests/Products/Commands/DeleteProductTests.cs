@@ -8,7 +8,7 @@ namespace EShop.Application.Tests.Products.Commands
     public class DeleteProductTests : TestBase
     {
         [Fact]
-        public async void DeleteProduct_CorrectData_ReturnsTrue()
+        public async void DeleteProduct_CorrectProductId_ReturnsTrue()
         {
             var cmd = new DeleteProductCommand
             {
@@ -18,12 +18,11 @@ namespace EShop.Application.Tests.Products.Commands
             var handler = new DeleteProductCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.IsType<bool>(result);
             Assert.True(result);
         }
 
         [Fact]
-        public async void DeleteProduct_IncorrectData_ThrowsException()
+        public async void DeleteProduct_IncorrectProductId_ThrowsException()
         {
             var cmd = new DeleteProductCommand
             {

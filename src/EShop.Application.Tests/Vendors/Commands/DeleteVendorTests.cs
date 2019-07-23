@@ -8,7 +8,7 @@ namespace EShop.Application.Tests.Vendors.Commands
     public class DeleteVendorTests : TestBase
     {
         [Fact]
-        public async void DeleteCategory_CorrectData_ReturnsTrue()
+        public async void DeleteCategory_CorrectVendorId_ReturnsTrue()
         {
             var cmd = new DeleteVendorCommand
             {
@@ -23,7 +23,7 @@ namespace EShop.Application.Tests.Vendors.Commands
         }
 
         [Fact]
-        public async void DeleteCategory_IncorrectData_ThrowsException()
+        public async void DeleteCategory_IncorrectVendorId_ThrowsException()
         {
             var cmd = new DeleteVendorCommand
             {

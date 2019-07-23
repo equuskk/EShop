@@ -12,7 +12,7 @@ namespace EShop.Application.Tests.Products.Queries
         {
             var cmd = new GetProductByIdQuery
             {
-                ProductId = 2
+                ProductId = 1
             };
 
             var handler = new GetProductByIdQueryHandler(GetProductsContext());
@@ -27,7 +27,7 @@ namespace EShop.Application.Tests.Products.Queries
         {
             var cmd = new GetProductByIdQuery
             {
-                ProductId = 0
+                ProductId = -1
             };
 
             var handler = new GetProductByIdQueryHandler(GetProductsContext());
