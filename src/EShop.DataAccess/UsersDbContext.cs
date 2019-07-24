@@ -7,8 +7,6 @@ namespace EShop.DataAccess
 {
     public class UsersDbContext : IdentityDbContext<ShopUser, IdentityRole, string>
     {
-        public UsersDbContext(DbContextOptions<UsersDbContext> options) : base(options)
-        {
-        }
+        public UsersDbContext(DbContextOptions<UsersDbContext> options) : base(options) { }
     }
 }

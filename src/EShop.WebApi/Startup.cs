@@ -64,10 +64,7 @@ namespace EShop.WebApi
                 app.UseDatabaseErrorPage();
 
                 app.UseOpenApi();
-                app.UseSwaggerUi3(settings =>
-                {
-                    settings.Path = "/api";
-                });
+                app.UseSwaggerUi3(settings => { settings.Path = "/api"; });
             }
             else
             {

@@ -16,7 +16,7 @@ namespace EShop.Application.Tests.Cart.Queries
             var handler = new GetUserCartQueryHandler(GetProductsContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
-            
+
             Assert.NotEmpty(result.Products);
             Assert.True(result.TotalCost > 0);
         }

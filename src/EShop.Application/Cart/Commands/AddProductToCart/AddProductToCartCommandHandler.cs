@@ -19,9 +19,9 @@ namespace EShop.Application.Cart.Commands.AddProductToCart
         public async Task<Unit> Handle(AddProductToCartCommand request, CancellationToken cancellationToken)
         {
             var productInCart =
-                _db.ProductsInCarts.FirstOrDefault(x => x.ProductId == request.ProductId &&
-                                                        x.UserId == request.ShopUserId &&
-                                                        x.OrderId == null);
+                    _db.ProductsInCarts.FirstOrDefault(x => x.ProductId == request.ProductId &&
+                                                            x.UserId == request.ShopUserId &&
+                                                            x.OrderId == null);
 
             if(productInCart is null)
             {

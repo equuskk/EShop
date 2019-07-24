@@ -2,7 +2,5 @@
 
 namespace EShop.Application.Products.Queries.GetProducts
 {
-    public class GetProductsQuery : IRequest<ProductsViewModel>
-    {
-    }
+    public class GetProductsQuery : IRequest<ProductsViewModel> { }
 }

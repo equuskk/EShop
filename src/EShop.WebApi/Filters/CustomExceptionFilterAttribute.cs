@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Security.Authentication;
 using EShop.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -13,7 +14,8 @@ namespace EShop.WebApi.Filters
         {
             context.HttpContext.Response.ContentType = "application/json";
 
-            if(context.Exception is NotFoundException)
+            if(context.Exception is NotFoundException || context.Exception is AuthenticationException ||
+               context.Exception is AccessDeniedException)
             {
                 context.HttpContext.Response.StatusCode = (int) HttpStatusCode.NotFound;
                 context.Result = new JsonResult(new

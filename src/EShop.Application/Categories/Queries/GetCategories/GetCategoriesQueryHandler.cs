@@ -16,7 +16,7 @@ namespace EShop.Application.Categories.Queries.GetCategories
         }
 
         public Task<CategoriesViewModel> Handle(GetCategoriesQuery request,
-                                                      CancellationToken cancellationToken)
+                                                CancellationToken cancellationToken)
         {
             return Task.FromResult(new CategoriesViewModel
             {

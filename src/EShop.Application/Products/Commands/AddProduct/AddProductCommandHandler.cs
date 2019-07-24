@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using EShop.DataAccess;
 using EShop.Domain.Entities;
-using EShop.Domain.Exceptions;
 using MediatR;
 
 namespace EShop.Application.Products.Commands.AddProduct

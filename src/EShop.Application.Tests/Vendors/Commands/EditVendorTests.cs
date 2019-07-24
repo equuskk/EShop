@@ -18,7 +18,7 @@ namespace EShop.Application.Tests.Vendors.Commands
                 Description = "test"
             };
             var handler = new EditVendorCommandHandler(GetProductsContext());
-            
+
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Vendor>(result);
@@ -35,9 +35,9 @@ namespace EShop.Application.Tests.Vendors.Commands
                 Name = "test"
             };
             var handler = new EditVendorCommandHandler(GetProductsContext());
-            
+
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                                                            await handler.Handle(cmd, CancellationToken.None));
+                                                                await handler.Handle(cmd, CancellationToken.None));
         }
     }
 }

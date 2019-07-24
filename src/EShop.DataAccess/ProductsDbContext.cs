@@ -13,9 +13,7 @@ namespace EShop.DataAccess
         public DbSet<Order> Orders { get; set; }
         public DbSet<ProductInCart> ProductsInCarts { get; set; }
 
-        public ProductsDbContext(DbContextOptions<ProductsDbContext> options) : base(options)
-        {
-        }
+        public ProductsDbContext(DbContextOptions<ProductsDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

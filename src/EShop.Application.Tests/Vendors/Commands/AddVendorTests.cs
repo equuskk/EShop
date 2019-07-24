@@ -15,7 +15,7 @@ namespace EShop.Application.Tests.Vendors.Commands
                 Description = "test"
             };
             var handler = new AddVendorCommandHandler(GetProductsContext());
-            
+
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.True(result > 0);

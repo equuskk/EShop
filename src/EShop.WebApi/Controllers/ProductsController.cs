@@ -66,7 +66,7 @@ namespace EShop.WebApi.Controllers
         [Authorize]
         public async Task<ActionResult<bool>> DeleteProduct(int productId)
         {
-            var cmd = new DeleteProductCommand()
+            var cmd = new DeleteProductCommand
             {
                 ProductId = productId
             };

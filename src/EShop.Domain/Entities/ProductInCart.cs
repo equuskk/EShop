@@ -11,14 +11,11 @@ namespace EShop.Domain.Entities
 
         public int Quantity { get; private set; }
 
-
         public virtual ShopUser User { get; private set; }
         public virtual Product Product { get; private set; }
         public virtual Order Order { get; private set; }
 
-        private ProductInCart()
-        {
-        }
+        private ProductInCart() { }
 
         public ProductInCart(string userId, int productId, int quantity, int? orderId = null)
         {
@@ -30,7 +27,7 @@ namespace EShop.Domain.Entities
 
         public void SetOrderId(int? orderId)
         {
-            if(orderId <  0)
+            if(orderId < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(orderId), orderId,
                                                       "orderId cannot be less than to 0");

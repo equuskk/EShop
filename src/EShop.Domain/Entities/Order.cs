@@ -5,7 +5,7 @@ namespace EShop.Domain.Entities
     public class Order
     {
         public int Id { get; private set; }
-        public DateTime OrderDate { get; private set; } // автогенерация
+        public DateTime OrderDate { get; } // автогенерация
         public double Cost { get; private set; }
 
         private Order()

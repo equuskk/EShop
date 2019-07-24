@@ -14,7 +14,7 @@ namespace EShop.Application.Tests.Categories.Commands
                 Name = "test"
             };
             var handler = new AddCategoryCommandHandler(GetProductsContext());
-            
+
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.True(result > 0);

@@ -17,12 +17,12 @@ namespace EShop.Application.Tests.Cart.Commands
                 ShopUserId = UserId
             };
             var handler = new AddProductToCartCommandHandler(GetProductsContext());
-            
+
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Unit>(result);
         }
-        
+
         [Fact]
         public async void AddProductInCart_CartDoesNotExists_ReturnsUnit()
         {
@@ -33,7 +33,7 @@ namespace EShop.Application.Tests.Cart.Commands
                 ShopUserId = UserId
             };
             var handler = new AddProductToCartCommandHandler(GetProductsContext());
-            
+
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Unit>(result);

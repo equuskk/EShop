@@ -20,7 +20,7 @@ namespace EShop.Application.Cart.Commands.MakeOrder
         public async Task<bool> Handle(MakeOrderCommand request, CancellationToken cancellationToken)
         {
             var productsInCart = _db.ProductsInCarts.Include(x => x.Product)
-                                   .Where(x => x.UserId == request.ShopUserId && x.OrderId == null);
+                                    .Where(x => x.UserId == request.ShopUserId && x.OrderId == null);
 
             if(!productsInCart.Any())
             {
@@ -37,7 +37,7 @@ namespace EShop.Application.Cart.Commands.MakeOrder
             _db.Orders.Add(order);
 
             await productsInCart.ForEachAsync(x => x.SetOrderId(order.Id),
-                                              cancellationToken: cancellationToken);
+                                              cancellationToken);
 
             await _db.SaveChangesAsync(cancellationToken);
 

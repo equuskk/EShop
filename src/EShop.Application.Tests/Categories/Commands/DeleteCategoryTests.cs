@@ -18,7 +18,7 @@ namespace EShop.Application.Tests.Categories.Commands
 
             var handler = new DeleteCategoryCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
-            
+
             Assert.IsType<Unit>(result);
         }
 
@@ -30,9 +30,9 @@ namespace EShop.Application.Tests.Categories.Commands
                 CategoryId = -1
             };
             var handler = new DeleteCategoryCommandHandler(GetProductsContext());
-            
+
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                                                            await handler.Handle(cmd, CancellationToken.None));
+                                                                await handler.Handle(cmd, CancellationToken.None));
         }
     }
 }

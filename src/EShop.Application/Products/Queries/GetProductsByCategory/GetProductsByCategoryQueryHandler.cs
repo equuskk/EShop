@@ -17,7 +17,7 @@ namespace EShop.Application.Products.Queries.GetProductsByCategory
         }
 
         public Task<ProductsViewModel> Handle(GetProductsByCategoryQuery request,
-                                                    CancellationToken cancellationToken)
+                                              CancellationToken cancellationToken)
         {
             return Task.FromResult(new ProductsViewModel
             {

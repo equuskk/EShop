@@ -16,7 +16,7 @@ namespace EShop.Application.Reviews.Queries.GetReviewsByProductId
         }
 
         public Task<ReviewsViewModel> Handle(GetReviewsByProductIdQuery request,
-                                                   CancellationToken cancellationToken)
+                                             CancellationToken cancellationToken)
         {
             return Task.FromResult(new ReviewsViewModel
             {

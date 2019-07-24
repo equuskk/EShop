@@ -18,7 +18,7 @@ namespace EShop.Application.Tests.Products.Commands
                 VendorId = 1
             };
             var handler = new AddProductCommandHandler(GetProductsContext());
-            
+
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.True(result > 0);

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using EShop.Application.Vendors.Queries.GetVendors;
 using Xunit;
 
@@ -12,7 +11,7 @@ namespace EShop.Application.Tests.Vendors.Queries
         {
             var cmd = new GetVendorsQuery();
             var handler = new GetVendorsQueryHandler(GetProductsContext());
-            
+
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.NotEmpty(result.Vendors);

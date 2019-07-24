@@ -18,7 +18,7 @@ namespace EShop.Application.Tests.Reviews.Commands
                 ShopUserId = UserId
             };
             var handler = new DeleteReviewCommandHandler(GetProductsContext());
-            
+
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Unit>(result);
@@ -35,7 +35,7 @@ namespace EShop.Application.Tests.Reviews.Commands
             var handler = new DeleteReviewCommandHandler(GetProductsContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                                                            await handler.Handle(cmd, CancellationToken.None));
+                                                                await handler.Handle(cmd, CancellationToken.None));
         }
 
         [Fact]
@@ -48,7 +48,7 @@ namespace EShop.Application.Tests.Reviews.Commands
             };
             var handler = new DeleteReviewCommandHandler(GetProductsContext());
 
-            await Assert.ThrowsAsync<AccessDeniedException>(async () => 
+            await Assert.ThrowsAsync<AccessDeniedException>(async () =>
                                                                     await handler.Handle(cmd, CancellationToken.None));
         }
     }

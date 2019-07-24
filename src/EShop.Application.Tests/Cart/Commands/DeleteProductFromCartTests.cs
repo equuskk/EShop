@@ -18,7 +18,7 @@ namespace EShop.Application.Tests.Cart.Commands
                 Quantity = 1
             };
             var handler = new DeleteProductFromCartCommandHandler(GetProductsContext());
-            
+
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Unit>(result);
@@ -32,9 +32,9 @@ namespace EShop.Application.Tests.Cart.Commands
                 ProductId = -1
             };
             var handler = new DeleteProductFromCartCommandHandler(GetProductsContext());
-            
+
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                                                            await handler.Handle(cmd, CancellationToken.None));
+                                                                await handler.Handle(cmd, CancellationToken.None));
         }
     }
 }
