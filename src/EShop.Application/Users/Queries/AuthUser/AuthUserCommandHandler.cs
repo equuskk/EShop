@@ -6,7 +6,7 @@ using EShop.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
-namespace EShop.Application.Users.Commands.AuthUser
+namespace EShop.Application.Users.Queries.AuthUser
 {
     public class AuthUserCommandHandler : IRequestHandler<AuthUserCommand, string>
     {

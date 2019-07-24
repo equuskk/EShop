@@ -72,7 +72,7 @@ namespace EShop.Domain.Entities
             VendorId = vendorId;
         }
 
-        private void SetCategoryId(int categoryId)
+        public void SetCategoryId(int categoryId)
         {
             if(categoryId <= 0)
             {

@@ -6,7 +6,7 @@ using MediatR;
 
 namespace EShop.Application.Categories.Commands.DeleteCategory
 {
-    public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand, bool>
+    public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand, Unit>
     {
         private readonly ProductsDbContext _db;
 
@@ -15,7 +15,7 @@ namespace EShop.Application.Categories.Commands.DeleteCategory
             _db = db;
         }
 
-        public async Task<bool> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
         {
             var category = await _db.Categories.FindAsync(request.CategoryId);
 
@@ -27,7 +27,7 @@ namespace EShop.Application.Categories.Commands.DeleteCategory
             _db.Categories.Remove(category);
             await _db.SaveChangesAsync(cancellationToken);
 
-            return true;
+            return Unit.Value;
         }
     }
 }

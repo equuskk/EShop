@@ -2,7 +2,7 @@
 
 namespace EShop.Application.Cart.Commands.DeleteProductFromCart
 {
-    public class DeleteProductFromCartCommand : IRequest<bool>
+    public class DeleteProductFromCartCommand : IRequest<Unit>
     {
         public int ProductId { get; set; }
         public int Quantity { get; set; }

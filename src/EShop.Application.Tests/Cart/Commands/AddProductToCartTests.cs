@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using EShop.Application.Cart.Commands.AddProductToCart;
+using MediatR;
 using Xunit;
 
 namespace EShop.Application.Tests.Cart.Commands
@@ -19,7 +20,7 @@ namespace EShop.Application.Tests.Cart.Commands
             var handler = new AddProductToCartCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.True(result);
+            Assert.IsType<Unit>(result);
         }
         
         [Fact]
@@ -35,7 +36,7 @@ namespace EShop.Application.Tests.Cart.Commands
             var handler = new AddProductToCartCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.True(result);
+            Assert.IsType<Unit>(result);
         }
     }
 }

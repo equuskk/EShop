@@ -2,6 +2,7 @@
 using System.Threading;
 using EShop.Application.Reviews.Commands.DeleteReview;
 using EShop.Domain.Exceptions;
+using MediatR;
 using Xunit;
 
 namespace EShop.Application.Tests.Reviews.Commands
@@ -20,7 +21,7 @@ namespace EShop.Application.Tests.Reviews.Commands
             
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.True(result);
+            Assert.IsType<Unit>(result);
         }
 
         [Fact]
@@ -47,9 +48,8 @@ namespace EShop.Application.Tests.Reviews.Commands
             };
             var handler = new DeleteReviewCommandHandler(GetProductsContext());
 
-            var result = await handler.Handle(cmd, CancellationToken.None);
-            
-            Assert.False(result);
+            await Assert.ThrowsAsync<AccessDeniedException>(async () => 
+                                                                    await handler.Handle(cmd, CancellationToken.None));
         }
     }
 }

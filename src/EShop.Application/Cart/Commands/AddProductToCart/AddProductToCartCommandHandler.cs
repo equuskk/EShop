@@ -7,7 +7,7 @@ using MediatR;
 
 namespace EShop.Application.Cart.Commands.AddProductToCart
 {
-    public class AddProductToCartCommandHandler : IRequestHandler<AddProductToCartCommand, bool>
+    public class AddProductToCartCommandHandler : IRequestHandler<AddProductToCartCommand, Unit>
     {
         private readonly ProductsDbContext _db;
 
@@ -16,13 +16,8 @@ namespace EShop.Application.Cart.Commands.AddProductToCart
             _db = db;
         }
 
-        public async Task<bool> Handle(AddProductToCartCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(AddProductToCartCommand request, CancellationToken cancellationToken)
         {
-            if(request.Quantity < 1)
-            {
-                return false;
-            }
-
             var productInCart =
                 _db.ProductsInCarts.FirstOrDefault(x => x.ProductId == request.ProductId &&
                                                         x.UserId == request.ShopUserId &&
@@ -42,7 +37,7 @@ namespace EShop.Application.Cart.Commands.AddProductToCart
 
             await _db.SaveChangesAsync(cancellationToken);
 
-            return true;
+            return Unit.Value;
         }
     }
 }

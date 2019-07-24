@@ -7,7 +7,7 @@ using MediatR;
 
 namespace EShop.Application.Products.Commands.DeleteProduct
 {
-    public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, bool>
+    public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, Unit>
     {
         private readonly ProductsDbContext _db;
 
@@ -16,7 +16,7 @@ namespace EShop.Application.Products.Commands.DeleteProduct
             _db = db;
         }
 
-        public async Task<bool> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
             var product = await _db.Products.FindAsync(request.ProductId);
 
@@ -28,7 +28,7 @@ namespace EShop.Application.Products.Commands.DeleteProduct
             _db.Products.Remove(product);
             await _db.SaveChangesAsync(cancellationToken);
 
-            return true;
+            return Unit.Value;
         }
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EShop.Application.Reviews.Commands.DeleteReview
 {
-    public class DeleteReviewCommandHandler : IRequestHandler<DeleteReviewCommand, bool>
+    public class DeleteReviewCommandHandler : IRequestHandler<DeleteReviewCommand, Unit>
     {
         private readonly ProductsDbContext _db;
 
@@ -17,7 +17,7 @@ namespace EShop.Application.Reviews.Commands.DeleteReview
             _db = db;
         }
 
-        public async Task<bool> Handle(DeleteReviewCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteReviewCommand request, CancellationToken cancellationToken)
         {
             var review = await _db.Reviews.FirstOrDefaultAsync(x => x.Id == request.ReviewId,
                                                                cancellationToken);
@@ -29,13 +29,13 @@ namespace EShop.Application.Reviews.Commands.DeleteReview
 
             if(request.ShopUserId != review.UserId)
             {
-                return false;
+                throw new AccessDeniedException();
             }
 
             _db.Reviews.Remove(review);
             await _db.SaveChangesAsync(cancellationToken);
 
-            return true;
+            return Unit.Value;
         }
     }
 }

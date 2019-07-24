@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using EShop.Application.Cart.Commands.DeleteProductFromCart;
 using EShop.Domain.Exceptions;
+using MediatR;
 using Xunit;
 
 namespace EShop.Application.Tests.Cart.Commands
@@ -20,7 +21,7 @@ namespace EShop.Application.Tests.Cart.Commands
             var handler = new DeleteProductFromCartCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.True(result);
+            Assert.IsType<Unit>(result);
         }
 
         [Fact]

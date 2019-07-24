@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using EShop.Application.Vendors.Commands.DeleteVendor;
 using EShop.Domain.Exceptions;
+using MediatR;
 using Xunit;
 
 namespace EShop.Application.Tests.Vendors.Commands
@@ -18,8 +19,7 @@ namespace EShop.Application.Tests.Vendors.Commands
             var handler = new DeleteVendorCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.IsType<bool>(result);
-            Assert.True(result);
+            Assert.IsType<Unit>(result);
         }
 
         [Fact]

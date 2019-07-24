@@ -2,7 +2,7 @@
 
 namespace EShop.Application.Vendors.Commands.DeleteVendor
 {
-    public class DeleteVendorCommand : IRequest<bool>
+    public class DeleteVendorCommand : IRequest<Unit>
     {
         public int VendorId { get; set; }
     }

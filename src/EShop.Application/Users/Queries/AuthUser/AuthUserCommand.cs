@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace EShop.Application.Users.Commands.AuthUser
+namespace EShop.Application.Users.Queries.AuthUser
 {
     public class AuthUserCommand : IRequest<string>
     {

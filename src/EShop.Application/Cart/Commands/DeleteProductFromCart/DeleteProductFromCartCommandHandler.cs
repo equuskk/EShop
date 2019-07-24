@@ -8,7 +8,7 @@ using MediatR;
 
 namespace EShop.Application.Cart.Commands.DeleteProductFromCart
 {
-    public class DeleteProductFromCartCommandHandler : IRequestHandler<DeleteProductFromCartCommand, bool>
+    public class DeleteProductFromCartCommandHandler : IRequestHandler<DeleteProductFromCartCommand, Unit>
     {
         private readonly ProductsDbContext _db;
 
@@ -17,7 +17,7 @@ namespace EShop.Application.Cart.Commands.DeleteProductFromCart
             _db = db;
         }
 
-        public async Task<bool> Handle(DeleteProductFromCartCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteProductFromCartCommand request, CancellationToken cancellationToken)
         {
             var productInCart =
                 _db.ProductsInCarts.FirstOrDefault(x => x.ProductId == request.ProductId &&
@@ -41,7 +41,7 @@ namespace EShop.Application.Cart.Commands.DeleteProductFromCart
 
             await _db.SaveChangesAsync(cancellationToken);
 
-            return true;
+            return Unit.Value;
         }
     }
 }

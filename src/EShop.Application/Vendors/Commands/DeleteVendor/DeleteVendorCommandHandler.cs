@@ -6,7 +6,7 @@ using MediatR;
 
 namespace EShop.Application.Vendors.Commands.DeleteVendor
 {
-    public class DeleteVendorCommandHandler : IRequestHandler<DeleteVendorCommand, bool>
+    public class DeleteVendorCommandHandler : IRequestHandler<DeleteVendorCommand, Unit>
     {
         private readonly ProductsDbContext _db;
 
@@ -15,7 +15,7 @@ namespace EShop.Application.Vendors.Commands.DeleteVendor
             _db = db;
         }
 
-        public async Task<bool> Handle(DeleteVendorCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteVendorCommand request, CancellationToken cancellationToken)
         {
             var vendor = await _db.Vendors.FindAsync(request.VendorId);
 
@@ -27,7 +27,7 @@ namespace EShop.Application.Vendors.Commands.DeleteVendor
             _db.Vendors.Remove(vendor);
             await _db.SaveChangesAsync(cancellationToken);
 
-            return true;
+            return Unit.Value;
         }
     }
 }

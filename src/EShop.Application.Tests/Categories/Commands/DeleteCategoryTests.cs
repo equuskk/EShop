@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using EShop.Application.Categories.Commands.DeleteCategory;
 using EShop.Domain.Exceptions;
+using MediatR;
 using Xunit;
 
 namespace EShop.Application.Tests.Categories.Commands
@@ -17,9 +18,8 @@ namespace EShop.Application.Tests.Categories.Commands
 
             var handler = new DeleteCategoryCommandHandler(GetProductsContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
-
-            Assert.IsType<bool>(result);
-            Assert.True(result);
+            
+            Assert.IsType<Unit>(result);
         }
 
         [Fact]
