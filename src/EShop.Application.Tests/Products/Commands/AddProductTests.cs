@@ -12,7 +12,7 @@ namespace EShop.Application.Tests.Products.Commands
             var cmd = new AddProductCommand
             {
                 Description = "test",
-                Title = "test",
+                Name = "test",
                 Price = 123,
                 CategoryId = 1,
                 VendorId = 1

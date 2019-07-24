@@ -6,7 +6,7 @@ namespace EShop.Domain.Entities
     {
         public int Id { get; private set; }
 
-        public string Title { get; private set; }
+        public string Name { get; private set; }
         public string Description { get; private set; }
         public double Price { get; private set; }
 
@@ -36,7 +36,7 @@ namespace EShop.Domain.Entities
                 throw new ArgumentException("title is empty", nameof(title));
             }
 
-            Title = title;
+            Name = title;
         }
 
         public void SetDescription(string description)

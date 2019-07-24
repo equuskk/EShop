@@ -26,7 +26,7 @@ namespace EShop.Application.Products.Commands.EditProduct
             }
 
             product.SetPrice(request.Price);
-            product.SetTitle(request.Title);
+            product.SetTitle(request.Name);
             product.SetDescription(request.Description);
             product.SetVendorId(request.VendorId);
             product.SetCategoryId(request.CategoryId);

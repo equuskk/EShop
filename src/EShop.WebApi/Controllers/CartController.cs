@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using EShop.Application.Cart.Commands.AddProductToCart;
 using EShop.Application.Cart.Commands.DeleteProductFromCart;
 using EShop.Application.Cart.Commands.MakeOrder;
+using EShop.Application.Cart.Queries.GetUserCart;
 using EShop.Application.Products.Queries.GetProducts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -19,6 +20,17 @@ namespace EShop.WebApi.Controllers
         public CartController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult<CartViewModel>> GetUserCart()
+        {
+            var cmd = new GetUserCartQuery()
+            {
+                ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+            };
+            return Ok(await _mediator.Send(cmd));
         }
 
         [HttpPost]

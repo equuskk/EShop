@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using EShop.DataAccess;
+using EShop.Domain.Entities;
 using EShop.Domain.Exceptions;
 using MediatR;
 
@@ -21,7 +22,7 @@ namespace EShop.Application.Vendors.Commands.DeleteVendor
 
             if(vendor is null)
             {
-                throw new NotFoundException(nameof(vendor), request.VendorId);
+                throw new NotFoundException(nameof(Vendor), request.VendorId);
             }
 
             _db.Vendors.Remove(vendor);

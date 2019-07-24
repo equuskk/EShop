@@ -17,7 +17,7 @@ namespace EShop.Application.Products.Commands.AddProduct
 
         public async Task<int> Handle(AddProductCommand request, CancellationToken cancellationToken)
         {
-            var product = new Product(request.Title, request.Description, request.Price,
+            var product = new Product(request.Name, request.Description, request.Price,
                                       request.VendorId, request.CategoryId);
 
             _db.Products.Add(product);

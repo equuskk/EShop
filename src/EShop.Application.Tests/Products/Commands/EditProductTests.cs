@@ -15,7 +15,7 @@ namespace EShop.Application.Tests.Products.Commands
             {
                 ProductId = 1,
                 Description = "test",
-                Title = "test",
+                Name = "test",
                 Price = 123,
                 VendorId = 2,
                 CategoryId = 2
@@ -37,7 +37,7 @@ namespace EShop.Application.Tests.Products.Commands
             {
                 ProductId = -1,
                 Description = "test",
-                Title = "test",
+                Name = "test",
                 Price = 1,
                 VendorId = 1,
                 CategoryId = 1
