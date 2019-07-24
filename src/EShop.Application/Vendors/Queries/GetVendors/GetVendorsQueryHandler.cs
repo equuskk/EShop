@@ -15,12 +15,12 @@ namespace EShop.Application.Vendors.Queries.GetVendors
             _db = db;
         }
 
-        public async Task<VendorsViewModel> Handle(GetVendorsQuery request, CancellationToken cancellationToken)
+        public Task<VendorsViewModel> Handle(GetVendorsQuery request, CancellationToken cancellationToken)
         {
-            return new VendorsViewModel
+            return Task.FromResult(new VendorsViewModel
             {
                 Vendors = _db.Vendors.ToArray()
-            };
+            });
         }
     }
 }

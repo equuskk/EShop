@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using EShop.Application.Reviews.Commands.DeleteReview;
 using EShop.Domain.Exceptions;
 using Xunit;
@@ -15,8 +16,8 @@ namespace EShop.Application.Tests.Reviews.Commands
                 ReviewId = 1,
                 ShopUserId = UserId
             };
-
             var handler = new DeleteReviewCommandHandler(GetProductsContext());
+            
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.True(result);
@@ -27,13 +28,28 @@ namespace EShop.Application.Tests.Reviews.Commands
         {
             var cmd = new DeleteReviewCommand
             {
-                ReviewId = -1
+                ReviewId = -1,
+                ShopUserId = UserId
             };
-
             var handler = new DeleteReviewCommandHandler(GetProductsContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                             await handler.Handle(cmd, CancellationToken.None));
+        }
+
+        [Fact]
+        public async void DeleteProduct_NotSameUserId_ReturnsFalse()
+        {
+            var cmd = new DeleteReviewCommand
+            {
+                ReviewId = 1,
+                ShopUserId = Guid.NewGuid().ToString()
+            };
+            var handler = new DeleteReviewCommandHandler(GetProductsContext());
+
+            var result = await handler.Handle(cmd, CancellationToken.None);
+            
+            Assert.False(result);
         }
     }
 }

@@ -15,13 +15,13 @@ namespace EShop.Application.Reviews.Queries.GetReviewsByProductId
             _db = db;
         }
 
-        public async Task<ReviewsViewModel> Handle(GetReviewsByProductIdQuery request,
+        public Task<ReviewsViewModel> Handle(GetReviewsByProductIdQuery request,
                                                    CancellationToken cancellationToken)
         {
-            return new ReviewsViewModel
+            return Task.FromResult(new ReviewsViewModel
             {
                 Reviews = _db.Reviews.Where(x => x.ProductId == request.ProductId).ToArray()
-            };
+            });
         }
     }
 }

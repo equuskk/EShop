@@ -29,7 +29,7 @@ namespace EShop.Application.Cart.Commands.DeleteProductFromCart
                 throw new NotFoundException(nameof(ProductInCart), request.ProductId);
             }
 
-            if(productInCart.Quantity - request.Quantity <= 0)
+            if(productInCart.Quantity - request.Quantity <= 0) //TODO: ?
             {
                 _db.ProductsInCarts.Remove(productInCart);
             }

@@ -15,13 +15,13 @@ namespace EShop.Application.Categories.Queries.GetCategories
             _db = db;
         }
 
-        public async Task<CategoriesViewModel> Handle(GetCategoriesQuery request,
+        public Task<CategoriesViewModel> Handle(GetCategoriesQuery request,
                                                       CancellationToken cancellationToken)
         {
-            return new CategoriesViewModel
+            return Task.FromResult(new CategoriesViewModel
             {
                 Categories = _db.Categories.ToArray()
-            };
+            });
         }
     }
 }

@@ -15,12 +15,12 @@ namespace EShop.Application.Products.Queries.GetProducts
             _db = db;
         }
 
-        public async Task<ProductsViewModel> Handle(GetProductsQuery request, CancellationToken cancellationToken)
+        public Task<ProductsViewModel> Handle(GetProductsQuery request, CancellationToken cancellationToken)
         {
-            return new ProductsViewModel
+            return Task.FromResult(new ProductsViewModel
             {
                 Products = _db.Products.ToArray()
-            };
+            });
         }
     }
 }

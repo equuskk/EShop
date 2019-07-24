@@ -16,13 +16,13 @@ namespace EShop.Application.Products.Queries.GetProductByCategory
             _db = db;
         }
 
-        public async Task<ProductsViewModel> Handle(GetProductByCategoryQuery request,
+        public Task<ProductsViewModel> Handle(GetProductByCategoryQuery request,
                                                     CancellationToken cancellationToken)
         {
-            return new ProductsViewModel
+            return Task.FromResult(new ProductsViewModel
             {
                 Products = _db.Products.Where(x => x.CategoryId == request.CategoryId).ToArray()
-            };
+            });
         }
     }
 }
