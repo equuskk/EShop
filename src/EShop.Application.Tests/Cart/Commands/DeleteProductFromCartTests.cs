@@ -9,7 +9,7 @@ namespace EShop.Application.Tests.Cart.Commands
     public class DeleteProductFromCartTests : TestBase
     {
         [Fact]
-        public async void DeleteProduct_CorrectData_ReturnsTrue()
+        public async void DeleteProduct_CorrectData_ReturnsUnit()
         {
             var cmd = new DeleteProductFromCartCommand
             {
@@ -17,8 +17,8 @@ namespace EShop.Application.Tests.Cart.Commands
                 ShopUserId = UserId,
                 Quantity = 1
             };
-
             var handler = new DeleteProductFromCartCommandHandler(GetProductsContext());
+            
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Unit>(result);
@@ -31,8 +31,8 @@ namespace EShop.Application.Tests.Cart.Commands
             {
                 ProductId = -1
             };
-
             var handler = new DeleteProductFromCartCommandHandler(GetProductsContext());
+            
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                             await handler.Handle(cmd, CancellationToken.None));
         }

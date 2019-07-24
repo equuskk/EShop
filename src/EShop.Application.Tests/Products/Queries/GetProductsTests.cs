@@ -11,8 +11,8 @@ namespace EShop.Application.Tests.Products.Queries
         public async void GetAllProducts_Nothing_ProductsNotEmpty()
         {
             var cmd = new GetProductsQuery();
-
             var handler = new GetProductsQueryHandler(GetProductsContext());
+            
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.NotEmpty(result.Products);

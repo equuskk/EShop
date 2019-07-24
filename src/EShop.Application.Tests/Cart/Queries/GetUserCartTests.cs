@@ -7,7 +7,7 @@ namespace EShop.Application.Tests.Cart.Queries
     public class GetUserCartTests : TestBase
     {
         [Fact]
-        public async void GetUserCart_CorrectUserId_ReturnsCart()
+        public async void GetUserCart_CorrectUserId_ReturnsUserCart()
         {
             var cmd = new GetUserCartQuery
             {

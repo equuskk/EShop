@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Threading;
-using EShop.Application.Products.Queries.GetProductByCategory;
+using EShop.Application.Products.Queries.GetProductsByCategory;
 using Xunit;
 
 namespace EShop.Application.Tests.Products.Queries
@@ -10,16 +10,29 @@ namespace EShop.Application.Tests.Products.Queries
         [Fact]
         public async void GetProductsByCategoryId_CorrectId_ReturnsProduct()
         {
-            var cmd = new GetProductByCategoryQuery
+            var cmd = new GetProductsByCategoryQuery
             {
                 CategoryId = 1
             };
-
-            var handler = new GetProductByCategoryQueryHandler(GetProductsContext());
+            var handler = new GetProductsByCategoryQueryHandler(GetProductsContext());
+            
             var result = await handler.Handle(cmd, CancellationToken.None);
 
-            Assert.NotNull(result);
-            Assert.Equal(result.Products.First().CategoryId, cmd.CategoryId);
+            Assert.NotEmpty(result.Products);
+        }
+        
+        [Fact]
+        public async void GetProductsByCategoryId_IncorrectId_ReturnsProduct()
+        {
+            var cmd = new GetProductsByCategoryQuery
+            {
+                CategoryId = 1000
+            };
+            var handler = new GetProductsByCategoryQueryHandler(GetProductsContext());
+            
+            var result = await handler.Handle(cmd, CancellationToken.None);
+
+            Assert.Empty(result.Products);
         }
     }
 }

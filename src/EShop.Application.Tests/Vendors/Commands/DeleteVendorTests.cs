@@ -15,8 +15,8 @@ namespace EShop.Application.Tests.Vendors.Commands
             {
                 VendorId = 1
             };
-
             var handler = new DeleteVendorCommandHandler(GetProductsContext());
+            
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Unit>(result);
@@ -29,8 +29,8 @@ namespace EShop.Application.Tests.Vendors.Commands
             {
                 VendorId = -1
             };
-
             var handler = new DeleteVendorCommandHandler(GetProductsContext());
+            
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                             await handler.Handle(cmd, CancellationToken.None));
         }

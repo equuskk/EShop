@@ -16,8 +16,8 @@ namespace EShop.Application.Tests.Categories.Commands
                 CategoryId = 1,
                 Name = "test"
             };
-
             var handler = new EditCategoryCommandHandler(GetProductsContext());
+            
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Category>(result);
@@ -33,8 +33,8 @@ namespace EShop.Application.Tests.Categories.Commands
                 CategoryId = -1,
                 Name = "test"
             };
-
             var handler = new EditCategoryCommandHandler(GetProductsContext());
+            
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                             await handler.Handle(cmd, CancellationToken.None));
         }

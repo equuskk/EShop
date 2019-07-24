@@ -5,18 +5,18 @@ using EShop.Application.Products.Queries.GetProducts;
 using EShop.DataAccess;
 using MediatR;
 
-namespace EShop.Application.Products.Queries.GetProductByVendor
+namespace EShop.Application.Products.Queries.GetProductsByVendor
 {
-    public class GetProductByVendorQueryHandler : IRequestHandler<GetProductByVendorQuery, ProductsViewModel>
+    public class GetProductsByVendorQueryHandler : IRequestHandler<GetProductsByVendorQuery, ProductsViewModel>
     {
         private readonly ProductsDbContext _db;
 
-        public GetProductByVendorQueryHandler(ProductsDbContext db)
+        public GetProductsByVendorQueryHandler(ProductsDbContext db)
         {
             _db = db;
         }
 
-        public Task<ProductsViewModel> Handle(GetProductByVendorQuery request,
+        public Task<ProductsViewModel> Handle(GetProductsByVendorQuery request,
                                                     CancellationToken cancellationToken)
         {
             return Task.FromResult(new ProductsViewModel

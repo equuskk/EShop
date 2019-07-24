@@ -10,7 +10,7 @@ namespace EShop.Application.Tests.Reviews.Commands
     public class DeleteReviewTests : TestBase
     {
         [Fact]
-        public async void DeleteReview_CorrectData_ReturnsTrue()
+        public async void DeleteReview_CorrectData_ReturnsUnit()
         {
             var cmd = new DeleteReviewCommand
             {
@@ -39,7 +39,7 @@ namespace EShop.Application.Tests.Reviews.Commands
         }
 
         [Fact]
-        public async void DeleteProduct_NotSameUserId_ReturnsFalse()
+        public async void DeleteProduct_NotSameUserId_ReturnsUnit()
         {
             var cmd = new DeleteReviewCommand
             {

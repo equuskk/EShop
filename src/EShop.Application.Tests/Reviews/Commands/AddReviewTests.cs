@@ -9,7 +9,7 @@ namespace EShop.Application.Tests.Reviews.Commands
     public class AddReviewTests : TestBase
     {
         [Fact]
-        public async void AddReview_CorrectData_ReturnsId()
+        public async void AddReview_CorrectData_ReturnsReviewId()
         {
             var cmd = new AddReviewCommand
             {

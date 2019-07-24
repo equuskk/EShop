@@ -9,7 +9,7 @@ namespace EShop.Application.Tests.Categories.Commands
     public class DeleteCategoryTests : TestBase
     {
         [Fact]
-        public async void DeleteCategory_CorrectId_ReturnsTrue()
+        public async void DeleteCategory_CorrectId_ReturnsUnit()
         {
             var cmd = new DeleteCategoryCommand
             {
@@ -29,8 +29,8 @@ namespace EShop.Application.Tests.Categories.Commands
             {
                 CategoryId = -1
             };
-
             var handler = new DeleteCategoryCommandHandler(GetProductsContext());
+            
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                             await handler.Handle(cmd, CancellationToken.None));
         }

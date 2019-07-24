@@ -2,10 +2,10 @@
 using EShop.Application.Products.Commands.AddProduct;
 using EShop.Application.Products.Commands.DeleteProduct;
 using EShop.Application.Products.Commands.EditProduct;
-using EShop.Application.Products.Queries.GetProductByCategory;
 using EShop.Application.Products.Queries.GetProductById;
-using EShop.Application.Products.Queries.GetProductByVendor;
 using EShop.Application.Products.Queries.GetProducts;
+using EShop.Application.Products.Queries.GetProductsByCategory;
+using EShop.Application.Products.Queries.GetProductsByVendor;
 using EShop.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -39,13 +39,13 @@ namespace EShop.WebApi.Controllers
         [HttpGet("byVendor/{vendorId}")]
         public async Task<ActionResult<ProductsViewModel>> GetProductsByVendor(int vendorId)
         {
-            return Ok(await _mediator.Send(new GetProductByVendorQuery { VendorId = vendorId }));
+            return Ok(await _mediator.Send(new GetProductsByVendorQuery { VendorId = vendorId }));
         }
 
         [HttpGet("byCategory/{categoryId}")]
         public async Task<ActionResult<ProductsViewModel>> GetProductsByCategory(int categoryId)
         {
-            return Ok(await _mediator.Send(new GetProductByCategoryQuery { CategoryId = categoryId }));
+            return Ok(await _mediator.Send(new GetProductsByCategoryQuery { CategoryId = categoryId }));
         }
 
         [HttpPost]
