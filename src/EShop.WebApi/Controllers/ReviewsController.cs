@@ -20,7 +20,7 @@ namespace EShop.WebApi.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{productId}")]
         public async Task<ActionResult<ReviewsViewModel>> GetReviewsByProductId(int productId)
         {
             return Ok(await _mediator.Send(new GetReviewsByProductIdQuery(productId)));
@@ -36,7 +36,7 @@ namespace EShop.WebApi.Controllers
             return Ok(await _mediator.Send(newCmd));
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{reviewId}")]
         [Authorize]
         public async Task<ActionResult<bool>> DeleteReview(int reviewId)
         {

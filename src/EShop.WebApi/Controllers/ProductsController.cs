@@ -30,7 +30,7 @@ namespace EShop.WebApi.Controllers
             return Ok(await _mediator.Send(new GetProductsQuery()));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{productId}")]
         public async Task<ActionResult<Product>> GetProductById(int productId)
         {
             return Ok(await _mediator.Send(new GetProductByIdQuery(productId)));

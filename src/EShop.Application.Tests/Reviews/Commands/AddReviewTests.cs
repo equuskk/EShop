@@ -39,4 +39,4 @@ namespace EShop.Application.Tests.Reviews.Commands
                                                                 await handler.Handle(cmd, CancellationToken.None));
         }
     }
-}
+}    
