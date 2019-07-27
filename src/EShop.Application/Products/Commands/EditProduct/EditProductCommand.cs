@@ -1,16 +1,29 @@
 ﻿using EShop.Domain.Entities;
 using MediatR;
+using Newtonsoft.Json;
 
 namespace EShop.Application.Products.Commands.EditProduct
 {
     public class EditProductCommand : IRequest<Product>
     {
-        public int ProductId { get; set; }
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public string Description { get; set; }
+        public int ProductId { get; }
+        public string Name { get; }
+        public double Price { get; }
+        public string Description { get; }
 
-        public int VendorId { get; set; }
-        public int CategoryId { get; set; }
+        public int VendorId { get; }
+        public int CategoryId { get; }
+
+        [JsonConstructor]
+        public EditProductCommand(int productId, string name, double price, string description,
+                                  int vendorId, int categoryId)
+        {
+            ProductId = productId;
+            Name = name;
+            Price = price;
+            Description = description;
+            VendorId = vendorId;
+            CategoryId = categoryId;
+        }
     }
 }

@@ -26,10 +26,7 @@ namespace EShop.WebApi.Controllers
         [Authorize]
         public async Task<ActionResult<CartViewModel>> GetUserCart()
         {
-            var cmd = new GetUserCartQuery()
-            {
-                ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
-            };
+            var cmd = new GetUserCartQuery(User.FindFirstValue(ClaimTypes.NameIdentifier));
             return Ok(await _mediator.Send(cmd));
         }
 
@@ -37,26 +34,27 @@ namespace EShop.WebApi.Controllers
         [Authorize]
         public async Task<ActionResult<int>> AddProductInCart([FromBody] AddProductToCartCommand cmd)
         {
-            cmd.ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return Ok(await _mediator.Send(cmd));
+            //TODO: fix it
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var newCmd = new AddProductToCartCommand(userId, cmd.ProductId, cmd.Quantity);
+            return Ok(await _mediator.Send(newCmd));
         }
 
         [HttpDelete]
         [Authorize]
         public async Task<ActionResult<bool>> DeleteProductFromCart([FromBody] DeleteProductFromCartCommand cmd)
         {
-            cmd.ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return Ok(await _mediator.Send(cmd));
+            //TODO: fix it
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var newCmd = new DeleteProductFromCartCommand(cmd.ProductId, cmd.Quantity, userId);
+            return Ok(await _mediator.Send(newCmd));
         }
 
         [Authorize]
         [HttpPost("MakeOrder")]
         public async Task<ActionResult<ProductsViewModel>> MakeOrder()
         {
-            return Ok(await _mediator.Send(new MakeOrderCommand
-            {
-                ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
-            }));
+            return Ok(await _mediator.Send(new MakeOrderCommand(User.FindFirstValue(ClaimTypes.NameIdentifier))));
         }
     }
 }

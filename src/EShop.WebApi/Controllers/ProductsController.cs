@@ -33,19 +33,19 @@ namespace EShop.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProductById(int productId)
         {
-            return Ok(await _mediator.Send(new GetProductByIdQuery { ProductId = productId }));
+            return Ok(await _mediator.Send(new GetProductByIdQuery(productId)));
         }
 
         [HttpGet("byVendor/{vendorId}")]
         public async Task<ActionResult<ProductsViewModel>> GetProductsByVendor(int vendorId)
         {
-            return Ok(await _mediator.Send(new GetProductsByVendorQuery { VendorId = vendorId }));
+            return Ok(await _mediator.Send(new GetProductsByVendorQuery(vendorId)));
         }
 
         [HttpGet("byCategory/{categoryId}")]
         public async Task<ActionResult<ProductsViewModel>> GetProductsByCategory(int categoryId)
         {
-            return Ok(await _mediator.Send(new GetProductsByCategoryQuery { CategoryId = categoryId }));
+            return Ok(await _mediator.Send(new GetProductsByCategoryQuery(categoryId)));
         }
 
         [HttpPost]
@@ -66,10 +66,7 @@ namespace EShop.WebApi.Controllers
         [Authorize]
         public async Task<ActionResult<bool>> DeleteProduct(int productId)
         {
-            var cmd = new DeleteProductCommand
-            {
-                ProductId = productId
-            };
+            var cmd = new DeleteProductCommand(productId);
             return Ok(await _mediator.Send(cmd));
         }
     }

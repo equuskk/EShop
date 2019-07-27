@@ -9,10 +9,7 @@ namespace EShop.Application.Tests.Categories.Commands
         [Fact]
         public async void AddCategory_CorrectData_ReturnsCategoryId()
         {
-            var cmd = new AddCategoryCommand
-            {
-                Name = "test"
-            };
+            var cmd = new AddCategoryCommand("test");
             var handler = new AddCategoryCommandHandler(GetProductsContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);

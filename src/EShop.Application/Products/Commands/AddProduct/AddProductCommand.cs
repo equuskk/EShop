@@ -1,14 +1,25 @@
 ﻿using MediatR;
+using Newtonsoft.Json;
 
 namespace EShop.Application.Products.Commands.AddProduct
 {
     public class AddProductCommand : IRequest<int>
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public double Price { get; set; }
+        public string Name { get; }
+        public string Description { get; }
+        public double Price { get; }
 
-        public int VendorId { get; set; }
-        public int CategoryId { get; set; }
+        public int VendorId { get; }
+        public int CategoryId { get; }
+
+        [JsonConstructor]
+        public AddProductCommand(string name, string description, double price, int vendorId, int categoryId)
+        {
+            Name = name;
+            Description = description;
+            Price = price;
+            VendorId = vendorId;
+            CategoryId = categoryId;
+        }
     }
 }

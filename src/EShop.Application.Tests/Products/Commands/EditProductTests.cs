@@ -11,15 +11,7 @@ namespace EShop.Application.Tests.Products.Commands
         [Fact]
         public async void EditProduct_CorrectData_ReturnsProduct()
         {
-            var cmd = new EditProductCommand
-            {
-                ProductId = 1,
-                Description = "test",
-                Name = "test",
-                Price = 123,
-                VendorId = 2,
-                CategoryId = 2
-            };
+            var cmd = new EditProductCommand(1, "test", 123, "test", 2, 2);
             var handler = new EditProductCommandHandler(GetProductsContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
@@ -33,15 +25,7 @@ namespace EShop.Application.Tests.Products.Commands
         [Fact]
         public async void EditProduct_IncorrectProductId_ThrowsException()
         {
-            var cmd = new EditProductCommand
-            {
-                ProductId = -1,
-                Description = "test",
-                Name = "test",
-                Price = 1,
-                VendorId = 1,
-                CategoryId = 1
-            };
+            var cmd = new EditProductCommand(-1, "test", 123, "test", 2, 2);
             var handler = new EditProductCommandHandler(GetProductsContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>

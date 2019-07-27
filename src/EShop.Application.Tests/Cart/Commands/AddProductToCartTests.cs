@@ -8,14 +8,9 @@ namespace EShop.Application.Tests.Cart.Commands
     public class AddProductToCartTests : TestBase
     {
         [Fact]
-        public async void AddProductInCart_CartExists_ReturnsUnit()
+        public async void AddProductToCart_CartExists_ReturnsUnit()
         {
-            var cmd = new AddProductToCartCommand
-            {
-                ProductId = 1,
-                Quantity = 2,
-                ShopUserId = UserId
-            };
+            var cmd = new AddProductToCartCommand(UserId, 1, 2);
             var handler = new AddProductToCartCommandHandler(GetProductsContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
@@ -24,14 +19,9 @@ namespace EShop.Application.Tests.Cart.Commands
         }
 
         [Fact]
-        public async void AddProductInCart_CartDoesNotExists_ReturnsUnit()
+        public async void AddProductToCart_CartDoesNotExists_ReturnsUnit()
         {
-            var cmd = new AddProductToCartCommand
-            {
-                ProductId = 2,
-                Quantity = 2,
-                ShopUserId = UserId
-            };
+            var cmd = new AddProductToCartCommand(UserId, 2, 2);
             var handler = new AddProductToCartCommandHandler(GetProductsContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);

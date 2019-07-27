@@ -9,11 +9,7 @@ namespace EShop.Application.Tests.Vendors.Commands
         [Fact]
         public async void AddVendor_CorrectData_ReturnsVendorId()
         {
-            var cmd = new AddVendorCommand
-            {
-                Name = "test",
-                Description = "test"
-            };
+            var cmd = new AddVendorCommand("test", "test");
             var handler = new AddVendorCommandHandler(GetProductsContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);

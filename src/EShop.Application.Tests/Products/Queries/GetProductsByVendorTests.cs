@@ -9,10 +9,7 @@ namespace EShop.Application.Tests.Products.Queries
         [Fact]
         public async void GetProductsByVendorId_CorrectId_ReturnsProduct()
         {
-            var cmd = new GetProductsByVendorQuery
-            {
-                VendorId = 1
-            };
+            var cmd = new GetProductsByVendorQuery(1);
             var handler = new GetProductsByVendorQueryHandler(GetProductsContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
@@ -23,10 +20,7 @@ namespace EShop.Application.Tests.Products.Queries
         [Fact]
         public async void GetProductsByVendorId_IncorrectId_ReturnsEmptyProducts()
         {
-            var cmd = new GetProductsByVendorQuery
-            {
-                VendorId = 1000
-            };
+            var cmd = new GetProductsByVendorQuery(1000);
             var handler = new GetProductsByVendorQueryHandler(GetProductsContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);

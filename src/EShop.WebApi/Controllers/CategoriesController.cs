@@ -45,10 +45,7 @@ namespace EShop.WebApi.Controllers
         [Authorize]
         public async Task<ActionResult<bool>> DeleteCategory(int categoryId)
         {
-            var cmd = new DeleteCategoryCommand
-            {
-                CategoryId = categoryId
-            };
+            var cmd = new DeleteCategoryCommand(categoryId);
             return Ok(await _mediator.Send(cmd));
         }
     }

@@ -11,10 +11,7 @@ namespace EShop.Application.Tests.Vendors.Commands
         [Fact]
         public async void DeleteCategory_CorrectVendorId_ReturnsTrue()
         {
-            var cmd = new DeleteVendorCommand
-            {
-                VendorId = 1
-            };
+            var cmd = new DeleteVendorCommand(1);
             var handler = new DeleteVendorCommandHandler(GetProductsContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
@@ -25,10 +22,7 @@ namespace EShop.Application.Tests.Vendors.Commands
         [Fact]
         public async void DeleteCategory_IncorrectVendorId_ThrowsException()
         {
-            var cmd = new DeleteVendorCommand
-            {
-                VendorId = -1
-            };
+            var cmd = new DeleteVendorCommand(-1);
             var handler = new DeleteVendorCommandHandler(GetProductsContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>

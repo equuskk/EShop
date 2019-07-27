@@ -11,10 +11,7 @@ namespace EShop.Application.Tests.Products.Commands
         [Fact]
         public async void DeleteProduct_CorrectProductId_ReturnsUnit()
         {
-            var cmd = new DeleteProductCommand
-            {
-                ProductId = 1
-            };
+            var cmd = new DeleteProductCommand(1);
             var handler = new DeleteProductCommandHandler(GetProductsContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
@@ -25,10 +22,7 @@ namespace EShop.Application.Tests.Products.Commands
         [Fact]
         public async void DeleteProduct_IncorrectProductId_ThrowsException()
         {
-            var cmd = new DeleteProductCommand
-            {
-                ProductId = -1
-            };
+            var cmd = new DeleteProductCommand(-1);
             var handler = new DeleteProductCommandHandler(GetProductsContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>

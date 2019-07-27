@@ -10,10 +10,7 @@ namespace EShop.Application.Tests.Products.Queries
         [Fact]
         public async void GetProductById_CorrectId_ReturnsProduct()
         {
-            var cmd = new GetProductByIdQuery
-            {
-                ProductId = 1
-            };
+            var cmd = new GetProductByIdQuery(1);
             var handler = new GetProductByIdQueryHandler(GetProductsContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
@@ -25,10 +22,7 @@ namespace EShop.Application.Tests.Products.Queries
         [Fact]
         public async void GetProductById_IncorrectId_ThrowsException()
         {
-            var cmd = new GetProductByIdQuery
-            {
-                ProductId = -1
-            };
+            var cmd = new GetProductByIdQuery(-1);
             var handler = new GetProductByIdQueryHandler(GetProductsContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>

@@ -12,11 +12,7 @@ namespace EShop.Application.Tests.Reviews.Commands
         [Fact]
         public async void DeleteReview_CorrectData_ReturnsUnit()
         {
-            var cmd = new DeleteReviewCommand
-            {
-                ReviewId = 1,
-                ShopUserId = UserId
-            };
+            var cmd = new DeleteReviewCommand(1, UserId);
             var handler = new DeleteReviewCommandHandler(GetProductsContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
@@ -27,11 +23,7 @@ namespace EShop.Application.Tests.Reviews.Commands
         [Fact]
         public async void DeleteProduct_IncorrectData_ThrowsException()
         {
-            var cmd = new DeleteReviewCommand
-            {
-                ReviewId = -1,
-                ShopUserId = UserId
-            };
+            var cmd = new DeleteReviewCommand(-1, UserId);
             var handler = new DeleteReviewCommandHandler(GetProductsContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>
@@ -41,11 +33,7 @@ namespace EShop.Application.Tests.Reviews.Commands
         [Fact]
         public async void DeleteProduct_NotSameUserId_ReturnsUnit()
         {
-            var cmd = new DeleteReviewCommand
-            {
-                ReviewId = 1,
-                ShopUserId = Guid.NewGuid().ToString()
-            };
+            var cmd = new DeleteReviewCommand(1, Guid.NewGuid().ToString());
             var handler = new DeleteReviewCommandHandler(GetProductsContext());
 
             await Assert.ThrowsAsync<AccessDeniedException>(async () =>

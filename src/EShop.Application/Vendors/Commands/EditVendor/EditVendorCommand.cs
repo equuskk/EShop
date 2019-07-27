@@ -5,8 +5,15 @@ namespace EShop.Application.Vendors.Commands.EditVendor
 {
     public class EditVendorCommand : IRequest<Vendor>
     {
-        public int VendorId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public int VendorId { get; }
+        public string Name { get; }
+        public string Description { get; }
+
+        public EditVendorCommand(int vendorId, string name, string description)
+        {
+            VendorId = vendorId;
+            Name = name;
+            Description = description;
+        }
     }
 }

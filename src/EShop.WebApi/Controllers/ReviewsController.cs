@@ -23,26 +23,25 @@ namespace EShop.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ReviewsViewModel>> GetReviewsByProductId(int productId)
         {
-            return Ok(await _mediator.Send(new GetReviewsByProductIdQuery { ProductId = productId }));
+            return Ok(await _mediator.Send(new GetReviewsByProductIdQuery(productId)));
         }
 
         [HttpPost]
         [Authorize]
         public async Task<ActionResult<int>> AddReview([FromBody] AddReviewCommand cmd)
         {
-            cmd.ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return Ok(await _mediator.Send(cmd));
+            //TODO: fix it
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var newCmd = new AddReviewCommand(userId, cmd.ProductId, cmd.Text, cmd.Rate);
+            return Ok(await _mediator.Send(newCmd));
         }
 
         [HttpDelete("{id}")]
         [Authorize]
         public async Task<ActionResult<bool>> DeleteReview(int reviewId)
         {
-            return Ok(await _mediator.Send(new DeleteReviewCommand
-            {
-                ReviewId = reviewId,
-                ShopUserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
-            }));
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return Ok(await _mediator.Send(new DeleteReviewCommand(reviewId, userId)));
         }
     }
 }
