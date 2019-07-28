@@ -8,7 +8,7 @@ namespace EShop.Application.Categories.Commands.EditCategory
     {
         public int CategoryId { get; }
         public string Name { get; }
-        
+
         [JsonConstructor]
         public EditCategoryCommand(int categoryId, string name)
         {

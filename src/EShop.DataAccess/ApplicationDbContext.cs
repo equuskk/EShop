@@ -14,8 +14,10 @@ namespace EShop.DataAccess
 
         public DbSet<Order> Orders { get; set; }
         public DbSet<ProductInCart> ProductsInCarts { get; set; }
-        
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+        }
 
         // Используется для Identity
         protected override void OnModelCreating(ModelBuilder builder)
