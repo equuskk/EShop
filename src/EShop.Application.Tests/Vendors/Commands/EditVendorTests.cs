@@ -12,7 +12,7 @@ namespace EShop.Application.Tests.Vendors.Commands
         public async void EditCategory_CorrectData_ReturnsCategory()
         {
             var cmd = new EditVendorCommand(1, "test", "test");
-            var handler = new EditVendorCommandHandler(GetProductsContext());
+            var handler = new EditVendorCommandHandler(GetDbContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
 
@@ -25,7 +25,7 @@ namespace EShop.Application.Tests.Vendors.Commands
         public async void EditCategory_IncorrectVendorId_ThrowsException()
         {
             var cmd = new EditVendorCommand(-1, "test", "test");
-            var handler = new EditVendorCommandHandler(GetProductsContext());
+            var handler = new EditVendorCommandHandler(GetDbContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                                 await handler.Handle(cmd, CancellationToken.None));

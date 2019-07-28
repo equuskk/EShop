@@ -5,9 +5,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace EShop.DataAccess.ContextFactory
 {
-    public class ProductsDbContextFactory : IDesignTimeDbContextFactory<ProductsDbContext>
+    public class ProductsDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
     {
-        public ProductsDbContext CreateDbContext(string[] args)
+        public ApplicationDbContext CreateDbContext(string[] args)
         {
             var basePath = Directory.GetCurrentDirectory() +
                            string.Format("{0}..{0}EShop.WebApi", Path.DirectorySeparatorChar);
@@ -18,10 +18,10 @@ namespace EShop.DataAccess.ContextFactory
                                 .AddEnvironmentVariables()
                                 .Build();
 
-            var builder = new DbContextOptionsBuilder<ProductsDbContext>();
+            var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             builder.UseSqlServer(connectionString);
-            return new ProductsDbContext(builder.Options);
+            return new ApplicationDbContext(builder.Options);
         }
     }
 }

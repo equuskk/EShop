@@ -8,9 +8,9 @@ namespace EShop.Application.Cart.Queries.GetUserCart
 {
     public class GetUserCartQueryHandler : IRequestHandler<GetUserCartQuery, CartViewModel>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public GetUserCartQueryHandler(ProductsDbContext db)
+        public GetUserCartQueryHandler(ApplicationDbContext db)
         {
             _db = db;
         }

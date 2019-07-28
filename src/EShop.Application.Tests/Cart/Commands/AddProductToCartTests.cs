@@ -11,7 +11,7 @@ namespace EShop.Application.Tests.Cart.Commands
         public async void AddProductToCart_CartExists_ReturnsUnit()
         {
             var cmd = new AddProductToCartCommand(UserId, 1, 2);
-            var handler = new AddProductToCartCommandHandler(GetProductsContext());
+            var handler = new AddProductToCartCommandHandler(GetDbContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
 
@@ -22,7 +22,7 @@ namespace EShop.Application.Tests.Cart.Commands
         public async void AddProductToCart_CartDoesNotExists_ReturnsUnit()
         {
             var cmd = new AddProductToCartCommand(UserId, 2, 2);
-            var handler = new AddProductToCartCommandHandler(GetProductsContext());
+            var handler = new AddProductToCartCommandHandler(GetDbContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
 

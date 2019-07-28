@@ -1,9 +1,11 @@
 ﻿using EShop.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EShop.DataAccess
 {
-    public class ProductsDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ShopUser, IdentityRole, string>
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -12,12 +14,12 @@ namespace EShop.DataAccess
 
         public DbSet<Order> Orders { get; set; }
         public DbSet<ProductInCart> ProductsInCarts { get; set; }
+        
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public ProductsDbContext(DbContextOptions<ProductsDbContext> options) : base(options) { }
-
+        // Используется для Identity
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Ignore<ShopUser>();
             base.OnModelCreating(builder);
         }
     }

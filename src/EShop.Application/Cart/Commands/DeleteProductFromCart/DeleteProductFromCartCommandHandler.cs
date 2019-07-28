@@ -10,9 +10,9 @@ namespace EShop.Application.Cart.Commands.DeleteProductFromCart
 {
     public class DeleteProductFromCartCommandHandler : IRequestHandler<DeleteProductFromCartCommand, Unit>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public DeleteProductFromCartCommandHandler(ProductsDbContext db)
+        public DeleteProductFromCartCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }

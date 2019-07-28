@@ -8,9 +8,9 @@ namespace EShop.Application.Categories.Commands.DeleteCategory
 {
     public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand, Unit>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public DeleteCategoryCommandHandler(ProductsDbContext db)
+        public DeleteCategoryCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }

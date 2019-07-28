@@ -12,7 +12,7 @@ namespace EShop.Application.Tests.Reviews.Commands
         public async void AddReview_CorrectData_ReturnsReviewId()
         {
             var cmd = new AddReviewCommand(UserId, 1, "test", 3);
-            var handler = new AddReviewCommandHandler(GetProductsContext());
+            var handler = new AddReviewCommandHandler(GetDbContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
 
@@ -23,7 +23,7 @@ namespace EShop.Application.Tests.Reviews.Commands
         public async void AddReview_IncorrectProductId_ThrowsException()
         {
             var cmd = new AddReviewCommand(UserId, 123456, "test", 3);
-            var handler = new AddReviewCommandHandler(GetProductsContext());
+            var handler = new AddReviewCommandHandler(GetDbContext());
 
             await Assert.ThrowsAsync<DbUpdateException>(async () =>
                                                                 await handler.Handle(cmd, CancellationToken.None));
@@ -33,10 +33,10 @@ namespace EShop.Application.Tests.Reviews.Commands
         public async void AddReview_IncorrectUserId_ThrowsException()
         {
             var cmd = new AddReviewCommand(Guid.NewGuid().ToString(), 1, "test", 3);
-            var handler = new AddReviewCommandHandler(GetProductsContext());
+            var handler = new AddReviewCommandHandler(GetDbContext());
 
             await Assert.ThrowsAsync<DbUpdateException>(async () =>
                                                                 await handler.Handle(cmd, CancellationToken.None));
         }
     }
-}    
+}

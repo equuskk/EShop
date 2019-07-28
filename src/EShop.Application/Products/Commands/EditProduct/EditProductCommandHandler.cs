@@ -9,9 +9,9 @@ namespace EShop.Application.Products.Commands.EditProduct
 {
     public class EditProductCommandHandler : IRequestHandler<EditProductCommand, Product>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public EditProductCommandHandler(ProductsDbContext db)
+        public EditProductCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }

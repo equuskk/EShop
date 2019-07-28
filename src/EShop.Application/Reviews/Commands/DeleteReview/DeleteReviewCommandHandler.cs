@@ -10,9 +10,9 @@ namespace EShop.Application.Reviews.Commands.DeleteReview
 {
     public class DeleteReviewCommandHandler : IRequestHandler<DeleteReviewCommand, Unit>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public DeleteReviewCommandHandler(ProductsDbContext db)
+        public DeleteReviewCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }

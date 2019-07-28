@@ -13,7 +13,7 @@ namespace EShop.Application.Tests.Categories.Commands
         {
             var cmd = new DeleteCategoryCommand(1);
 
-            var handler = new DeleteCategoryCommandHandler(GetProductsContext());
+            var handler = new DeleteCategoryCommandHandler(GetDbContext());
             var result = await handler.Handle(cmd, CancellationToken.None);
 
             Assert.IsType<Unit>(result);
@@ -23,7 +23,7 @@ namespace EShop.Application.Tests.Categories.Commands
         public async void DeleteCategory_IncorrectId_ThrowsException()
         {
             var cmd = new DeleteCategoryCommand(-1);
-            var handler = new DeleteCategoryCommandHandler(GetProductsContext());
+            var handler = new DeleteCategoryCommandHandler(GetDbContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                                 await handler.Handle(cmd, CancellationToken.None));

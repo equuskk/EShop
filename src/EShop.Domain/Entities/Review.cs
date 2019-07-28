@@ -12,7 +12,7 @@ namespace EShop.Domain.Entities
         public int Rate { get; private set; }
         public DateTime Date { get; private set; } // автогенерация
 
-        public virtual ShopUser ShopUser { get; private set; }
+        public virtual ShopUser User { get; private set; }
         public virtual Product Product { get; private set; }
 
         private Review()

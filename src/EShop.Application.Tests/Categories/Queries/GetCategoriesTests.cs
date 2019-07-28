@@ -10,7 +10,7 @@ namespace EShop.Application.Tests.Categories.Queries
         public async void GetCategories_Nothing_CategoriesNotEmpty()
         {
             var cmd = new GetCategoriesQuery();
-            var handler = new GetCategoriesQueryHandler(GetProductsContext());
+            var handler = new GetCategoriesQueryHandler(GetDbContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
 

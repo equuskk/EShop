@@ -27,8 +27,8 @@ namespace EShop.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ProductsDbContext>(options => options.UseSqlServer(connectionString));
-            services.AddDbContext<UsersDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddIdentity<ShopUser, IdentityRole>(options =>
                     {
@@ -40,7 +40,7 @@ namespace EShop.WebApi
                         options.Password.RequireNonAlphanumeric = false;
                         options.Password.RequiredUniqueChars = 0;
                     })
-                    .AddEntityFrameworkStores<UsersDbContext>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>()
                     .AddDefaultTokenProviders();
 
             services.AddJwtAuth(Configuration);

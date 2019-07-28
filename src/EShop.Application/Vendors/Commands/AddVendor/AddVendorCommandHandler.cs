@@ -8,9 +8,9 @@ namespace EShop.Application.Vendors.Commands.AddVendor
 {
     public class AddVendorCommandHandler : IRequestHandler<AddVendorCommand, int>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public AddVendorCommandHandler(ProductsDbContext db)
+        public AddVendorCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }

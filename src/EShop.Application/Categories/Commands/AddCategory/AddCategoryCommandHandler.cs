@@ -8,9 +8,9 @@ namespace EShop.Application.Categories.Commands.AddCategory
 {
     public class AddCategoryCommandHandler : IRequestHandler<AddCategoryCommand, int>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public AddCategoryCommandHandler(ProductsDbContext db)
+        public AddCategoryCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }

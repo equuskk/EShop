@@ -9,9 +9,9 @@ namespace EShop.Application.Vendors.Commands.EditVendor
 {
     public class EditVendorCommandHandler : IRequestHandler<EditVendorCommand, Vendor>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public EditVendorCommandHandler(ProductsDbContext db)
+        public EditVendorCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }

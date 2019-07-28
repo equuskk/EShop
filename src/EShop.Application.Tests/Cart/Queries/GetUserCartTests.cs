@@ -10,7 +10,7 @@ namespace EShop.Application.Tests.Cart.Queries
         public async void GetUserCart_CorrectUserId_ReturnsUserCart()
         {
             var cmd = new GetUserCartQuery(UserId);
-            var handler = new GetUserCartQueryHandler(GetProductsContext());
+            var handler = new GetUserCartQueryHandler(GetDbContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
 

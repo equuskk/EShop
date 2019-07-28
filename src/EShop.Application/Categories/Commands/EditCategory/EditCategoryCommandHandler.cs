@@ -9,9 +9,9 @@ namespace EShop.Application.Categories.Commands.EditCategory
 {
     public class EditCategoryCommandHandler : IRequestHandler<EditCategoryCommand, Category>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public EditCategoryCommandHandler(ProductsDbContext db)
+        public EditCategoryCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }

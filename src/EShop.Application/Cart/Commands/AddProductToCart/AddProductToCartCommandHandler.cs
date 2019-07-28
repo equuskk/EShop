@@ -9,9 +9,9 @@ namespace EShop.Application.Cart.Commands.AddProductToCart
 {
     public class AddProductToCartCommandHandler : IRequestHandler<AddProductToCartCommand, Unit>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public AddProductToCartCommandHandler(ProductsDbContext db)
+        public AddProductToCartCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }

@@ -12,10 +12,13 @@ namespace EShop.Domain.Entities
 
         public DateTime RegisterDate { get; private set; }
 
-        private ShopUser() { }
+        private ShopUser()
+        {
+            RegisterDate = DateTime.UtcNow;
+        }
 
         public ShopUser(string login, string firstName, string lastName, string phone, string email,
-                        string address)
+                        string address) : this()
         {
             SetUserName(login);
             SetFirstName(firstName);

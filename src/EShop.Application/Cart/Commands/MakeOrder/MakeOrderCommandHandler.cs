@@ -10,9 +10,9 @@ namespace EShop.Application.Cart.Commands.MakeOrder
 {
     public class MakeOrderCommandHandler : IRequestHandler<MakeOrderCommand, bool>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public MakeOrderCommandHandler(ProductsDbContext db)
+        public MakeOrderCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }

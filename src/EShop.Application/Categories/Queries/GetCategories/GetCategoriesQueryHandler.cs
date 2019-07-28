@@ -8,9 +8,9 @@ namespace EShop.Application.Categories.Queries.GetCategories
 {
     public class GetCategoriesQueryHandler : IRequestHandler<GetCategoriesQuery, CategoriesViewModel>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public GetCategoriesQueryHandler(ProductsDbContext db)
+        public GetCategoriesQueryHandler(ApplicationDbContext db)
         {
             _db = db;
         }

@@ -12,7 +12,7 @@ namespace EShop.Application.Tests.Cart.Commands
         public async void DeleteProductFromCart_CorrectData_ReturnsUnit()
         {
             var cmd = new DeleteProductFromCartCommand(1, 1, UserId);
-            var handler = new DeleteProductFromCartCommandHandler(GetProductsContext());
+            var handler = new DeleteProductFromCartCommandHandler(GetDbContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
 
@@ -23,7 +23,7 @@ namespace EShop.Application.Tests.Cart.Commands
         public async void DeleteProductFromCart_IncorrectProductId_ThrowsException()
         {
             var cmd = new DeleteProductFromCartCommand(-1, 123, UserId);
-            var handler = new DeleteProductFromCartCommandHandler(GetProductsContext());
+            var handler = new DeleteProductFromCartCommandHandler(GetDbContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                                 await handler.Handle(cmd, CancellationToken.None));

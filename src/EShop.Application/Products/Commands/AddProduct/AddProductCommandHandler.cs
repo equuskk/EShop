@@ -8,9 +8,9 @@ namespace EShop.Application.Products.Commands.AddProduct
 {
     public class AddProductCommandHandler : IRequestHandler<AddProductCommand, int>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public AddProductCommandHandler(ProductsDbContext db)
+        public AddProductCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }

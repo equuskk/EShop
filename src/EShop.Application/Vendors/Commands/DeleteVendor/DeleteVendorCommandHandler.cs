@@ -9,9 +9,9 @@ namespace EShop.Application.Vendors.Commands.DeleteVendor
 {
     public class DeleteVendorCommandHandler : IRequestHandler<DeleteVendorCommand, Unit>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public DeleteVendorCommandHandler(ProductsDbContext db)
+        public DeleteVendorCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }

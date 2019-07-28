@@ -8,9 +8,9 @@ namespace EShop.Application.Reviews.Commands.AddReview
 {
     public class AddReviewCommandHandler : IRequestHandler<AddReviewCommand, int>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public AddReviewCommandHandler(ProductsDbContext db)
+        public AddReviewCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }

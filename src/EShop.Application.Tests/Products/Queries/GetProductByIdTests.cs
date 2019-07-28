@@ -11,7 +11,7 @@ namespace EShop.Application.Tests.Products.Queries
         public async void GetProductById_CorrectId_ReturnsProduct()
         {
             var cmd = new GetProductByIdQuery(1);
-            var handler = new GetProductByIdQueryHandler(GetProductsContext());
+            var handler = new GetProductByIdQueryHandler(GetDbContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
 
@@ -23,7 +23,7 @@ namespace EShop.Application.Tests.Products.Queries
         public async void GetProductById_IncorrectId_ThrowsException()
         {
             var cmd = new GetProductByIdQuery(-1);
-            var handler = new GetProductByIdQueryHandler(GetProductsContext());
+            var handler = new GetProductByIdQueryHandler(GetDbContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>
                                                                 await handler.Handle(cmd, CancellationToken.None));

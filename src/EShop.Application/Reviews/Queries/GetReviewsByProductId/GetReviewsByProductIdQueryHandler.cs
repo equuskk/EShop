@@ -8,9 +8,9 @@ namespace EShop.Application.Reviews.Queries.GetReviewsByProductId
 {
     public class GetReviewsByProductIdQueryHandler : IRequestHandler<GetReviewsByProductIdQuery, ReviewsViewModel>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public GetReviewsByProductIdQueryHandler(ProductsDbContext db)
+        public GetReviewsByProductIdQueryHandler(ApplicationDbContext db)
         {
             _db = db;
         }

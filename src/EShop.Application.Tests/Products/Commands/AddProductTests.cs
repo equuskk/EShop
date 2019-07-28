@@ -10,7 +10,7 @@ namespace EShop.Application.Tests.Products.Commands
         public async void AddProduct_CorrectData_ReturnsProductId()
         {
             var cmd = new AddProductCommand("test", "test", 123, 1, 1);
-            var handler = new AddProductCommandHandler(GetProductsContext());
+            var handler = new AddProductCommandHandler(GetDbContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
 

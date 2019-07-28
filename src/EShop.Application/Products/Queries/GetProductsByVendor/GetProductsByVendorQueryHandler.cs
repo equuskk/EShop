@@ -9,9 +9,9 @@ namespace EShop.Application.Products.Queries.GetProductsByVendor
 {
     public class GetProductsByVendorQueryHandler : IRequestHandler<GetProductsByVendorQuery, ProductsViewModel>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public GetProductsByVendorQueryHandler(ProductsDbContext db)
+        public GetProductsByVendorQueryHandler(ApplicationDbContext db)
         {
             _db = db;
         }

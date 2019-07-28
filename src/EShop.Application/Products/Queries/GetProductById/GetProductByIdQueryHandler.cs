@@ -10,9 +10,9 @@ namespace EShop.Application.Products.Queries.GetProductById
 {
     public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, Product>
     {
-        private readonly ProductsDbContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public GetProductByIdQueryHandler(ProductsDbContext db)
+        public GetProductByIdQueryHandler(ApplicationDbContext db)
         {
             _db = db;
         }

@@ -10,7 +10,7 @@ namespace EShop.Application.Tests.Vendors.Queries
         public async void GetVendors_Nothing_VendorsNotEmpty()
         {
             var cmd = new GetVendorsQuery();
-            var handler = new GetVendorsQueryHandler(GetProductsContext());
+            var handler = new GetVendorsQueryHandler(GetDbContext());
 
             var result = await handler.Handle(cmd, CancellationToken.None);
 
