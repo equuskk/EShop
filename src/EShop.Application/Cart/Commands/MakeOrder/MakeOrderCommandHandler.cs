@@ -35,6 +35,7 @@ namespace EShop.Application.Cart.Commands.MakeOrder
 
             var order = new Order(orderSum);
             _db.Orders.Add(order);
+            await _db.SaveChangesAsync(cancellationToken); // для того, чтобы получить ID заказа
 
             await productsInCart.ForEachAsync(x => x.SetOrderId(order.Id),
                                               cancellationToken);
