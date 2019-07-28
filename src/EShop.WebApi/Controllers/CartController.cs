@@ -26,7 +26,8 @@ namespace EShop.WebApi.Controllers
         [Authorize]
         public async Task<ActionResult<CartViewModel>> GetUserCart()
         {
-            var cmd = new GetUserCartQuery(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var cmd = new GetUserCartQuery(userId);
             return Ok(await _mediator.Send(cmd));
         }
 
@@ -54,7 +55,8 @@ namespace EShop.WebApi.Controllers
         [HttpPost("MakeOrder")]
         public async Task<ActionResult<ProductsViewModel>> MakeOrder()
         {
-            return Ok(await _mediator.Send(new MakeOrderCommand(User.FindFirstValue(ClaimTypes.NameIdentifier))));
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return Ok(await _mediator.Send(new MakeOrderCommand(userId)));
         }
     }
 }
