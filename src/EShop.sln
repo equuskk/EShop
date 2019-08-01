@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.645
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Domain", "EShop.Domain\EShop.Domain.csproj", "{1151322C-05A9-4C30-88B1-46FF4E742569}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.WebApi", "EShop.WebApi\EShop.WebApi.csproj", "{08A7FC46-174B-4965-BA2F-6C7CC1856A40}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Application.Tests", "EShop.Application.Tests\EShop.Application.Tests.csproj", "{0E9CC3C7-E0C3-4B7E-8987-DE7DE7BF3EC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshop.WebUI", "Eshop.WebUI\Eshop.WebUI.csproj", "{2981603C-5A61-4E01-9E14-9C287EF8355E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{0E9CC3C7-E0C3-4B7E-8987-DE7DE7BF3EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E9CC3C7-E0C3-4B7E-8987-DE7DE7BF3EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E9CC3C7-E0C3-4B7E-8987-DE7DE7BF3EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2981603C-5A61-4E01-9E14-9C287EF8355E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2981603C-5A61-4E01-9E14-9C287EF8355E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2981603C-5A61-4E01-9E14-9C287EF8355E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2981603C-5A61-4E01-9E14-9C287EF8355E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
