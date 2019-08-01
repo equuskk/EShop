@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using EShop.Application.Products.Queries.GetProducts;
 using EShop.DataAccess;
 using EShop.Domain.Entities;
+using Eshop.WebUI.Helper;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -43,6 +47,9 @@ namespace Eshop.WebUI
             services.AddDefaultIdentity<ShopUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddMediatR(typeof(GetProductsQuery).GetTypeInfo().Assembly);
+            services.AddScoped<Helpers>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
