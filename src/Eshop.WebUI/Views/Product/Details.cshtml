@@ -1,0 +1,35 @@
+﻿@model EShop.Domain.Entities.Product
+
+
+<h1>@Model.Name</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <img class="img-fluid" src="@Model.Image"/>
+    </div>
+
+    <div class="col-md-8">
+        <table class="table">
+            <tr>
+                <th>Название</th>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <th>Категория</th>
+                <td>@Model.Category.Name</td>
+            </tr>
+            <tr>
+                <th>Описание</th>
+                <td>@Model.Description</td>
+            </tr>
+            <tr>
+                <th>Цена</th>
+                <td>@Model.Price</td>
+            </tr>
+        </table>
+        <button onclick="addToCart(@Model.Id)" class="btn btn-success"
+                data-toggle="modal" data-target="#addToCartModal">
+            Купить
+        </button>
+    </div>
+</div>

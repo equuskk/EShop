@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using EShop.DataAccess;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace EShop.Application.Products.Queries.GetProducts
 {
@@ -19,7 +20,7 @@ namespace EShop.Application.Products.Queries.GetProducts
         {
             return Task.FromResult(new ProductsViewModel
             {
-                Products = _db.Products.ToArray()
+                Products = _db.Products.Include(x => x.Category).Include(x => x.Vendor).ToArray()
             });
         }
     }

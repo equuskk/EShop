@@ -38,7 +38,7 @@
             foreach (var product in Model.Products.Products)
             {
                 <div class="card col-md-4 text-center">
-                    <img src="Картинка" class="card-img-top" alt="...">
+                    <img src="@product.Image" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">@product.Name</h5>
                         <p class="card-text">@product.Description</p>
@@ -48,8 +48,8 @@
                             <h2>@product.Price.ToString("C")</h2>
                         </li>
                         <li class="list-group-item">
-                            <button asp-controller="Product" asp-action="" asp-route-id="@product.Id" class="btn btn-warning">Подробнее</button>
-                            <button asp-controller="Product" asp-action="" asp-route-id="@product.Id" class="btn btn-success">Купить</button>
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="btn btn-warning">Подробнее</a>
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="btn btn-success">Купить</a>
                         </li>
                     </ul>
 
