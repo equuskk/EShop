@@ -1,0 +1,60 @@
+﻿@model EShop.WebUI.ViewModels.CommonViewModels;
+
+@{
+}
+
+
+<div class="row">
+    <form asp-controller="Products" asp-action="Filter">
+        <label>Категория:</label>
+        <select class="form-control" name="category">
+            @foreach(var category in Model.Categories.Categories)
+            {
+                <option class="dropdown-item">@category.Name</option>
+            }
+            <option selected="">Любая</option>
+        </select>
+        <label>Производитель:</label>
+        <select class="form-control" name="vendor">
+            @foreach(var vendor in Model.Vendors.Vendors)
+            {
+                <option class="dropdown-item">@vendor.Name</option>
+            }
+            <option selected="">Любой</option>
+        </select>
+        <label>Сортировка по цене</label>
+        <select class="form-control" name="sort">
+            <option class="dropdown-item">Сначала дорогие</option>
+            <option class="dropdown-item">Сначала дешёвые</option>
+            <option class="dropdown-item" selected>Не сортировать</option>
+        </select>
+        <br/>
+        <button type="submit" class="btn btn-outline-primary">Применить фильтр</button>
+    </form>
+
+    <div class="row col-md-9 offset-md-1">
+
+        @{
+            foreach(var product in Model.Products.Products)
+            {
+                <div class="card col-md-4 text-center">
+                    <img src="~/Images/ProductImages/@product.Image" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h2>@product.Price.ToString("C")</h2>
+                        </li>
+                        <li class="list-group-item">
+                            <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-warning">Подробнее</a>
+                            <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-success">Купить</a>
+                        </li>
+                    </ul>
+
+                </div>
+            }
+        }
+    </div>
+</div>

@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.WebApi", "EShop.WebAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Application.Tests", "EShop.Application.Tests\EShop.Application.Tests.csproj", "{0E9CC3C7-E0C3-4B7E-8987-DE7DE7BF3EC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshop.WebUI", "Eshop.WebUI\Eshop.WebUI.csproj", "{2981603C-5A61-4E01-9E14-9C287EF8355E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShop.WebUI", "EShop.WebUI\EShop.WebUI.csproj", "{2981603C-5A61-4E01-9E14-9C287EF8355E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
