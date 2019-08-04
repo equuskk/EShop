@@ -1,0 +1,25 @@
+﻿@model EShop.Application.Cart.Queries.GetUserCart.CartViewModel;
+
+<table class="table table-bordered">
+    <thead>
+        <h2>Окончательная стоимость: @Model.TotalCost.ToString("C")</h2>
+    <tr>
+        <th>Название товара</th>
+        <th>Количество товаров в корзине</th>
+ 
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var product in Model.Products)
+    {
+        <tr>
+            <td>
+                <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">
+                    @product.Name
+                </a>
+            </td>
+            <td>@product.Price.ToString("C")</td>
+        </tr>
+    }
+    </tbody>
+</table>
