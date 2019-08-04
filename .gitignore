@@ -100,3 +100,5 @@ orleans.codegen.cs
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+*.min.*
