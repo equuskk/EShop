@@ -1,9 +1,13 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using EShop.Application.Cart.Commands.AddProductToCart;
 using EShop.Application.Products.Queries.GetProductById;
 using EShop.Application.Products.Queries.GetProducts;
+using EShop.Domain.Entities;
 using EShop.WebUI.ViewModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.WebUI.Controllers
@@ -12,11 +16,13 @@ namespace EShop.WebUI.Controllers
     {
         private readonly Helpers.Helpers _helpers;
         private readonly IMediator _mediator;
+        private readonly UserManager<ShopUser> _manager;
 
-        public ProductsController(IMediator mediator, Helpers.Helpers helpers)
+        public ProductsController(IMediator mediator, Helpers.Helpers helpers, UserManager<ShopUser> manager)
         {
             _mediator = mediator;
             _helpers = helpers;
+            _manager = manager;
         }
 
         public async Task<IActionResult> Index()
@@ -78,6 +84,14 @@ namespace EShop.WebUI.Controllers
         {
             var product = await _mediator.Send(new GetProductByIdQuery(id));
             return View(product);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task AddProductInCart(int id)
+        {
+            var user = await _manager.GetUserAsync(User);
+            await _mediator.Send(new AddProductToCartCommand(user.Id, id, 1));
         }
     }
 }
