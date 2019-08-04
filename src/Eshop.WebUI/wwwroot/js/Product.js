@@ -8,7 +8,18 @@ function AddProduct(id) {
                 var value = $("#amount").text();
                 value = parseInt(value) + 1;
                 $('#amount').html(value);
+                localStorage.setItem('CartAmount', value);
             }
         });
 };
+function SetCartAmount() {
+
+    var value = localStorage.getItem('CartAmount');
+
+    if (value != null) {
+        $('#amount').html(value);
+    }
+  
+};
+
 
