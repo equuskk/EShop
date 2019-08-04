@@ -47,10 +47,11 @@
                         <li class="list-group-item">
                             <h2>@product.Price.ToString("C")</h2>
                         </li>
-                        <li class="list-group-item">
-                            <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-warning">Подробнее</a>
-                            <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-success">Купить</a>
-                        </li>
+                       
+                        <a  asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-warning" style="width: 100%">Подробнее</a>
+                        <br />
+                        <a  id="buttonBuy" style="width: 100%" onclick="AddProduct(@product.Id)" class="btn btn-success">В корзину</a>
+                        <br />
                     </ul>
 
                 </div>
