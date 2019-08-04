@@ -2,12 +2,12 @@
 
 <table class="table table-bordered">
     <thead>
-        <h2>Окончательная стоимость: @Model.TotalCost.ToString("C")</h2>
-    <tr>
-        <th>Название товара</th>
-        <th>Количество товаров в корзине</th>
- 
-    </tr>
+        <tr>
+            <th>Название товара</th>
+            <th>Стоимость за единицу</th>
+            <th>Количество</th>
+            <th>Стоимость в сумме</th>
+        </tr>
     </thead>
     <tbody>
     @foreach(var product in Model.Products)
@@ -19,6 +19,8 @@
                 </a>
             </td>
             <td>@product.Price.ToString("C")</td>
+            <td>NOT IMPLEMENTED</td>
+            <td>NOT IMPLEMENTED</td>
         </tr>
     }
     </tbody>

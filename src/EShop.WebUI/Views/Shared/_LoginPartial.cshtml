@@ -6,6 +6,11 @@
 <ul class="navbar-nav">
     @if(SignInManager.IsSignedIn(User))
     {
+        <a class="fas fa-shopping-cart nav-link" asp-controller="Cart" asp-action="Index">
+            <span id="amount" class="badge badge-primary badge-pill">
+                0
+            </span>
+        </a>
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Привет, @User.Identity.Name!</a>
         </li>

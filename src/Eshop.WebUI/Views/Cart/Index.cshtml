@@ -6,7 +6,8 @@
 
 @if(Model.Products.Length > 0)
 {
-    <h1>Список товаров в корзине</h1>
+    <h1>Товары в корзине</h1>
+    <h4>Стоимость товаров в корзине: @Model.TotalCost.ToString("C")</h4>
 
     <partial name="_ProductsTable" model="Model"/>
 

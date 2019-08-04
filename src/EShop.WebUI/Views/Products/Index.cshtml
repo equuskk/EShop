@@ -1,8 +1,8 @@
 ﻿@model EShop.WebUI.ViewModels.CommonViewModels;
 
 @{
+    ViewData["Title"] = "Товары";
 }
-
 
 <div class="row">
     <form asp-controller="Products" asp-action="Filter">
@@ -33,26 +33,23 @@
     </form>
 
     <div class="row col-md-9 offset-md-1">
-
         @{
             foreach(var product in Model.Products.Products)
             {
                 <div class="card col-md-4 text-center">
-                    <img src="~/Images/ProductImages/@product.Image" class="card-img-top" alt="...">
+                    <img src="~/Images/ProductImages/@product.Image" class="card-img-top" alt="@product.Name">
                     <div class="card-body">
                         <h5 class="card-title">@product.Name</h5>
-                        <p class="card-text">@product.Description</p>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <h2>@product.Price.ToString("C")</h2>
-                        </li>
-                       
-                        <a  asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-warning" style="width: 100%">Подробнее</a>
-                        <br />
-                        <a  id="buttonBuy" style="width: 100%" onclick="AddProduct(@product.Id)" class="btn btn-success">В корзину</a>
-                        <br />
-                    </ul>
+
+                    <h2>@product.Price.ToString("C")</h2>
+
+                    <a class="btn btn-warning btn-block" asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">
+                        Подробнее
+                    </a>
+                    <a class="btn btn-success btn-block" id="buttonBuy" onclick="AddProduct(@product.Id)">
+                        В корзину
+                    </a>
 
                 </div>
             }

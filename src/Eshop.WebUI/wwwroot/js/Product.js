@@ -1,6 +1,4 @@
-﻿
-function AddProduct(id) {
-
+﻿function AddProduct(id) {
         $.ajax({
             type: 'POST',
             url: 'Products/AddProductInCart/' + id,
@@ -11,15 +9,14 @@ function AddProduct(id) {
                 localStorage.setItem('CartAmount', value);
             }
         });
-};
-function SetCartAmount() {
+}
 
+function SetCartAmount() {
     var value = localStorage.getItem('CartAmount');
 
-    if (value != null) {
+    if (value !== null) {
         $('#amount').html(value);
     }
-  
-};
+}
 
 
