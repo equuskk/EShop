@@ -1,0 +1,25 @@
+﻿@model EShop.Application.Cart.Queries.GetUserCart.CartViewModel;
+
+@{
+    ViewData["Title"] = "Корзина";
+}
+
+@if(Model.Products.Length > 0)
+{
+    <h1>Товары в корзине</h1>
+    <h4>Стоимость товаров в корзине: @Model.TotalCost.ToString("C")</h4>
+
+    <partial name="_ProductsTable" model="Model"/>
+
+    <a asp-controller="Cart" asp-action="Order"
+       class="btn btn-success">
+        Перейти к оформлению заказа
+    </a>
+}
+else
+{
+    <h3 class="text-center">Ваша корзина пуста.</h3>
+    <h5 class="text-center">
+        Для добавления товаров в корзину <a asp-controller="Products" asp-action="Index">перейдите в каталог</a>.
+    </h5>
+}
