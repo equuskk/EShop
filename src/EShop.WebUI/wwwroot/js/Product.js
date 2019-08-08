@@ -19,4 +19,12 @@ function SetCartAmount() {
     }
 }
 
+function RemoveCartProduct() {
+
+    var value = $("#amount").text();
+    value = parseInt(value) - 1;
+    $('#amount').html(value);
+    localStorage.setItem('CartAmount', value);
+    }
+
 
