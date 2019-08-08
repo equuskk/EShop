@@ -5,8 +5,6 @@
         <tr>
             <th>Название товара</th>
             <th>Стоимость за единицу</th>
-            <th>Количество</th>
-            <th>Стоимость в сумме</th>
         </tr>
     </thead>
     <tbody>
@@ -19,8 +17,7 @@
                 </a>
             </td>
             <td>@product.Price.ToString("C")</td>
-            <td>NOT IMPLEMENTED</td>
-            <td>NOT IMPLEMENTED</td>
+            <td><a class="btn btn-success btn-block" onclick="RemoveCartProduct()" asp-controller="Cart" asp-action="RemoveProduct" asp-route-id="@product.Id">Убрать</a></td>
         </tr>
     }
     </tbody>
