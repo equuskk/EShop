@@ -23,17 +23,10 @@ namespace EShop.Application.Cart.Commands.AddProductToCart
                                                             x.UserId == request.ShopUserId &&
                                                             x.OrderId == null);
 
-            if(productInCart is null)
-            {
-                productInCart = new ProductInCart(request.ShopUserId, request.ProductId, request.Quantity);
+            productInCart = new ProductInCart(request.ShopUserId, request.ProductId, request.Quantity);
 
-                _db.ProductsInCarts.Add(productInCart);
-            }
-            else
-            {
-                productInCart.AddQuantity(request.Quantity);
-            }
-
+            _db.ProductsInCarts.Add(productInCart);
+          
 
             await _db.SaveChangesAsync(cancellationToken);
 

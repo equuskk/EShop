@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using EShop.DataAccess;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace EShop.Application.Cart.Queries.GetUserCart
 {
@@ -17,13 +18,13 @@ namespace EShop.Application.Cart.Queries.GetUserCart
 
         public Task<CartViewModel> Handle(GetUserCartQuery request, CancellationToken cancellationToken)
         {
-            var cart = _db.ProductsInCarts.Where(x => x.UserId == request.ShopUserId &&
-                                                      x.OrderId == null).Select(x => x.ProductId);
-            var products = _db.Products.Where(x => cart.Contains(x.Id)); //TODO:
+            var cart = _db.ProductsInCarts.Include(x => x.Product).Where(x => x.UserId == request.ShopUserId &&
+                                                      x.OrderId == null).Select(x => x.Product);
+           
 
             return Task.FromResult(new CartViewModel
             {
-                Products = products.ToArray()
+                Products = cart.ToArray()
             });
         }
     }
