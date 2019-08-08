@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using EShop.Application.Cart.Commands.DeleteProductFromCart;
 using EShop.Application.Cart.Queries.GetUserCart;
 using EShop.Domain.Entities;
 using MediatR;
@@ -28,5 +29,16 @@ namespace EShop.WebUI.Controllers
             var product = await _mediator.Send(new GetUserCartQuery(user.Id));
             return View(product);
         }
+
+        public async Task<IActionResult> RemoveProduct(int id)
+        {
+           
+
+            var user = await _manager.GetUserAsync(User);
+            await _mediator.Send(new DeleteProductFromCartCommand(id, 1, user.Id));
+            var product = await _mediator.Send(new GetUserCartQuery(user.Id));
+            return View("Index", product);
+        }
+        
     }
 }
