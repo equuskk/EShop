@@ -32,8 +32,6 @@ namespace EShop.WebUI.Controllers
 
         public async Task<IActionResult> RemoveProduct(int id)
         {
-           
-
             var user = await _manager.GetUserAsync(User);
             await _mediator.Send(new DeleteProductFromCartCommand(id, 1, user.Id));
             var product = await _mediator.Send(new GetUserCartQuery(user.Id));

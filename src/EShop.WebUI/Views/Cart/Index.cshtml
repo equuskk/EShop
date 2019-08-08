@@ -11,9 +11,9 @@
 
     <partial name="_ProductsTable" model="Model"/>
 
-    <a asp-controller="Cart" asp-action="Order"
+    <a onclick="ClearCartProduct()" asp-controller="Order" asp-action="MakeOrder"
        class="btn btn-success">
-        Перейти к оформлению заказа
+       Оформить заказ
     </a>
 }
 else
