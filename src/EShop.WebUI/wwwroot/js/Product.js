@@ -15,7 +15,6 @@
         });
 }
 
-
 function SetCartAmount() {
     var value = localStorage.getItem('CartAmount');
 

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using EShop.Application.Cart.Commands.AddProductToCart;
 using EShop.Application.Products.Queries.GetProductById;
 using EShop.Application.Products.Queries.GetProducts;
+using EShop.Application.Reviews.Queries.GetReviewsByProductId;
 using EShop.Domain.Entities;
 using EShop.WebUI.ViewModels;
 using MediatR;
@@ -83,7 +84,9 @@ namespace EShop.WebUI.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var product = await _mediator.Send(new GetProductByIdQuery(id));
-            return View(product);
+            var review = await _mediator.Send(new GetReviewsByProductIdQuery(id));
+            
+            return View(new ProductViewModels{Product = product, Reviews = review});
         }
 
         [Authorize]

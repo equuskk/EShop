@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using EShop.DataAccess;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace EShop.Application.Reviews.Queries.GetReviewsByProductId
 {
@@ -20,7 +21,7 @@ namespace EShop.Application.Reviews.Queries.GetReviewsByProductId
         {
             return Task.FromResult(new ReviewsViewModel
             {
-                Reviews = _db.Reviews.Where(x => x.ProductId == request.ProductId).ToArray()
+                Reviews = _db.Reviews.Include(x => x.User).Where(x => x.ProductId == request.ProductId).ToArray()
             });
         }
     }
