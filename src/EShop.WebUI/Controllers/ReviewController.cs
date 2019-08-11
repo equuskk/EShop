@@ -26,10 +26,10 @@ namespace EShop.WebUI.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> CreateReview(int productId, string text)
+        public async Task<IActionResult> CreateReview(int productId, string text, int rate)
         {
             var user = await _manager.GetUserAsync(User);
-            await _mediator.Send(new AddReviewCommand(user.Id, productId, text,5) );
+            await _mediator.Send(new AddReviewCommand(user.Id, productId, text,rate) );
             return RedirectToAction("Details", "Products", new {id = productId});
         }
     }
