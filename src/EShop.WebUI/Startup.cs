@@ -1,7 +1,11 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using EShop.Application.Products.Queries.GetProducts;
 using EShop.DataAccess;
 using EShop.Domain.Entities;
+using EShop.WebUI.Helpers;
+using Hangfire;
+using Hangfire.MemoryStorage;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -52,6 +56,8 @@ namespace EShop.WebUI
             services.AddMediatR(typeof(GetProductsQuery).GetTypeInfo().Assembly);
             services.AddScoped<Helpers.Helpers>();
 
+            services.AddHangfire(config => { config.UseMemoryStorage(); });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -68,6 +74,9 @@ namespace EShop.WebUI
                 app.UseHsts();
             }
 
+            var options = new BackgroundJobServerOptions { WorkerCount = Environment.ProcessorCount * 2 };
+            app.UseHangfireServer(options);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -80,6 +89,12 @@ namespace EShop.WebUI
                                 "default",
                                 "{controller=Home}/{action=Index}/{id?}");
             });
+            CreateRoles();
+        }
+
+        private void CreateRoles()
+        {
+            BackgroundJob.Enqueue<RolesHelper>(x => x.CreateRole()); 
         }
     }
 }

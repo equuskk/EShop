@@ -50,6 +50,12 @@
                     <a class="btn btn-success btn-block" id="buttonBuy" onclick="AddProduct(@product.Id)">
                         В корзину
                     </a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="btn btn-success btn-block"  asp-controller="Admin" asp-action="DeleteProduct" asp-route-ProductId="@product.Id">
+                            Удалить товар
+                        </a>
+                    }
                     <br/>
                 </div>
             }
