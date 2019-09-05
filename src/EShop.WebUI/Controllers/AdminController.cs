@@ -22,7 +22,7 @@ namespace EShop.WebUI.Controllers
         private readonly IMediator _mediator;
 
         public AdminController(IMediator mediator, Helpers.Helpers helpers, UserManager<ShopUser> manager,
-            IHostingEnvironment appEnvironment)
+                               IHostingEnvironment appEnvironment)
         {
             _mediator = mediator;
             _helpers = helpers;
@@ -42,23 +42,26 @@ namespace EShop.WebUI.Controllers
             var vendors = await _mediator.Send(new GetVendorsQuery());
 
 
-            return View(new AddProductViewModels{Categories = categories, Vendors = vendors});
+            return View(new AddProductViewModels { Categories = categories, Vendors = vendors });
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProduct(string title, string description, int price, IFormFile file, int vendorID, int categoryId)
+        public async Task<IActionResult> AddProduct(string title, string description, int price, IFormFile file,
+                                                    int vendorID, int categoryId)
         {
-            if (file != null)
+            if(file != null)
             {
                 // путь к папке Files
                 var path = "/Images/ProductImages/" + file.FileName;
+
                 // сохраняем файл в папку Files в каталоге wwwroot
-                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                using(var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
                 {
                     await file.CopyToAsync(fileStream);
                 }
 
-                await _mediator.Send(new AddProductCommand(title, description, price, vendorID, categoryId, file.FileName));
+                await _mediator.Send(new AddProductCommand(title, description, price, vendorID, categoryId,
+                                                           file.FileName));
                 return RedirectToAction("Index", "Products");
             }
 

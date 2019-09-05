@@ -47,10 +47,7 @@ namespace EShop.WebApi
 
             services.AddMediatR(typeof(GetProductsQuery).GetTypeInfo().Assembly);
 
-            services.AddSwaggerDocument(x =>
-            {
-                x.Title = "EShop API v1";
-            });
+            services.AddSwaggerDocument(x => { x.Title = "EShop API v1"; });
 
             services.AddMvc(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

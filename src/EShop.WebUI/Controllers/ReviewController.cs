@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EShop.Application.Cart.Queries.GetUserCart;
+﻿using System.Threading.Tasks;
 using EShop.Application.Reviews.Commands.AddReview;
 using EShop.Domain.Entities;
 using MediatR;
@@ -29,8 +25,8 @@ namespace EShop.WebUI.Controllers
         public async Task<IActionResult> CreateReview(int productId, string text, int rate)
         {
             var user = await _manager.GetUserAsync(User);
-            await _mediator.Send(new AddReviewCommand(user.Id, productId, text,rate) );
-            return RedirectToAction("Details", "Products", new {id = productId});
+            await _mediator.Send(new AddReviewCommand(user.Id, productId, text, rate));
+            return RedirectToAction("Details", "Products", new { id = productId });
         }
     }
 }

@@ -2,10 +2,10 @@
 
 <table class="table table-bordered">
     <thead>
-        <tr>
-            <th>Название товара</th>
-            <th>Стоимость за единицу</th>
-        </tr>
+    <tr>
+        <th>Название товара</th>
+        <th>Стоимость за единицу</th>
+    </tr>
     </thead>
     <tbody>
     @foreach(var product in Model.Products)
@@ -17,7 +17,9 @@
                 </a>
             </td>
             <td>@product.Price.ToString("C")</td>
-            <td><a class="btn btn-success btn-block" onclick="RemoveCartProduct()" asp-controller="Cart" asp-action="RemoveProduct" asp-route-id="@product.Id">Убрать</a></td>
+            <td>
+                <a class="btn btn-success btn-block" onclick="RemoveCartProduct()" asp-controller="Cart" asp-action="RemoveProduct" asp-route-id="@product.Id">Убрать</a>
+            </td>
         </tr>
     }
     </tbody>

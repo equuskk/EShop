@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using EShop.DataAccess;
 using EShop.Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace EShop.Application.Cart.Commands.MakeOrder
@@ -12,6 +11,7 @@ namespace EShop.Application.Cart.Commands.MakeOrder
     public class MakeOrderCommandHandler : IRequestHandler<MakeOrderCommand, bool>
     {
         private readonly ApplicationDbContext _db;
+
         public MakeOrderCommandHandler(ApplicationDbContext db)
         {
             _db = db;
@@ -28,10 +28,7 @@ namespace EShop.Application.Cart.Commands.MakeOrder
             }
 
             var orderSum = 0.0;
-            foreach(var item in productsInCart)
-            {
-                orderSum += item.Product.Price * item.Quantity;
-            }
+            foreach(var item in productsInCart) orderSum += item.Product.Price * item.Quantity;
 
             var order = new Order(orderSum);
             _db.Orders.Add(order);

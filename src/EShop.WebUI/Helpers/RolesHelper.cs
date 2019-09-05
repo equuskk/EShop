@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
 namespace EShop.WebUI.Helpers
@@ -9,6 +6,7 @@ namespace EShop.WebUI.Helpers
     public class RolesHelper
     {
         public RoleManager<IdentityRole> _manager { get; set; }
+
         public RolesHelper(RoleManager<IdentityRole> manager)
         {
             _manager = manager;
@@ -18,7 +16,7 @@ namespace EShop.WebUI.Helpers
         {
             var roleName = "Admin";
 
-            if (await _manager.RoleExistsAsync(roleName))
+            if(await _manager.RoleExistsAsync(roleName))
             {
                 return;
             }

@@ -4,31 +4,33 @@
 }
 
 
-@if (Model.ProductInCarts.Length > 0)
+@if(Model.ProductInCarts.Length > 0)
 {
     <h1>История покупок</h1>
 
 
-    @foreach (var Order in Model.ProductInCarts.GroupBy(x => x.OrderId))
-    {
-        <div class="card">
-            
-            <div class="card-header">
-                Дата: @Order.First().Order.OrderDate
-            </div>
-            <ul class="list-group list-group-flush">
-                @foreach (var product in Order)
-                {
+    @foreach(var Order in Model.ProductInCarts.GroupBy(x => x.OrderId))
+     {
+         <div class="card">
 
-                    <li class="list-group-item list-group-item-success"><h3>@product.Product.Name - @product.Product.Price.ToString("C")</h3></li>
-                }
-            </ul>
-            <div class="card-footer"><h3>Общая стоимость - @Order.First().Order.Cost.ToString("C")</h3></div>
-        </div>
-        <br/>
-    }
+             <div class="card-header">
+                 Дата: @Order.First().Order.OrderDate
+             </div>
+             <ul class="list-group list-group-flush">
+                 @foreach(var product in Order)
+                 {
+                     <li class="list-group-item list-group-item-success">
+                         <h3>@product.Product.Name - @product.Product.Price.ToString("C")</h3>
+                     </li>
+                 }
+             </ul>
+             <div class="card-footer">
+                 <h3>Общая стоимость - @Order.First().Order.Cost.ToString("C")</h3>
+             </div>
+         </div>
+         <br/>
+     }
     <br/>
-
 }
 else
 {
@@ -37,4 +39,3 @@ else
         Для добавления товаров в корзину <a asp-controller="Products" asp-action="Index">перейдите в каталог</a>.
     </h5>
 }
-

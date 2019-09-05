@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using EShop.Application.Cart.Commands.MakeOrder;
 using EShop.Application.Cart.Queries.GetUserOrder;
 using EShop.Domain.Entities;
@@ -35,7 +32,7 @@ namespace EShop.WebUI.Controllers
         public async Task<IActionResult> GetOrder()
         {
             var user = await _manager.GetUserAsync(User);
-           var Order =  await _mediator.Send(new GetUserOrderCommand(user.Id));
+            var Order = await _mediator.Send(new GetUserOrderCommand(user.Id));
             return View("Index", Order);
         }
     }

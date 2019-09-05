@@ -1,8 +1,7 @@
-﻿@using EShop.Domain.Entities
-@model EShop.WebUI.ViewModels.AddProductViewModels
+﻿@model EShop.WebUI.ViewModels.AddProductViewModels
 
 
-<form asp-action="AddProduct" asp-controller="Admin"  method="post" enctype="multipart/form-data">
+<form asp-action="AddProduct" asp-controller="Admin" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="exampleFormControlInput1">Заголовок товара</label>
         <input type="text" name="title" class="form-control" id="exampleFormControlInput1">
@@ -10,7 +9,7 @@
     <div class="form-group">
         <label for="exampleFormControlSelect1">Категория</label>
         <select name="categoryID" class="form-control" id="exampleFormControlSelect1">
-            @foreach (var categories in Model.Categories.Categories)
+            @foreach(var categories in Model.Categories.Categories)
             {
                 <option value="@categories.Id">@categories.Name</option>
             }
@@ -19,7 +18,7 @@
     <div class="form-group">
         <label for="exampleFormControlSelect1">Поставщик</label>
         <select name="vendorID" class="form-control" id="exampleFormControlSelect1">
-            @foreach (var vendor in Model.Vendors.Vendors)
+            @foreach(var vendor in Model.Vendors.Vendors)
             {
                 <option value="@vendor.Id">@vendor.Name</option>
             }
@@ -32,7 +31,7 @@
     <label for="exampleFormControlInput1">Цена</label>
     <input type="number" name="price" class="form-control" id="exampleFormControlInput1">
     <br/>
-    <input type="file" name="file" placeholder="Загрузить фото товара" /><br>
+    <input type="file" name="file" placeholder="Загрузить фото товара"/><br>
     <br/>
     <button type="submit" class="btn btn-primary">Добавить</button>
 </form>

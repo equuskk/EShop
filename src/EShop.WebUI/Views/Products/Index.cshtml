@@ -9,7 +9,7 @@
         <form asp-controller="Products" asp-action="Filter">
             <label>Категория:</label>
             <select class="form-control" name="category">
-                @foreach (var category in Model.Categories.Categories)
+                @foreach(var category in Model.Categories.Categories)
                 {
                     <option class="dropdown-item">@category.Name</option>
                 }
@@ -17,7 +17,7 @@
             </select>
             <label>Производитель:</label>
             <select class="form-control" name="vendor">
-                @foreach (var vendor in Model.Vendors.Vendors)
+                @foreach(var vendor in Model.Vendors.Vendors)
                 {
                     <option class="dropdown-item">@vendor.Name</option>
                 }
@@ -33,11 +33,11 @@
             <button type="submit" class="btn btn-outline-primary">Применить фильтр</button>
         </form>
     </div>
-  
+
 
     <div class="row col-md-9 offset-md-1">
         @{
-            foreach (var product in Model.Products.Products)
+            foreach(var product in Model.Products.Products)
             {
                 <div class="card col-md-4 text-center">
                     <img src="~/Images/ProductImages/@product.Image" class="card-img-top" alt="@product.Name">
@@ -53,7 +53,7 @@
                     <a class="btn btn-success btn-block" id="buttonBuy" onclick="AddProduct(@product.Id)">
                         В корзину
                     </a>
-                    @if (User.IsInRole("Admin"))
+                    @if(User.IsInRole("Admin"))
                     {
                         <a class="btn btn-success btn-block" asp-controller="Admin" asp-action="DeleteProduct" asp-route-ProductId="@product.Id">
                             Удалить товар

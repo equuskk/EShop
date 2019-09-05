@@ -10,11 +10,11 @@ namespace EShop.WebApi.Filters
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
     {
-        private static readonly Dictionary<Type, HttpStatusCode> errors = new Dictionary<Type, HttpStatusCode>()
+        private static readonly Dictionary<Type, HttpStatusCode> errors = new Dictionary<Type, HttpStatusCode>
         {
             [typeof(NotFoundException)] = HttpStatusCode.NotFound,
             [typeof(AccessDeniedException)] = HttpStatusCode.Forbidden,
-            [typeof(AccessDeniedException)] = HttpStatusCode.BadRequest,
+            [typeof(AccessDeniedException)] = HttpStatusCode.BadRequest
         };
 
         public override void OnException(ExceptionContext context)

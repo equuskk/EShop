@@ -37,6 +37,5 @@ namespace EShop.WebUI.Controllers
             var product = await _mediator.Send(new GetUserCartQuery(user.Id));
             return View("Index", product);
         }
-        
     }
 }

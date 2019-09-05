@@ -19,9 +19,7 @@ namespace EShop.Domain.Entities
 
         //TODO: category & image
 
-        private Product()
-        {
-        }
+        private Product() { }
 
         public Product(string title, string description, double price, int vendorId, int categoryId, string ImagePath)
         {
@@ -36,9 +34,9 @@ namespace EShop.Domain.Entities
 
         public void SetImagePath(string Path)
         {
-            if (string.IsNullOrWhiteSpace(Path))
+            if(string.IsNullOrWhiteSpace(Path))
             {
-                throw new ArgumentException("title is empty", nameof(Path));
+                throw new ArgumentException("Path is empty", nameof(Path));
             }
 
             Image = Path;
