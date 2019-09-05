@@ -23,13 +23,25 @@ namespace EShop.Domain.Entities
         {
         }
 
-        public Product(string title, string description, double price, int vendorId, int categoryId)
+        public Product(string title, string description, double price, int vendorId, int categoryId, string ImagePath)
         {
             SetPrice(price);
             SetTitle(title);
             SetDescription(description);
             SetVendorId(vendorId);
             SetCategoryId(categoryId);
+            SetImagePath(ImagePath);
+        }
+
+
+        public void SetImagePath(string Path)
+        {
+            if (string.IsNullOrWhiteSpace(Path))
+            {
+                throw new ArgumentException("title is empty", nameof(Path));
+            }
+
+            Image = Path;
         }
 
         public void SetTitle(string title)
