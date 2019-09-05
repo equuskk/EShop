@@ -21,12 +21,12 @@ namespace EShop.Application.Cart.Queries.GetUserOrder
         public async Task<OrderViewModel> Handle(GetUserOrderCommand request, CancellationToken cancellationToken)
         {
             var productInCarts = _db.ProductsInCarts.Include(x => x.Order)
-                .Include(x => x.Product)
-                .Where(x => x.UserId == request.UserId)
-                .Where(x => x.OrderId != null)
-                .ToArray();
+                                    .Include(x => x.Product)
+                                    .Where(x => x.UserId == request.UserId)
+                                    .Where(x => x.OrderId != null)
+                                    .ToArray();
 
-            if (productInCarts == null)
+            if(productInCarts == null)
             {
                 throw new NotFoundException(nameof(productInCarts), "Не найдено продуктов.");
             }

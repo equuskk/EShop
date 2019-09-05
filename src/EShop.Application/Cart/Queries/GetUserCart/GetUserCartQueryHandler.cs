@@ -19,8 +19,8 @@ namespace EShop.Application.Cart.Queries.GetUserCart
         public Task<CartViewModel> Handle(GetUserCartQuery request, CancellationToken cancellationToken)
         {
             var cart = _db.ProductsInCarts.Include(x => x.Product).Where(x => x.UserId == request.ShopUserId &&
-                                                      x.OrderId == null).Select(x => x.Product);
-           
+                                                                              x.OrderId == null).Select(x => x.Product);
+
 
             return Task.FromResult(new CartViewModel
             {

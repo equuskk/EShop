@@ -14,7 +14,8 @@ namespace EShop.Application.Products.Commands.AddProduct
         public int CategoryId { get; }
 
         [JsonConstructor]
-        public AddProductCommand(string name, string description, double price, int vendorId, int categoryId, string ImagePath)
+        public AddProductCommand(string name, string description, double price, int vendorId, int categoryId,
+                                 string ImagePath)
         {
             Name = name;
             Description = description;

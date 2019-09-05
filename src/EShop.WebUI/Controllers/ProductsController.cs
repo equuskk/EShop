@@ -85,8 +85,8 @@ namespace EShop.WebUI.Controllers
         {
             var product = await _mediator.Send(new GetProductByIdQuery(id));
             var review = await _mediator.Send(new GetReviewsByProductIdQuery(id));
-            
-            return View(new ProductViewModels{Product = product, Reviews = review});
+
+            return View(new ProductViewModels { Product = product, Reviews = review });
         }
 
         [Authorize]

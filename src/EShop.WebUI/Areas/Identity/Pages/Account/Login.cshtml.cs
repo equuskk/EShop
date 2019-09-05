@@ -37,6 +37,7 @@ namespace EShop.WebUI.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+
             //[EmailAddress] //TODO: а кто это сломал???
             [Display(Name = "Имя пользователя")]
             public string UserName { get; set; }
@@ -76,7 +77,7 @@ namespace EShop.WebUI.Areas.Identity.Pages.Account
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result =
-                        await _signInManager.PasswordSignInAsync(Input.UserName, Input.Password, Input.RememberMe, true);
+                    await _signInManager.PasswordSignInAsync(Input.UserName, Input.Password, Input.RememberMe, true);
                 if(result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");

@@ -8,36 +8,38 @@ namespace EShop.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Date",
-                table: "Reviews");
+                                        "Date",
+                                        "Reviews");
 
             migrationBuilder.DropColumn(
-                name: "RegisterDate",
-                table: "AspNetUsers");
+                                        "RegisterDate",
+                                        "AspNetUsers");
 
             migrationBuilder.AddColumn<string>(
-                name: "Image",
-                table: "Products",
-                nullable: true);
+                                               "Image",
+                                               "Products",
+                                               nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Image",
-                table: "Products");
+                                        "Image",
+                                        "Products");
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "Date",
-                table: "Reviews",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                                                 "Date",
+                                                 "Reviews",
+                                                 nullable: false,
+                                                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0,
+                                                                            DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "RegisterDate",
-                table: "AspNetUsers",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                                                 "RegisterDate",
+                                                 "AspNetUsers",
+                                                 nullable: false,
+                                                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0,
+                                                                            DateTimeKind.Unspecified));
         }
     }
 }

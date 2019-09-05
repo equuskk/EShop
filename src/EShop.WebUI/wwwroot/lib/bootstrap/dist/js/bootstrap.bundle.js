@@ -4,12 +4,12 @@
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'jquery'], factory) :
+  typeof exports === "object" && typeof module !== "undefined" ? factory(exports, require("jquery")) :
+  typeof define === "function" && define.amd ? define(["exports", "jquery"], factory) :
   (factory((global.bootstrap = {}),global.jQuery));
-}(this, (function (exports,$) { 'use strict';
+}(this, (function (exports,$) { "use strict";
 
-  $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
+  $ = $ && $.hasOwnProperty("default") ? $["default"] : $;
 
   function _defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
@@ -47,7 +47,7 @@
       var source = arguments[i] != null ? arguments[i] : {};
       var ownKeys = Object.keys(source);
 
-      if (typeof Object.getOwnPropertySymbols === 'function') {
+      if (typeof Object.getOwnPropertySymbols === "function") {
         ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
           return Object.getOwnPropertyDescriptor(source, sym).enumerable;
         }));
@@ -80,7 +80,7 @@
      * Private TransitionEnd Helpers
      * ------------------------------------------------------------------------
      */
-    var TRANSITION_END = 'transitionend';
+    var TRANSITION_END = "transitionend";
     var MAX_UID = 1000000;
     var MILLISECONDS_MULTIPLIER = 1000; // Shoutout AngusCroll (https://goo.gl/pxwQGp)
 
@@ -129,7 +129,7 @@
 
 
     var Util = {
-      TRANSITION_END: 'bsTransitionEnd',
+      TRANSITION_END: "bsTransitionEnd",
       getUID: function getUID(prefix) {
         do {
           // eslint-disable-next-line no-bitwise
@@ -139,10 +139,10 @@
         return prefix;
       },
       getSelectorFromElement: function getSelectorFromElement(element) {
-        var selector = element.getAttribute('data-target');
+        var selector = element.getAttribute("data-target");
 
-        if (!selector || selector === '#') {
-          selector = element.getAttribute('href') || '';
+        if (!selector || selector === "#") {
+          selector = element.getAttribute("href") || "";
         }
 
         try {
@@ -157,7 +157,7 @@
         } // Get transition-duration of the element
 
 
-        var transitionDuration = $$$1(element).css('transition-duration');
+        var transitionDuration = $$$1(element).css("transition-duration");
         var floatTransitionDuration = parseFloat(transitionDuration); // Return 0 if element or transition duration is not found
 
         if (!floatTransitionDuration) {
@@ -165,7 +165,7 @@
         } // If multiple durations are defined, take the first
 
 
-        transitionDuration = transitionDuration.split(',')[0];
+        transitionDuration = transitionDuration.split(",")[0];
         return parseFloat(transitionDuration) * MILLISECONDS_MULTIPLIER;
       },
       reflow: function reflow(element) {
@@ -186,7 +186,7 @@
           if (Object.prototype.hasOwnProperty.call(configTypes, property)) {
             var expectedTypes = configTypes[property];
             var value = config[property];
-            var valueType = value && Util.isElement(value) ? 'element' : toType(value);
+            var valueType = value && Util.isElement(value) ? "element" : toType(value);
 
             if (!new RegExp(expectedTypes).test(valueType)) {
               throw new Error(componentName.toUpperCase() + ": " + ("Option \"" + property + "\" provided type \"" + valueType + "\" ") + ("but expected type \"" + expectedTypes + "\"."));
@@ -212,11 +212,11 @@
      * Constants
      * ------------------------------------------------------------------------
      */
-    var NAME = 'alert';
-    var VERSION = '4.1.3';
-    var DATA_KEY = 'bs.alert';
+    var NAME = "alert";
+    var VERSION = "4.1.3";
+    var DATA_KEY = "bs.alert";
     var EVENT_KEY = "." + DATA_KEY;
-    var DATA_API_KEY = '.data-api';
+    var DATA_API_KEY = ".data-api";
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
     var Selector = {
       DISMISS: '[data-dismiss="alert"]'
@@ -227,9 +227,9 @@
       CLICK_DATA_API: "click" + EVENT_KEY + DATA_API_KEY
     };
     var ClassName = {
-      ALERT: 'alert',
-      FADE: 'fade',
-      SHOW: 'show'
+      ALERT: "alert",
+      FADE: "fade",
+      SHOW: "show"
       /**
        * ------------------------------------------------------------------------
        * Class Definition
@@ -324,7 +324,7 @@
             $element.data(DATA_KEY, data);
           }
 
-          if (config === 'close') {
+          if (config === "close") {
             data[config](this);
           }
         });
@@ -387,23 +387,23 @@
      * Constants
      * ------------------------------------------------------------------------
      */
-    var NAME = 'button';
-    var VERSION = '4.1.3';
-    var DATA_KEY = 'bs.button';
+    var NAME = "button";
+    var VERSION = "4.1.3";
+    var DATA_KEY = "bs.button";
     var EVENT_KEY = "." + DATA_KEY;
-    var DATA_API_KEY = '.data-api';
+    var DATA_API_KEY = ".data-api";
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
     var ClassName = {
-      ACTIVE: 'active',
-      BUTTON: 'btn',
-      FOCUS: 'focus'
+      ACTIVE: "active",
+      BUTTON: "btn",
+      FOCUS: "focus"
     };
     var Selector = {
       DATA_TOGGLE_CARROT: '[data-toggle^="button"]',
       DATA_TOGGLE: '[data-toggle="buttons"]',
-      INPUT: 'input',
-      ACTIVE: '.active',
-      BUTTON: '.btn'
+      INPUT: "input",
+      ACTIVE: ".active",
+      BUTTON: ".btn"
     };
     var Event = {
       CLICK_DATA_API: "click" + EVENT_KEY + DATA_API_KEY,
@@ -436,7 +436,7 @@
           var input = this._element.querySelector(Selector.INPUT);
 
           if (input) {
-            if (input.type === 'radio') {
+            if (input.type === "radio") {
               if (input.checked && this._element.classList.contains(ClassName.ACTIVE)) {
                 triggerChangeEvent = false;
               } else {
@@ -449,12 +449,12 @@
             }
 
             if (triggerChangeEvent) {
-              if (input.hasAttribute('disabled') || rootElement.hasAttribute('disabled') || input.classList.contains('disabled') || rootElement.classList.contains('disabled')) {
+              if (input.hasAttribute("disabled") || rootElement.hasAttribute("disabled") || input.classList.contains("disabled") || rootElement.classList.contains("disabled")) {
                 return;
               }
 
               input.checked = !this._element.classList.contains(ClassName.ACTIVE);
-              $$$1(input).trigger('change');
+              $$$1(input).trigger("change");
             }
 
             input.focus();
@@ -463,7 +463,7 @@
         }
 
         if (addAriaPressed) {
-          this._element.setAttribute('aria-pressed', !this._element.classList.contains(ClassName.ACTIVE));
+          this._element.setAttribute("aria-pressed", !this._element.classList.contains(ClassName.ACTIVE));
         }
 
         if (triggerChangeEvent) {
@@ -486,7 +486,7 @@
             $$$1(this).data(DATA_KEY, data);
           }
 
-          if (config === 'toggle') {
+          if (config === "toggle") {
             data[config]();
           }
         });
@@ -516,7 +516,7 @@
         button = $$$1(button).closest(Selector.BUTTON);
       }
 
-      Button._jQueryInterface.call($$$1(button), 'toggle');
+      Button._jQueryInterface.call($$$1(button), "toggle");
     }).on(Event.FOCUS_BLUR_DATA_API, Selector.DATA_TOGGLE_CARROT, function (event) {
       var button = $$$1(event.target).closest(Selector.BUTTON)[0];
       $$$1(button).toggleClass(ClassName.FOCUS, /^focus(in)?$/.test(event.type));
@@ -551,11 +551,11 @@
      * Constants
      * ------------------------------------------------------------------------
      */
-    var NAME = 'carousel';
-    var VERSION = '4.1.3';
-    var DATA_KEY = 'bs.carousel';
+    var NAME = "carousel";
+    var VERSION = "4.1.3";
+    var DATA_KEY = "bs.carousel";
     var EVENT_KEY = "." + DATA_KEY;
-    var DATA_API_KEY = '.data-api';
+    var DATA_API_KEY = ".data-api";
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
     var ARROW_LEFT_KEYCODE = 37; // KeyboardEvent.which value for left arrow key
 
@@ -567,21 +567,21 @@
       interval: 5000,
       keyboard: true,
       slide: false,
-      pause: 'hover',
+      pause: "hover",
       wrap: true
     };
     var DefaultType = {
-      interval: '(number|boolean)',
-      keyboard: 'boolean',
-      slide: '(boolean|string)',
-      pause: '(string|boolean)',
-      wrap: 'boolean'
+      interval: "(number|boolean)",
+      keyboard: "boolean",
+      slide: "(boolean|string)",
+      pause: "(string|boolean)",
+      wrap: "boolean"
     };
     var Direction = {
-      NEXT: 'next',
-      PREV: 'prev',
-      LEFT: 'left',
-      RIGHT: 'right'
+      NEXT: "next",
+      PREV: "prev",
+      LEFT: "left",
+      RIGHT: "right"
     };
     var Event = {
       SLIDE: "slide" + EVENT_KEY,
@@ -594,22 +594,22 @@
       CLICK_DATA_API: "click" + EVENT_KEY + DATA_API_KEY
     };
     var ClassName = {
-      CAROUSEL: 'carousel',
-      ACTIVE: 'active',
-      SLIDE: 'slide',
-      RIGHT: 'carousel-item-right',
-      LEFT: 'carousel-item-left',
-      NEXT: 'carousel-item-next',
-      PREV: 'carousel-item-prev',
-      ITEM: 'carousel-item'
+      CAROUSEL: "carousel",
+      ACTIVE: "active",
+      SLIDE: "slide",
+      RIGHT: "carousel-item-right",
+      LEFT: "carousel-item-left",
+      NEXT: "carousel-item-next",
+      PREV: "carousel-item-prev",
+      ITEM: "carousel-item"
     };
     var Selector = {
-      ACTIVE: '.active',
-      ACTIVE_ITEM: '.active.carousel-item',
-      ITEM: '.carousel-item',
-      NEXT_PREV: '.carousel-item-next, .carousel-item-prev',
-      INDICATORS: '.carousel-indicators',
-      DATA_SLIDE: '[data-slide], [data-slide-to]',
+      ACTIVE: ".active",
+      ACTIVE_ITEM: ".active.carousel-item",
+      ITEM: ".carousel-item",
+      NEXT_PREV: ".carousel-item-next, .carousel-item-prev",
+      INDICATORS: ".carousel-indicators",
+      DATA_SLIDE: "[data-slide], [data-slide-to]",
       DATA_RIDE: '[data-ride="carousel"]'
       /**
        * ------------------------------------------------------------------------
@@ -649,7 +649,7 @@
       _proto.nextWhenVisible = function nextWhenVisible() {
         // Don't call next when the page isn't visible
         // or the carousel or its parent isn't visible
-        if (!document.hidden && $$$1(this._element).is(':visible') && $$$1(this._element).css('visibility') !== 'hidden') {
+        if (!document.hidden && $$$1(this._element).is(":visible") && $$$1(this._element).css("visibility") !== "hidden") {
           this.next();
         }
       };
@@ -747,14 +747,14 @@
           });
         }
 
-        if (this._config.pause === 'hover') {
+        if (this._config.pause === "hover") {
           $$$1(this._element).on(Event.MOUSEENTER, function (event) {
             return _this2.pause(event);
           }).on(Event.MOUSELEAVE, function (event) {
             return _this2.cycle(event);
           });
 
-          if ('ontouchstart' in document.documentElement) {
+          if ("ontouchstart" in document.documentElement) {
             // If it's a touch-enabled device, mouseenter/leave are fired as
             // part of the mouse compatibility events on first tap - the carousel
             // would stop cycling until user tapped out of it;
@@ -938,21 +938,21 @@
 
           var _config = _objectSpread({}, Default, $$$1(this).data());
 
-          if (typeof config === 'object') {
+          if (typeof config === "object") {
             _config = _objectSpread({}, _config, config);
           }
 
-          var action = typeof config === 'string' ? config : _config.slide;
+          var action = typeof config === "string" ? config : _config.slide;
 
           if (!data) {
             data = new Carousel(this, _config);
             $$$1(this).data(DATA_KEY, data);
           }
 
-          if (typeof config === 'number') {
+          if (typeof config === "number") {
             data.to(config);
-          } else if (typeof action === 'string') {
-            if (typeof data[action] === 'undefined') {
+          } else if (typeof action === "string") {
+            if (typeof data[action] === "undefined") {
               throw new TypeError("No method named \"" + action + "\"");
             }
 
@@ -979,7 +979,7 @@
 
         var config = _objectSpread({}, $$$1(target).data(), $$$1(this).data());
 
-        var slideIndex = this.getAttribute('data-slide-to');
+        var slideIndex = this.getAttribute("data-slide-to");
 
         if (slideIndex) {
           config.interval = false;
@@ -1055,19 +1055,19 @@
      * Constants
      * ------------------------------------------------------------------------
      */
-    var NAME = 'collapse';
-    var VERSION = '4.1.3';
-    var DATA_KEY = 'bs.collapse';
+    var NAME = "collapse";
+    var VERSION = "4.1.3";
+    var DATA_KEY = "bs.collapse";
     var EVENT_KEY = "." + DATA_KEY;
-    var DATA_API_KEY = '.data-api';
+    var DATA_API_KEY = ".data-api";
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
     var Default = {
       toggle: true,
-      parent: ''
+      parent: ""
     };
     var DefaultType = {
-      toggle: 'boolean',
-      parent: '(string|element)'
+      toggle: "boolean",
+      parent: "(string|element)"
     };
     var Event = {
       SHOW: "show" + EVENT_KEY,
@@ -1077,17 +1077,17 @@
       CLICK_DATA_API: "click" + EVENT_KEY + DATA_API_KEY
     };
     var ClassName = {
-      SHOW: 'show',
-      COLLAPSE: 'collapse',
-      COLLAPSING: 'collapsing',
-      COLLAPSED: 'collapsed'
+      SHOW: "show",
+      COLLAPSE: "collapse",
+      COLLAPSING: "collapsing",
+      COLLAPSED: "collapsed"
     };
     var Dimension = {
-      WIDTH: 'width',
-      HEIGHT: 'height'
+      WIDTH: "width",
+      HEIGHT: "height"
     };
     var Selector = {
-      ACTIVES: '.show, .collapsing',
+      ACTIVES: ".show, .collapsing",
       DATA_TOGGLE: '[data-toggle="collapse"]'
       /**
        * ------------------------------------------------------------------------
@@ -1156,7 +1156,7 @@
 
         if (this._parent) {
           actives = [].slice.call(this._parent.querySelectorAll(Selector.ACTIVES)).filter(function (elem) {
-            return elem.getAttribute('data-parent') === _this._config.parent;
+            return elem.getAttribute("data-parent") === _this._config.parent;
           });
 
           if (actives.length === 0) {
@@ -1180,7 +1180,7 @@
         }
 
         if (actives) {
-          Collapse._jQueryInterface.call($$$1(actives).not(this._selector), 'hide');
+          Collapse._jQueryInterface.call($$$1(actives).not(this._selector), "hide");
 
           if (!activesData) {
             $$$1(actives).data(DATA_KEY, null);
@@ -1193,14 +1193,14 @@
         this._element.style[dimension] = 0;
 
         if (this._triggerArray.length) {
-          $$$1(this._triggerArray).removeClass(ClassName.COLLAPSED).attr('aria-expanded', true);
+          $$$1(this._triggerArray).removeClass(ClassName.COLLAPSED).attr("aria-expanded", true);
         }
 
         this.setTransitioning(true);
 
         var complete = function complete() {
           $$$1(_this._element).removeClass(ClassName.COLLAPSING).addClass(ClassName.COLLAPSE).addClass(ClassName.SHOW);
-          _this._element.style[dimension] = '';
+          _this._element.style[dimension] = "";
 
           _this.setTransitioning(false);
 
@@ -1244,7 +1244,7 @@
               var $elem = $$$1([].slice.call(document.querySelectorAll(selector)));
 
               if (!$elem.hasClass(ClassName.SHOW)) {
-                $$$1(trigger).addClass(ClassName.COLLAPSED).attr('aria-expanded', false);
+                $$$1(trigger).addClass(ClassName.COLLAPSED).attr("aria-expanded", false);
               }
             }
           }
@@ -1258,7 +1258,7 @@
           $$$1(_this2._element).removeClass(ClassName.COLLAPSING).addClass(ClassName.COLLAPSE).trigger(Event.HIDDEN);
         };
 
-        this._element.style[dimension] = '';
+        this._element.style[dimension] = "";
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);
         $$$1(this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
       };
@@ -1298,7 +1298,7 @@
         if (Util.isElement(this._config.parent)) {
           parent = this._config.parent; // It's a jQuery object
 
-          if (typeof this._config.parent.jquery !== 'undefined') {
+          if (typeof this._config.parent.jquery !== "undefined") {
             parent = this._config.parent[0];
           }
         } else {
@@ -1318,7 +1318,7 @@
           var isOpen = $$$1(element).hasClass(ClassName.SHOW);
 
           if (triggerArray.length) {
-            $$$1(triggerArray).toggleClass(ClassName.COLLAPSED, !isOpen).attr('aria-expanded', isOpen);
+            $$$1(triggerArray).toggleClass(ClassName.COLLAPSED, !isOpen).attr("aria-expanded", isOpen);
           }
         }
       }; // Static
@@ -1334,7 +1334,7 @@
           var $this = $$$1(this);
           var data = $this.data(DATA_KEY);
 
-          var _config = _objectSpread({}, Default, $this.data(), typeof config === 'object' && config ? config : {});
+          var _config = _objectSpread({}, Default, $this.data(), typeof config === "object" && config ? config : {});
 
           if (!data && _config.toggle && /show|hide/.test(config)) {
             _config.toggle = false;
@@ -1345,8 +1345,8 @@
             $this.data(DATA_KEY, data);
           }
 
-          if (typeof config === 'string') {
-            if (typeof data[config] === 'undefined') {
+          if (typeof config === "string") {
+            if (typeof data[config] === "undefined") {
               throw new TypeError("No method named \"" + config + "\"");
             }
 
@@ -1378,7 +1378,7 @@
 
     $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
       // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
-      if (event.currentTarget.tagName === 'A') {
+      if (event.currentTarget.tagName === "A") {
         event.preventDefault();
       }
 
@@ -1388,7 +1388,7 @@
       $$$1(selectors).each(function () {
         var $target = $$$1(this);
         var data = $target.data(DATA_KEY);
-        var config = data ? 'toggle' : $trigger.data();
+        var config = data ? "toggle" : $trigger.data();
 
         Collapse._jQueryInterface.call($target, config);
       });
@@ -1434,9 +1434,9 @@
    * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
    * SOFTWARE.
    */
-  var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
+  var isBrowser = typeof window !== "undefined" && typeof document !== "undefined";
 
-  var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
+  var longerTimeoutBrowsers = ["Edge", "Trident", "Firefox"];
   var timeoutDuration = 0;
   for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
     if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
@@ -1494,7 +1494,7 @@
    */
   function isFunction(functionToCheck) {
     var getType = {};
-    return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+    return functionToCheck && getType.toString.call(functionToCheck) === "[object Function]";
   }
 
   /**
@@ -1521,7 +1521,7 @@
    * @returns {Element} parent
    */
   function getParentNode(element) {
-    if (element.nodeName === 'HTML') {
+    if (element.nodeName === "HTML") {
       return element;
     }
     return element.parentNode || element.host;
@@ -1541,10 +1541,10 @@
     }
 
     switch (element.nodeName) {
-      case 'HTML':
-      case 'BODY':
+      case "HTML":
+      case "BODY":
         return element.ownerDocument.body;
-      case '#document':
+      case "#document":
         return element.body;
     }
 
@@ -1605,13 +1605,13 @@
 
     var nodeName = offsetParent && offsetParent.nodeName;
 
-    if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
+    if (!nodeName || nodeName === "BODY" || nodeName === "HTML") {
       return element ? element.ownerDocument.documentElement : document.documentElement;
     }
 
     // .offsetParent will return the closest TD or TABLE in case
     // no offsetParent is present, I hate this job...
-    if (['TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
+    if (["TD", "TABLE"].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, "position") === "static") {
       return getOffsetParent(offsetParent);
     }
 
@@ -1621,10 +1621,10 @@
   function isOffsetContainer(element) {
     var nodeName = element.nodeName;
 
-    if (nodeName === 'BODY') {
+    if (nodeName === "BODY") {
       return false;
     }
-    return nodeName === 'HTML' || getOffsetParent(element.firstElementChild) === element;
+    return nodeName === "HTML" || getOffsetParent(element.firstElementChild) === element;
   }
 
   /**
@@ -1695,12 +1695,12 @@
    * @returns {number} amount of scrolled pixels
    */
   function getScroll(element) {
-    var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
+    var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "top";
 
-    var upperSide = side === 'top' ? 'scrollTop' : 'scrollLeft';
+    var upperSide = side === "top" ? "scrollTop" : "scrollLeft";
     var nodeName = element.nodeName;
 
-    if (nodeName === 'BODY' || nodeName === 'HTML') {
+    if (nodeName === "BODY" || nodeName === "HTML") {
       var html = element.ownerDocument.documentElement;
       var scrollingElement = element.ownerDocument.scrollingElement || html;
       return scrollingElement[upperSide];
@@ -1721,8 +1721,8 @@
   function includeScroll(rect, element) {
     var subtract = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-    var scrollTop = getScroll(element, 'top');
-    var scrollLeft = getScroll(element, 'left');
+    var scrollTop = getScroll(element, "top");
+    var scrollLeft = getScroll(element, "left");
     var modifier = subtract ? -1 : 1;
     rect.top += scrollTop * modifier;
     rect.bottom += scrollTop * modifier;
@@ -1742,14 +1742,14 @@
    */
 
   function getBordersSize(styles, axis) {
-    var sideA = axis === 'x' ? 'Left' : 'Top';
-    var sideB = sideA === 'Left' ? 'Right' : 'Bottom';
+    var sideA = axis === "x" ? "Left" : "Top";
+    var sideB = sideA === "Left" ? "Right" : "Bottom";
 
-    return parseFloat(styles['border' + sideA + 'Width'], 10) + parseFloat(styles['border' + sideB + 'Width'], 10);
+    return parseFloat(styles["border" + sideA + "Width"], 10) + parseFloat(styles["border" + sideB + "Width"], 10);
   }
 
   function getSize(axis, body, html, computedStyle) {
-    return Math.max(body['offset' + axis], body['scroll' + axis], html['client' + axis], html['offset' + axis], html['scroll' + axis], isIE(10) ? html['offset' + axis] + computedStyle['margin' + (axis === 'Height' ? 'Top' : 'Left')] + computedStyle['margin' + (axis === 'Height' ? 'Bottom' : 'Right')] : 0);
+    return Math.max(body["offset" + axis], body["scroll" + axis], html["client" + axis], html["offset" + axis], html["scroll" + axis], isIE(10) ? html["offset" + axis] + computedStyle["margin" + (axis === "Height" ? "Top" : "Left")] + computedStyle["margin" + (axis === "Height" ? "Bottom" : "Right")] : 0);
   }
 
   function getWindowSizes() {
@@ -1758,8 +1758,8 @@
     var computedStyle = isIE(10) && getComputedStyle(html);
 
     return {
-      height: getSize('Height', body, html, computedStyle),
-      width: getSize('Width', body, html, computedStyle)
+      height: getSize("Height", body, html, computedStyle),
+      width: getSize("Width", body, html, computedStyle)
     };
   }
 
@@ -1850,8 +1850,8 @@
     try {
       if (isIE(10)) {
         rect = element.getBoundingClientRect();
-        var scrollTop = getScroll(element, 'top');
-        var scrollLeft = getScroll(element, 'left');
+        var scrollTop = getScroll(element, "top");
+        var scrollLeft = getScroll(element, "left");
         rect.top += scrollTop;
         rect.left += scrollLeft;
         rect.bottom += scrollTop;
@@ -1869,7 +1869,7 @@
     };
 
     // subtract scrollbar size from sizes
-    var sizes = element.nodeName === 'HTML' ? getWindowSizes() : {};
+    var sizes = element.nodeName === "HTML" ? getWindowSizes() : {};
     var width = sizes.width || element.clientWidth || result.right - result.left;
     var height = sizes.height || element.clientHeight || result.bottom - result.top;
 
@@ -1880,8 +1880,8 @@
     // we make this check conditional for performance reasons
     if (horizScrollbar || vertScrollbar) {
       var styles = getStyleComputedProperty(element);
-      horizScrollbar -= getBordersSize(styles, 'x');
-      vertScrollbar -= getBordersSize(styles, 'y');
+      horizScrollbar -= getBordersSize(styles, "x");
+      vertScrollbar -= getBordersSize(styles, "y");
 
       result.width -= horizScrollbar;
       result.height -= vertScrollbar;
@@ -1894,7 +1894,7 @@
     var fixedPosition = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     var isIE10 = isIE(10);
-    var isHTML = parent.nodeName === 'HTML';
+    var isHTML = parent.nodeName === "HTML";
     var childrenRect = getBoundingClientRect(children);
     var parentRect = getBoundingClientRect(parent);
     var scrollParent = getScrollParent(children);
@@ -1904,7 +1904,7 @@
     var borderLeftWidth = parseFloat(styles.borderLeftWidth, 10);
 
     // In cases where the parent is fixed, we must ignore negative scroll in offset calc
-    if (fixedPosition && parent.nodeName === 'HTML') {
+    if (fixedPosition && parent.nodeName === "HTML") {
       parentRect.top = Math.max(parentRect.top, 0);
       parentRect.left = Math.max(parentRect.left, 0);
     }
@@ -1935,7 +1935,7 @@
       offsets.marginLeft = marginLeft;
     }
 
-    if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodeName !== 'BODY') {
+    if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodeName !== "BODY") {
       offsets = includeScroll(offsets, parent);
     }
 
@@ -1951,7 +1951,7 @@
     var height = Math.max(html.clientHeight, window.innerHeight || 0);
 
     var scrollTop = !excludeScroll ? getScroll(html) : 0;
-    var scrollLeft = !excludeScroll ? getScroll(html, 'left') : 0;
+    var scrollLeft = !excludeScroll ? getScroll(html, "left") : 0;
 
     var offset = {
       top: scrollTop - relativeOffset.top + relativeOffset.marginTop,
@@ -1973,10 +1973,10 @@
    */
   function isFixed(element) {
     var nodeName = element.nodeName;
-    if (nodeName === 'BODY' || nodeName === 'HTML') {
+    if (nodeName === "BODY" || nodeName === "HTML") {
       return false;
     }
-    if (getStyleComputedProperty(element, 'position') === 'fixed') {
+    if (getStyleComputedProperty(element, "position") === "fixed") {
       return true;
     }
     return isFixed(getParentNode(element));
@@ -1996,7 +1996,7 @@
       return document.documentElement;
     }
     var el = element.parentElement;
-    while (el && getStyleComputedProperty(el, 'transform') === 'none') {
+    while (el && getStyleComputedProperty(el, "transform") === "none") {
       el = el.parentElement;
     }
     return el || document.documentElement;
@@ -2022,17 +2022,17 @@
     var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
 
     // Handle viewport case
-    if (boundariesElement === 'viewport') {
+    if (boundariesElement === "viewport") {
       boundaries = getViewportOffsetRectRelativeToArtbitraryNode(offsetParent, fixedPosition);
     } else {
       // Handle other cases based on DOM element used as boundaries
       var boundariesNode = void 0;
-      if (boundariesElement === 'scrollParent') {
+      if (boundariesElement === "scrollParent") {
         boundariesNode = getScrollParent(getParentNode(reference));
-        if (boundariesNode.nodeName === 'BODY') {
+        if (boundariesNode.nodeName === "BODY") {
           boundariesNode = popper.ownerDocument.documentElement;
         }
-      } else if (boundariesElement === 'window') {
+      } else if (boundariesElement === "window") {
         boundariesNode = popper.ownerDocument.documentElement;
       } else {
         boundariesNode = boundariesElement;
@@ -2041,7 +2041,7 @@
       var offsets = getOffsetRectRelativeToArbitraryNode(boundariesNode, offsetParent, fixedPosition);
 
       // In case of HTML, we need a different computation
-      if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
+      if (boundariesNode.nodeName === "HTML" && !isFixed(offsetParent)) {
         var _getWindowSizes = getWindowSizes(),
             height = _getWindowSizes.height,
             width = _getWindowSizes.width;
@@ -2084,7 +2084,7 @@
   function computeAutoPlacement(placement, refRect, popper, reference, boundariesElement) {
     var padding = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
 
-    if (placement.indexOf('auto') === -1) {
+    if (placement.indexOf("auto") === -1) {
       return placement;
     }
 
@@ -2127,9 +2127,9 @@
 
     var computedPlacement = filteredAreas.length > 0 ? filteredAreas[0].key : sortedAreas[0].key;
 
-    var variation = placement.split('-')[1];
+    var variation = placement.split("-")[1];
 
-    return computedPlacement + (variation ? '-' + variation : '');
+    return computedPlacement + (variation ? "-" + variation : "");
   }
 
   /**
@@ -2175,7 +2175,7 @@
    * @returns {String} flipped placement
    */
   function getOppositePlacement(placement) {
-    var hash = { left: 'right', right: 'left', bottom: 'top', top: 'bottom' };
+    var hash = { left: "right", right: "left", bottom: "top", top: "bottom" };
     return placement.replace(/left|right|bottom|top/g, function (matched) {
       return hash[matched];
     });
@@ -2192,7 +2192,7 @@
    * @returns {Object} popperOffsets - An object containing the offsets which will be applied to the popper
    */
   function getPopperOffsets(popper, referenceOffsets, placement) {
-    placement = placement.split('-')[0];
+    placement = placement.split("-")[0];
 
     // Get popper node sizes
     var popperRect = getOuterSizes(popper);
@@ -2204,11 +2204,11 @@
     };
 
     // depending by the popper placement we have to compute its offsets slightly differently
-    var isHoriz = ['right', 'left'].indexOf(placement) !== -1;
-    var mainSide = isHoriz ? 'top' : 'left';
-    var secondarySide = isHoriz ? 'left' : 'top';
-    var measurement = isHoriz ? 'height' : 'width';
-    var secondaryMeasurement = !isHoriz ? 'height' : 'width';
+    var isHoriz = ["right", "left"].indexOf(placement) !== -1;
+    var mainSide = isHoriz ? "top" : "left";
+    var secondarySide = isHoriz ? "left" : "top";
+    var measurement = isHoriz ? "height" : "width";
+    var secondaryMeasurement = !isHoriz ? "height" : "width";
 
     popperOffsets[mainSide] = referenceOffsets[mainSide] + referenceOffsets[measurement] / 2 - popperRect[measurement] / 2;
     if (placement === secondarySide) {
@@ -2274,14 +2274,14 @@
    * @returns {dataObject}
    */
   function runModifiers(modifiers, data, ends) {
-    var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'name', ends));
+    var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, "name", ends));
 
     modifiersToRun.forEach(function (modifier) {
-      if (modifier['function']) {
+      if (modifier["function"]) {
         // eslint-disable-line dot-notation
-        console.warn('`modifier.function` is deprecated, use `modifier.fn`!');
+        console.warn("`modifier.function` is deprecated, use `modifier.fn`!");
       }
-      var fn = modifier['function'] || modifier.fn; // eslint-disable-line dot-notation
+      var fn = modifier["function"] || modifier.fn; // eslint-disable-line dot-notation
       if (modifier.enabled && isFunction(fn)) {
         // Add properties to offsets to make them a complete clientRect object
         // we do this before each modifier to make sure the previous one doesn't
@@ -2334,7 +2334,7 @@
     // compute the popper offsets
     data.offsets.popper = getPopperOffsets(this.popper, data.offsets.reference, data.placement);
 
-    data.offsets.popper.position = this.options.positionFixed ? 'fixed' : 'absolute';
+    data.offsets.popper.position = this.options.positionFixed ? "fixed" : "absolute";
 
     // run the modifiers
     data = runModifiers(this.modifiers, data);
@@ -2371,13 +2371,13 @@
    * @returns {String} prefixed property (camelCase or PascalCase, depending on the vendor prefix)
    */
   function getSupportedPropertyName(property) {
-    var prefixes = [false, 'ms', 'Webkit', 'Moz', 'O'];
+    var prefixes = [false, "ms", "Webkit", "Moz", "O"];
     var upperProp = property.charAt(0).toUpperCase() + property.slice(1);
 
     for (var i = 0; i < prefixes.length; i++) {
       var prefix = prefixes[i];
-      var toCheck = prefix ? '' + prefix + upperProp : property;
-      if (typeof document.body.style[toCheck] !== 'undefined') {
+      var toCheck = prefix ? "" + prefix + upperProp : property;
+      if (typeof document.body.style[toCheck] !== "undefined") {
         return toCheck;
       }
     }
@@ -2393,15 +2393,15 @@
     this.state.isDestroyed = true;
 
     // touch DOM only if `applyStyle` modifier is enabled
-    if (isModifierEnabled(this.modifiers, 'applyStyle')) {
-      this.popper.removeAttribute('x-placement');
-      this.popper.style.position = '';
-      this.popper.style.top = '';
-      this.popper.style.left = '';
-      this.popper.style.right = '';
-      this.popper.style.bottom = '';
-      this.popper.style.willChange = '';
-      this.popper.style[getSupportedPropertyName('transform')] = '';
+    if (isModifierEnabled(this.modifiers, "applyStyle")) {
+      this.popper.removeAttribute("x-placement");
+      this.popper.style.position = "";
+      this.popper.style.top = "";
+      this.popper.style.left = "";
+      this.popper.style.right = "";
+      this.popper.style.bottom = "";
+      this.popper.style.willChange = "";
+      this.popper.style[getSupportedPropertyName("transform")] = "";
     }
 
     this.disableEventListeners();
@@ -2425,7 +2425,7 @@
   }
 
   function attachToScrollParents(scrollParent, event, callback, scrollParents) {
-    var isBody = scrollParent.nodeName === 'BODY';
+    var isBody = scrollParent.nodeName === "BODY";
     var target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
     target.addEventListener(event, callback, { passive: true });
 
@@ -2444,11 +2444,11 @@
   function setupEventListeners(reference, options, state, updateBound) {
     // Resize event listener on window
     state.updateBound = updateBound;
-    getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
+    getWindow(reference).addEventListener("resize", state.updateBound, { passive: true });
 
     // Scroll event listener on scroll parents
     var scrollElement = getScrollParent(reference);
-    attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
+    attachToScrollParents(scrollElement, "scroll", state.updateBound, state.scrollParents);
     state.scrollElement = scrollElement;
     state.eventsEnabled = true;
 
@@ -2475,11 +2475,11 @@
    */
   function removeEventListeners(reference, state) {
     // Remove resize event listener on window
-    getWindow(reference).removeEventListener('resize', state.updateBound);
+    getWindow(reference).removeEventListener("resize", state.updateBound);
 
     // Remove scroll event listener on scroll parents
     state.scrollParents.forEach(function (target) {
-      target.removeEventListener('scroll', state.updateBound);
+      target.removeEventListener("scroll", state.updateBound);
     });
 
     // Reset state
@@ -2512,7 +2512,7 @@
    * @return {Boolean}
    */
   function isNumeric(n) {
-    return n !== '' && !isNaN(parseFloat(n)) && isFinite(n);
+    return n !== "" && !isNaN(parseFloat(n)) && isFinite(n);
   }
 
   /**
@@ -2525,10 +2525,10 @@
    */
   function setStyles(element, styles) {
     Object.keys(styles).forEach(function (prop) {
-      var unit = '';
+      var unit = "";
       // add unit if the value is numeric and is one of the following
-      if (['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
-        unit = 'px';
+      if (["width", "height", "top", "right", "bottom", "left"].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
+        unit = "px";
       }
       element.style[prop] = styles[prop] + unit;
     });
@@ -2600,11 +2600,11 @@
     // and refer to originalPlacement to know the original value
     var placement = computeAutoPlacement(options.placement, referenceOffsets, popper, reference, options.modifiers.flip.boundariesElement, options.modifiers.flip.padding);
 
-    popper.setAttribute('x-placement', placement);
+    popper.setAttribute("x-placement", placement);
 
     // Apply `position` to popper before anything else because
     // without the position applied we can't guarantee correct computations
-    setStyles(popper, { position: options.positionFixed ? 'fixed' : 'absolute' });
+    setStyles(popper, { position: options.positionFixed ? "fixed" : "absolute" });
 
     return options;
   }
@@ -2624,10 +2624,10 @@
     // Remove this legacy support in Popper.js v2
 
     var legacyGpuAccelerationOption = find(data.instance.modifiers, function (modifier) {
-      return modifier.name === 'applyStyle';
+      return modifier.name === "applyStyle";
     }).gpuAcceleration;
     if (legacyGpuAccelerationOption !== undefined) {
-      console.warn('WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js!');
+      console.warn("WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js!");
     }
     var gpuAcceleration = legacyGpuAccelerationOption !== undefined ? legacyGpuAccelerationOption : options.gpuAcceleration;
 
@@ -2649,13 +2649,13 @@
       right: Math.floor(popper.right)
     };
 
-    var sideA = x === 'bottom' ? 'top' : 'bottom';
-    var sideB = y === 'right' ? 'left' : 'right';
+    var sideA = x === "bottom" ? "top" : "bottom";
+    var sideB = y === "right" ? "left" : "right";
 
     // if gpuAcceleration is set to `true` and transform is supported,
     //  we use `translate3d` to apply the position to the popper we
     // automatically use the supported prefixed version if needed
-    var prefixedProperty = getSupportedPropertyName('transform');
+    var prefixedProperty = getSupportedPropertyName("transform");
 
     // now, let's make a step back and look at this code closely (wtf?)
     // If the content of the popper grows once it's been positioned, it
@@ -2668,28 +2668,28 @@
     // its bottom.
     var left = void 0,
         top = void 0;
-    if (sideA === 'bottom') {
+    if (sideA === "bottom") {
       top = -offsetParentRect.height + offsets.bottom;
     } else {
       top = offsets.top;
     }
-    if (sideB === 'right') {
+    if (sideB === "right") {
       left = -offsetParentRect.width + offsets.right;
     } else {
       left = offsets.left;
     }
     if (gpuAcceleration && prefixedProperty) {
-      styles[prefixedProperty] = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
+      styles[prefixedProperty] = "translate3d(" + left + "px, " + top + "px, 0)";
       styles[sideA] = 0;
       styles[sideB] = 0;
-      styles.willChange = 'transform';
+      styles.willChange = "transform";
     } else {
       // othwerise, we use the standard `top`, `left`, `bottom` and `right` properties
-      var invertTop = sideA === 'bottom' ? -1 : 1;
-      var invertLeft = sideB === 'right' ? -1 : 1;
+      var invertTop = sideA === "bottom" ? -1 : 1;
+      var invertLeft = sideB === "right" ? -1 : 1;
       styles[sideA] = top * invertTop;
       styles[sideB] = left * invertLeft;
-      styles.willChange = sideA + ', ' + sideB;
+      styles.willChange = sideA + ", " + sideB;
     }
 
     // Attributes
@@ -2726,9 +2726,9 @@
     });
 
     if (!isRequired) {
-      var _requesting = '`' + requestingName + '`';
-      var requested = '`' + requestedName + '`';
-      console.warn(requested + ' modifier is required by ' + _requesting + ' modifier in order to work, be sure to include it before ' + _requesting + '!');
+      var _requesting = "`" + requestingName + "`";
+      var requested = "`" + requestedName + "`";
+      console.warn(requested + " modifier is required by " + _requesting + " modifier in order to work, be sure to include it before " + _requesting + "!");
     }
     return isRequired;
   }
@@ -2744,14 +2744,14 @@
     var _data$offsets$arrow;
 
     // arrow depends on keepTogether in order to work
-    if (!isModifierRequired(data.instance.modifiers, 'arrow', 'keepTogether')) {
+    if (!isModifierRequired(data.instance.modifiers, "arrow", "keepTogether")) {
       return data;
     }
 
     var arrowElement = options.element;
 
     // if arrowElement is a string, suppose it's a CSS selector
-    if (typeof arrowElement === 'string') {
+    if (typeof arrowElement === "string") {
       arrowElement = data.instance.popper.querySelector(arrowElement);
 
       // if arrowElement is not found, don't run the modifier
@@ -2762,23 +2762,23 @@
       // if the arrowElement isn't a query selector we must check that the
       // provided DOM node is child of its popper node
       if (!data.instance.popper.contains(arrowElement)) {
-        console.warn('WARNING: `arrow.element` must be child of its popper element!');
+        console.warn("WARNING: `arrow.element` must be child of its popper element!");
         return data;
       }
     }
 
-    var placement = data.placement.split('-')[0];
+    var placement = data.placement.split("-")[0];
     var _data$offsets = data.offsets,
         popper = _data$offsets.popper,
         reference = _data$offsets.reference;
 
-    var isVertical = ['left', 'right'].indexOf(placement) !== -1;
+    var isVertical = ["left", "right"].indexOf(placement) !== -1;
 
-    var len = isVertical ? 'height' : 'width';
-    var sideCapitalized = isVertical ? 'Top' : 'Left';
+    var len = isVertical ? "height" : "width";
+    var sideCapitalized = isVertical ? "Top" : "Left";
     var side = sideCapitalized.toLowerCase();
-    var altSide = isVertical ? 'left' : 'top';
-    var opSide = isVertical ? 'bottom' : 'right';
+    var altSide = isVertical ? "left" : "top";
+    var opSide = isVertical ? "bottom" : "right";
     var arrowElementSize = getOuterSizes(arrowElement)[len];
 
     //
@@ -2802,15 +2802,15 @@
     // Compute the sideValue using the updated popper offsets
     // take popper margin in account because we don't have this info available
     var css = getStyleComputedProperty(data.instance.popper);
-    var popperMarginSide = parseFloat(css['margin' + sideCapitalized], 10);
-    var popperBorderSide = parseFloat(css['border' + sideCapitalized + 'Width'], 10);
+    var popperMarginSide = parseFloat(css["margin" + sideCapitalized], 10);
+    var popperBorderSide = parseFloat(css["border" + sideCapitalized + "Width"], 10);
     var sideValue = center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
 
     // prevent arrowElement from being placed not contiguously to its popper
     sideValue = Math.max(Math.min(popper[len] - arrowElementSize, sideValue), 0);
 
     data.arrowElement = arrowElement;
-    data.offsets.arrow = (_data$offsets$arrow = {}, defineProperty(_data$offsets$arrow, side, Math.round(sideValue)), defineProperty(_data$offsets$arrow, altSide, ''), _data$offsets$arrow);
+    data.offsets.arrow = (_data$offsets$arrow = {}, defineProperty(_data$offsets$arrow, side, Math.round(sideValue)), defineProperty(_data$offsets$arrow, altSide, ""), _data$offsets$arrow);
 
     return data;
   }
@@ -2823,10 +2823,10 @@
    * @returns {String} flipped placement variation
    */
   function getOppositeVariation(variation) {
-    if (variation === 'end') {
-      return 'start';
-    } else if (variation === 'start') {
-      return 'end';
+    if (variation === "end") {
+      return "start";
+    } else if (variation === "start") {
+      return "end";
     }
     return variation;
   }
@@ -2862,7 +2862,7 @@
    * @method placements
    * @memberof Popper
    */
-  var placements = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
+  var placements = ["auto-start", "auto", "auto-end", "top-start", "top", "top-end", "right-start", "right", "right-end", "bottom-end", "bottom", "bottom-start", "left-end", "left", "left-start"];
 
   // Get rid of `auto` `auto-start` and `auto-end`
   var validPlacements = placements.slice(3);
@@ -2886,9 +2886,9 @@
   }
 
   var BEHAVIORS = {
-    FLIP: 'flip',
-    CLOCKWISE: 'clockwise',
-    COUNTERCLOCKWISE: 'counterclockwise'
+    FLIP: "flip",
+    CLOCKWISE: "clockwise",
+    COUNTERCLOCKWISE: "counterclockwise"
   };
 
   /**
@@ -2900,7 +2900,7 @@
    */
   function flip(data, options) {
     // if `inner` modifier is enabled, we can't use the `flip` modifier
-    if (isModifierEnabled(data.instance.modifiers, 'inner')) {
+    if (isModifierEnabled(data.instance.modifiers, "inner")) {
       return data;
     }
 
@@ -2911,9 +2911,9 @@
 
     var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, options.boundariesElement, data.positionFixed);
 
-    var placement = data.placement.split('-')[0];
+    var placement = data.placement.split("-")[0];
     var placementOpposite = getOppositePlacement(placement);
-    var variation = data.placement.split('-')[1] || '';
+    var variation = data.placement.split("-")[1] || "";
 
     var flipOrder = [];
 
@@ -2936,7 +2936,7 @@
         return data;
       }
 
-      placement = data.placement.split('-')[0];
+      placement = data.placement.split("-")[0];
       placementOpposite = getOppositePlacement(placement);
 
       var popperOffsets = data.offsets.popper;
@@ -2944,18 +2944,18 @@
 
       // using floor because the reference offsets may contain decimals we are not going to consider here
       var floor = Math.floor;
-      var overlapsRef = placement === 'left' && floor(popperOffsets.right) > floor(refOffsets.left) || placement === 'right' && floor(popperOffsets.left) < floor(refOffsets.right) || placement === 'top' && floor(popperOffsets.bottom) > floor(refOffsets.top) || placement === 'bottom' && floor(popperOffsets.top) < floor(refOffsets.bottom);
+      var overlapsRef = placement === "left" && floor(popperOffsets.right) > floor(refOffsets.left) || placement === "right" && floor(popperOffsets.left) < floor(refOffsets.right) || placement === "top" && floor(popperOffsets.bottom) > floor(refOffsets.top) || placement === "bottom" && floor(popperOffsets.top) < floor(refOffsets.bottom);
 
       var overflowsLeft = floor(popperOffsets.left) < floor(boundaries.left);
       var overflowsRight = floor(popperOffsets.right) > floor(boundaries.right);
       var overflowsTop = floor(popperOffsets.top) < floor(boundaries.top);
       var overflowsBottom = floor(popperOffsets.bottom) > floor(boundaries.bottom);
 
-      var overflowsBoundaries = placement === 'left' && overflowsLeft || placement === 'right' && overflowsRight || placement === 'top' && overflowsTop || placement === 'bottom' && overflowsBottom;
+      var overflowsBoundaries = placement === "left" && overflowsLeft || placement === "right" && overflowsRight || placement === "top" && overflowsTop || placement === "bottom" && overflowsBottom;
 
       // flip the variation if required
-      var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
-      var flippedVariation = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
+      var isVertical = ["top", "bottom"].indexOf(placement) !== -1;
+      var flippedVariation = !!options.flipVariations && (isVertical && variation === "start" && overflowsLeft || isVertical && variation === "end" && overflowsRight || !isVertical && variation === "start" && overflowsTop || !isVertical && variation === "end" && overflowsBottom);
 
       if (overlapsRef || overflowsBoundaries || flippedVariation) {
         // this boolean to detect any flip loop
@@ -2969,13 +2969,13 @@
           variation = getOppositeVariation(variation);
         }
 
-        data.placement = placement + (variation ? '-' + variation : '');
+        data.placement = placement + (variation ? "-" + variation : "");
 
         // this object contains `position`, we want to preserve it along with
         // any additional property we may add in the future
         data.offsets.popper = _extends({}, data.offsets.popper, getPopperOffsets(data.instance.popper, data.offsets.reference, data.placement));
 
-        data = runModifiers(data.instance.modifiers, data, 'flip');
+        data = runModifiers(data.instance.modifiers, data, "flip");
       }
     });
     return data;
@@ -2993,12 +2993,12 @@
         popper = _data$offsets.popper,
         reference = _data$offsets.reference;
 
-    var placement = data.placement.split('-')[0];
+    var placement = data.placement.split("-")[0];
     var floor = Math.floor;
-    var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
-    var side = isVertical ? 'right' : 'bottom';
-    var opSide = isVertical ? 'left' : 'top';
-    var measurement = isVertical ? 'width' : 'height';
+    var isVertical = ["top", "bottom"].indexOf(placement) !== -1;
+    var side = isVertical ? "right" : "bottom";
+    var opSide = isVertical ? "left" : "top";
+    var measurement = isVertical ? "width" : "height";
 
     if (popper[side] < floor(reference[opSide])) {
       data.offsets.popper[opSide] = floor(reference[opSide]) - popper[measurement];
@@ -3033,24 +3033,24 @@
       return str;
     }
 
-    if (unit.indexOf('%') === 0) {
+    if (unit.indexOf("%") === 0) {
       var element = void 0;
       switch (unit) {
-        case '%p':
+        case "%p":
           element = popperOffsets;
           break;
-        case '%':
-        case '%r':
+        case "%":
+        case "%r":
         default:
           element = referenceOffsets;
       }
 
       var rect = getClientRect(element);
       return rect[measurement] / 100 * value;
-    } else if (unit === 'vh' || unit === 'vw') {
+    } else if (unit === "vh" || unit === "vw") {
       // if is a vh or vw, we calculate the size based on the viewport
       var size = void 0;
-      if (unit === 'vh') {
+      if (unit === "vh") {
         size = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
       } else {
         size = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -3080,7 +3080,7 @@
     // Use height if placement is left or right and index is 0 otherwise use width
     // in this way the first offset will use an axis and the second one
     // will use the other one
-    var useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
+    var useHeight = ["right", "left"].indexOf(basePlacement) !== -1;
 
     // Split the offset string to obtain a list of values and operands
     // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
@@ -3094,8 +3094,8 @@
       return frag.search(/,|\s/) !== -1;
     }));
 
-    if (fragments[divider] && fragments[divider].indexOf(',') === -1) {
-      console.warn('Offsets separated by white space(s) are deprecated, use a comma (,) instead.');
+    if (fragments[divider] && fragments[divider].indexOf(",") === -1) {
+      console.warn("Offsets separated by white space(s) are deprecated, use a comma (,) instead.");
     }
 
     // If divider is found, we divide the list of values and operands to divide
@@ -3106,13 +3106,13 @@
     // Convert the values with units to absolute pixels to allow our computations
     ops = ops.map(function (op, index) {
       // Most of the units rely on the orientation of the popper
-      var measurement = (index === 1 ? !useHeight : useHeight) ? 'height' : 'width';
+      var measurement = (index === 1 ? !useHeight : useHeight) ? "height" : "width";
       var mergeWithPrevious = false;
       return op
       // This aggregates any `+` or `-` sign that aren't considered operators
       // e.g.: 10 + +5 => [10, +, +5]
       .reduce(function (a, b) {
-        if (a[a.length - 1] === '' && ['+', '-'].indexOf(b) !== -1) {
+        if (a[a.length - 1] === "" && ["+", "-"].indexOf(b) !== -1) {
           a[a.length - 1] = b;
           mergeWithPrevious = true;
           return a;
@@ -3134,7 +3134,7 @@
     ops.forEach(function (op, index) {
       op.forEach(function (frag, index2) {
         if (isNumeric(frag)) {
-          offsets[index] += frag * (op[index2 - 1] === '-' ? -1 : 1);
+          offsets[index] += frag * (op[index2 - 1] === "-" ? -1 : 1);
         }
       });
     });
@@ -3157,7 +3157,7 @@
         popper = _data$offsets.popper,
         reference = _data$offsets.reference;
 
-    var basePlacement = placement.split('-')[0];
+    var basePlacement = placement.split("-")[0];
 
     var offsets = void 0;
     if (isNumeric(+offset)) {
@@ -3166,16 +3166,16 @@
       offsets = parseOffset(offset, popper, reference, basePlacement);
     }
 
-    if (basePlacement === 'left') {
+    if (basePlacement === "left") {
       popper.top += offsets[0];
       popper.left -= offsets[1];
-    } else if (basePlacement === 'right') {
+    } else if (basePlacement === "right") {
       popper.top += offsets[0];
       popper.left += offsets[1];
-    } else if (basePlacement === 'top') {
+    } else if (basePlacement === "top") {
       popper.left += offsets[0];
       popper.top -= offsets[1];
-    } else if (basePlacement === 'bottom') {
+    } else if (basePlacement === "bottom") {
       popper.left += offsets[0];
       popper.top += offsets[1];
     }
@@ -3204,15 +3204,15 @@
     // NOTE: DOM access here
     // resets the popper's position so that the document size can be calculated excluding
     // the size of the popper element itself
-    var transformProp = getSupportedPropertyName('transform');
+    var transformProp = getSupportedPropertyName("transform");
     var popperStyles = data.instance.popper.style; // assignment to help minification
     var top = popperStyles.top,
         left = popperStyles.left,
         transform = popperStyles[transformProp];
 
-    popperStyles.top = '';
-    popperStyles.left = '';
-    popperStyles[transformProp] = '';
+    popperStyles.top = "";
+    popperStyles.left = "";
+    popperStyles[transformProp] = "";
 
     var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, boundariesElement, data.positionFixed);
 
@@ -3236,17 +3236,17 @@
         return defineProperty({}, placement, value);
       },
       secondary: function secondary(placement) {
-        var mainSide = placement === 'right' ? 'left' : 'top';
+        var mainSide = placement === "right" ? "left" : "top";
         var value = popper[mainSide];
         if (popper[placement] > boundaries[placement] && !options.escapeWithReference) {
-          value = Math.min(popper[mainSide], boundaries[placement] - (placement === 'right' ? popper.width : popper.height));
+          value = Math.min(popper[mainSide], boundaries[placement] - (placement === "right" ? popper.width : popper.height));
         }
         return defineProperty({}, mainSide, value);
       }
     };
 
     order.forEach(function (placement) {
-      var side = ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
+      var side = ["left", "top"].indexOf(placement) !== -1 ? "primary" : "secondary";
       popper = _extends({}, popper, check[side](placement));
     });
 
@@ -3264,8 +3264,8 @@
    */
   function shift(data) {
     var placement = data.placement;
-    var basePlacement = placement.split('-')[0];
-    var shiftvariation = placement.split('-')[1];
+    var basePlacement = placement.split("-")[0];
+    var shiftvariation = placement.split("-")[1];
 
     // if shift shiftvariation is specified, run the modifier
     if (shiftvariation) {
@@ -3273,9 +3273,9 @@
           reference = _data$offsets.reference,
           popper = _data$offsets.popper;
 
-      var isVertical = ['bottom', 'top'].indexOf(basePlacement) !== -1;
-      var side = isVertical ? 'left' : 'top';
-      var measurement = isVertical ? 'width' : 'height';
+      var isVertical = ["bottom", "top"].indexOf(basePlacement) !== -1;
+      var side = isVertical ? "left" : "top";
+      var measurement = isVertical ? "width" : "height";
 
       var shiftOffsets = {
         start: defineProperty({}, side, reference[side]),
@@ -3296,13 +3296,13 @@
    * @returns {Object} The data object, properly modified
    */
   function hide(data) {
-    if (!isModifierRequired(data.instance.modifiers, 'hide', 'preventOverflow')) {
+    if (!isModifierRequired(data.instance.modifiers, "hide", "preventOverflow")) {
       return data;
     }
 
     var refRect = data.offsets.reference;
     var bound = find(data.instance.modifiers, function (modifier) {
-      return modifier.name === 'preventOverflow';
+      return modifier.name === "preventOverflow";
     }).boundaries;
 
     if (refRect.bottom < bound.top || refRect.left > bound.right || refRect.top > bound.bottom || refRect.right < bound.left) {
@@ -3312,7 +3312,7 @@
       }
 
       data.hide = true;
-      data.attributes['x-out-of-boundaries'] = '';
+      data.attributes["x-out-of-boundaries"] = "";
     } else {
       // Avoid unnecessary DOM access if visibility hasn't changed
       if (data.hide === false) {
@@ -3320,7 +3320,7 @@
       }
 
       data.hide = false;
-      data.attributes['x-out-of-boundaries'] = false;
+      data.attributes["x-out-of-boundaries"] = false;
     }
 
     return data;
@@ -3335,16 +3335,16 @@
    */
   function inner(data) {
     var placement = data.placement;
-    var basePlacement = placement.split('-')[0];
+    var basePlacement = placement.split("-")[0];
     var _data$offsets = data.offsets,
         popper = _data$offsets.popper,
         reference = _data$offsets.reference;
 
-    var isHoriz = ['left', 'right'].indexOf(basePlacement) !== -1;
+    var isHoriz = ["left", "right"].indexOf(basePlacement) !== -1;
 
-    var subtractLength = ['top', 'left'].indexOf(basePlacement) === -1;
+    var subtractLength = ["top", "left"].indexOf(basePlacement) === -1;
 
-    popper[isHoriz ? 'left' : 'top'] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? 'width' : 'height'] : 0);
+    popper[isHoriz ? "left" : "top"] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? "width" : "height"] : 0);
 
     data.placement = getOppositePlacement(placement);
     data.offsets.popper = getClientRect(popper);
@@ -3471,7 +3471,7 @@
        * Popper will try to prevent overflow following these priorities by default,
        * then, it could overflow on the left and on top of the `boundariesElement`
        */
-      priority: ['left', 'right', 'top', 'bottom'],
+      priority: ["left", "right", "top", "bottom"],
       /**
        * @prop {number} padding=5
        * Amount of pixel used to define a minimum distance between the boundaries
@@ -3484,7 +3484,7 @@
        * Boundaries used by the modifier, can be `scrollParent`, `window`,
        * `viewport` or any DOM element.
        */
-      boundariesElement: 'scrollParent'
+      boundariesElement: "scrollParent"
     },
 
     /**
@@ -3523,7 +3523,7 @@
       /** @prop {ModifierFn} */
       fn: arrow,
       /** @prop {String|HTMLElement} element='[x-arrow]' - Selector or node used as arrow */
-      element: '[x-arrow]'
+      element: "[x-arrow]"
     },
 
     /**
@@ -3550,7 +3550,7 @@
        * `flip`, `clockwise`, `counterclockwise` or an array with a list of valid
        * placements (with optional variations).
        */
-      behavior: 'flip',
+      behavior: "flip",
       /**
        * @prop {number} padding=5
        * The popper will flip if it hits the edges of the `boundariesElement`
@@ -3562,7 +3562,7 @@
        * the popper will never be placed outside of the defined boundaries
        * (except if keepTogether is enabled)
        */
-      boundariesElement: 'viewport'
+      boundariesElement: "viewport"
     },
 
     /**
@@ -3633,13 +3633,13 @@
        * Where to anchor the X axis (`bottom` or `top`). AKA X offset origin.
        * Change this if your popper should grow in a direction different from `bottom`
        */
-      x: 'bottom',
+      x: "bottom",
       /**
        * @prop {string} [x='left']
        * Where to anchor the Y axis (`left` or `right`). AKA Y offset origin.
        * Change this if your popper should grow in a direction different from `right`
        */
-      y: 'right'
+      y: "right"
     },
 
     /**
@@ -3716,7 +3716,7 @@
      * Popper's placement
      * @prop {Popper.placements} placement='bottom'
      */
-    placement: 'bottom',
+    placement: "bottom",
 
     /**
      * Set this to true if you want popper to position it self in 'fixed' mode
@@ -3855,22 +3855,22 @@
 
 
     createClass(Popper, [{
-      key: 'update',
+      key: "update",
       value: function update$$1() {
         return update.call(this);
       }
     }, {
-      key: 'destroy',
+      key: "destroy",
       value: function destroy$$1() {
         return destroy.call(this);
       }
     }, {
-      key: 'enableEventListeners',
+      key: "enableEventListeners",
       value: function enableEventListeners$$1() {
         return enableEventListeners.call(this);
       }
     }, {
-      key: 'disableEventListeners',
+      key: "disableEventListeners",
       value: function disableEventListeners$$1() {
         return disableEventListeners.call(this);
       }
@@ -3924,7 +3924,7 @@
    */
 
 
-  Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
+  Popper.Utils = (typeof window !== "undefined" ? window : global).PopperUtils;
   Popper.placements = placements;
   Popper.Defaults = Defaults;
 
@@ -3941,11 +3941,11 @@
      * Constants
      * ------------------------------------------------------------------------
      */
-    var NAME = 'dropdown';
-    var VERSION = '4.1.3';
-    var DATA_KEY = 'bs.dropdown';
+    var NAME = "dropdown";
+    var VERSION = "4.1.3";
+    var DATA_KEY = "bs.dropdown";
     var EVENT_KEY = "." + DATA_KEY;
-    var DATA_API_KEY = '.data-api';
+    var DATA_API_KEY = ".data-api";
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
     var ESCAPE_KEYCODE = 27; // KeyboardEvent.which value for Escape (Esc) key
 
@@ -3971,45 +3971,45 @@
       KEYUP_DATA_API: "keyup" + EVENT_KEY + DATA_API_KEY
     };
     var ClassName = {
-      DISABLED: 'disabled',
-      SHOW: 'show',
-      DROPUP: 'dropup',
-      DROPRIGHT: 'dropright',
-      DROPLEFT: 'dropleft',
-      MENURIGHT: 'dropdown-menu-right',
-      MENULEFT: 'dropdown-menu-left',
-      POSITION_STATIC: 'position-static'
+      DISABLED: "disabled",
+      SHOW: "show",
+      DROPUP: "dropup",
+      DROPRIGHT: "dropright",
+      DROPLEFT: "dropleft",
+      MENURIGHT: "dropdown-menu-right",
+      MENULEFT: "dropdown-menu-left",
+      POSITION_STATIC: "position-static"
     };
     var Selector = {
       DATA_TOGGLE: '[data-toggle="dropdown"]',
-      FORM_CHILD: '.dropdown form',
-      MENU: '.dropdown-menu',
-      NAVBAR_NAV: '.navbar-nav',
-      VISIBLE_ITEMS: '.dropdown-menu .dropdown-item:not(.disabled):not(:disabled)'
+      FORM_CHILD: ".dropdown form",
+      MENU: ".dropdown-menu",
+      NAVBAR_NAV: ".navbar-nav",
+      VISIBLE_ITEMS: ".dropdown-menu .dropdown-item:not(.disabled):not(:disabled)"
     };
     var AttachmentMap = {
-      TOP: 'top-start',
-      TOPEND: 'top-end',
-      BOTTOM: 'bottom-start',
-      BOTTOMEND: 'bottom-end',
-      RIGHT: 'right-start',
-      RIGHTEND: 'right-end',
-      LEFT: 'left-start',
-      LEFTEND: 'left-end'
+      TOP: "top-start",
+      TOPEND: "top-end",
+      BOTTOM: "bottom-start",
+      BOTTOMEND: "bottom-end",
+      RIGHT: "right-start",
+      RIGHTEND: "right-end",
+      LEFT: "left-start",
+      LEFTEND: "left-end"
     };
     var Default = {
       offset: 0,
       flip: true,
-      boundary: 'scrollParent',
-      reference: 'toggle',
-      display: 'dynamic'
+      boundary: "scrollParent",
+      reference: "toggle",
+      display: "dynamic"
     };
     var DefaultType = {
-      offset: '(number|string|function)',
-      flip: 'boolean',
-      boundary: '(string|element)',
-      reference: '(string|element)',
-      display: 'string'
+      offset: "(number|string|function)",
+      flip: "boolean",
+      boundary: "(string|element)",
+      reference: "(string|element)",
+      display: "string"
       /**
        * ------------------------------------------------------------------------
        * Class Definition
@@ -4066,18 +4066,18 @@
            * Check for Popper dependency
            * Popper - https://popper.js.org
            */
-          if (typeof Popper === 'undefined') {
-            throw new TypeError('Bootstrap dropdown require Popper.js (https://popper.js.org)');
+          if (typeof Popper === "undefined") {
+            throw new TypeError("Bootstrap dropdown require Popper.js (https://popper.js.org)");
           }
 
           var referenceElement = this._element;
 
-          if (this._config.reference === 'parent') {
+          if (this._config.reference === "parent") {
             referenceElement = parent;
           } else if (Util.isElement(this._config.reference)) {
             referenceElement = this._config.reference; // Check if it's jQuery element
 
-            if (typeof this._config.reference.jquery !== 'undefined') {
+            if (typeof this._config.reference.jquery !== "undefined") {
               referenceElement = this._config.reference[0];
             }
           } // If boundary is not `scrollParent`, then set position to `static`
@@ -4085,7 +4085,7 @@
           // https://github.com/twbs/bootstrap/issues/24251
 
 
-          if (this._config.boundary !== 'scrollParent') {
+          if (this._config.boundary !== "scrollParent") {
             $$$1(parent).addClass(ClassName.POSITION_STATIC);
           }
 
@@ -4096,13 +4096,13 @@
         // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
 
 
-        if ('ontouchstart' in document.documentElement && $$$1(parent).closest(Selector.NAVBAR_NAV).length === 0) {
-          $$$1(document.body).children().on('mouseover', null, $$$1.noop);
+        if ("ontouchstart" in document.documentElement && $$$1(parent).closest(Selector.NAVBAR_NAV).length === 0) {
+          $$$1(document.body).children().on("mouseover", null, $$$1.noop);
         }
 
         this._element.focus();
 
-        this._element.setAttribute('aria-expanded', true);
+        this._element.setAttribute("aria-expanded", true);
 
         $$$1(this._menu).toggleClass(ClassName.SHOW);
         $$$1(parent).toggleClass(ClassName.SHOW).trigger($$$1.Event(Event.SHOWN, relatedTarget));
@@ -4181,7 +4181,7 @@
       };
 
       _proto._detectNavbar = function _detectNavbar() {
-        return $$$1(this._element).closest('.navbar').length > 0;
+        return $$$1(this._element).closest(".navbar").length > 0;
       };
 
       _proto._getPopperConfig = function _getPopperConfig() {
@@ -4189,7 +4189,7 @@
 
         var offsetConf = {};
 
-        if (typeof this._config.offset === 'function') {
+        if (typeof this._config.offset === "function") {
           offsetConf.fn = function (data) {
             data.offsets = _objectSpread({}, data.offsets, _this2._config.offset(data.offsets) || {});
             return data;
@@ -4212,7 +4212,7 @@
 
         };
 
-        if (this._config.display === 'static') {
+        if (this._config.display === "static") {
           popperConfig.modifiers.applyStyle = {
             enabled: false
           };
@@ -4226,15 +4226,15 @@
         return this.each(function () {
           var data = $$$1(this).data(DATA_KEY);
 
-          var _config = typeof config === 'object' ? config : null;
+          var _config = typeof config === "object" ? config : null;
 
           if (!data) {
             data = new Dropdown(this, _config);
             $$$1(this).data(DATA_KEY, data);
           }
 
-          if (typeof config === 'string') {
-            if (typeof data[config] === 'undefined') {
+          if (typeof config === "string") {
+            if (typeof data[config] === "undefined") {
               throw new TypeError("No method named \"" + config + "\"");
             }
 
@@ -4244,7 +4244,7 @@
       };
 
       Dropdown._clearMenus = function _clearMenus(event) {
-        if (event && (event.which === RIGHT_MOUSE_BUTTON_WHICH || event.type === 'keyup' && event.which !== TAB_KEYCODE)) {
+        if (event && (event.which === RIGHT_MOUSE_BUTTON_WHICH || event.type === "keyup" && event.which !== TAB_KEYCODE)) {
           return;
         }
 
@@ -4258,7 +4258,7 @@
             relatedTarget: toggles[i]
           };
 
-          if (event && event.type === 'click') {
+          if (event && event.type === "click") {
             relatedTarget.clickEvent = event;
           }
 
@@ -4272,7 +4272,7 @@
             continue;
           }
 
-          if (event && (event.type === 'click' && /input|textarea/i.test(event.target.tagName) || event.type === 'keyup' && event.which === TAB_KEYCODE) && $$$1.contains(parent, event.target)) {
+          if (event && (event.type === "click" && /input|textarea/i.test(event.target.tagName) || event.type === "keyup" && event.which === TAB_KEYCODE) && $$$1.contains(parent, event.target)) {
             continue;
           }
 
@@ -4285,11 +4285,11 @@
           // empty mouseover listeners we added for iOS support
 
 
-          if ('ontouchstart' in document.documentElement) {
-            $$$1(document.body).children().off('mouseover', null, $$$1.noop);
+          if ("ontouchstart" in document.documentElement) {
+            $$$1(document.body).children().off("mouseover", null, $$$1.noop);
           }
 
-          toggles[i].setAttribute('aria-expanded', 'false');
+          toggles[i].setAttribute("aria-expanded", "false");
           $$$1(dropdownMenu).removeClass(ClassName.SHOW);
           $$$1(parent).removeClass(ClassName.SHOW).trigger($$$1.Event(Event.HIDDEN, relatedTarget));
         }
@@ -4333,10 +4333,10 @@
         if (!isActive && (event.which !== ESCAPE_KEYCODE || event.which !== SPACE_KEYCODE) || isActive && (event.which === ESCAPE_KEYCODE || event.which === SPACE_KEYCODE)) {
           if (event.which === ESCAPE_KEYCODE) {
             var toggle = parent.querySelector(Selector.DATA_TOGGLE);
-            $$$1(toggle).trigger('focus');
+            $$$1(toggle).trigger("focus");
           }
 
-          $$$1(this).trigger('click');
+          $$$1(this).trigger("click");
           return;
         }
 
@@ -4395,7 +4395,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      Dropdown._jQueryInterface.call($$$1(this), 'toggle');
+      Dropdown._jQueryInterface.call($$$1(this), "toggle");
     }).on(Event.CLICK_DATA_API, Selector.FORM_CHILD, function (e) {
       e.stopPropagation();
     });
@@ -4429,11 +4429,11 @@
      * Constants
      * ------------------------------------------------------------------------
      */
-    var NAME = 'modal';
-    var VERSION = '4.1.3';
-    var DATA_KEY = 'bs.modal';
+    var NAME = "modal";
+    var VERSION = "4.1.3";
+    var DATA_KEY = "bs.modal";
     var EVENT_KEY = "." + DATA_KEY;
-    var DATA_API_KEY = '.data-api';
+    var DATA_API_KEY = ".data-api";
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
     var ESCAPE_KEYCODE = 27; // KeyboardEvent.which value for Escape (Esc) key
 
@@ -4444,10 +4444,10 @@
       show: true
     };
     var DefaultType = {
-      backdrop: '(boolean|string)',
-      keyboard: 'boolean',
-      focus: 'boolean',
-      show: 'boolean'
+      backdrop: "(boolean|string)",
+      keyboard: "boolean",
+      focus: "boolean",
+      show: "boolean"
     };
     var Event = {
       HIDE: "hide" + EVENT_KEY,
@@ -4463,18 +4463,18 @@
       CLICK_DATA_API: "click" + EVENT_KEY + DATA_API_KEY
     };
     var ClassName = {
-      SCROLLBAR_MEASURER: 'modal-scrollbar-measure',
-      BACKDROP: 'modal-backdrop',
-      OPEN: 'modal-open',
-      FADE: 'fade',
-      SHOW: 'show'
+      SCROLLBAR_MEASURER: "modal-scrollbar-measure",
+      BACKDROP: "modal-backdrop",
+      OPEN: "modal-open",
+      FADE: "fade",
+      SHOW: "show"
     };
     var Selector = {
-      DIALOG: '.modal-dialog',
+      DIALOG: ".modal-dialog",
       DATA_TOGGLE: '[data-toggle="modal"]',
       DATA_DISMISS: '[data-dismiss="modal"]',
-      FIXED_CONTENT: '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top',
-      STICKY_CONTENT: '.sticky-top'
+      FIXED_CONTENT: ".fixed-top, .fixed-bottom, .is-fixed, .sticky-top",
+      STICKY_CONTENT: ".sticky-top"
       /**
        * ------------------------------------------------------------------------
        * Class Definition
@@ -4633,9 +4633,9 @@
           document.body.appendChild(this._element);
         }
 
-        this._element.style.display = 'block';
+        this._element.style.display = "block";
 
-        this._element.removeAttribute('aria-hidden');
+        this._element.removeAttribute("aria-hidden");
 
         this._element.scrollTop = 0;
 
@@ -4712,9 +4712,9 @@
       _proto._hideModal = function _hideModal() {
         var _this7 = this;
 
-        this._element.style.display = 'none';
+        this._element.style.display = "none";
 
-        this._element.setAttribute('aria-hidden', true);
+        this._element.setAttribute("aria-hidden", true);
 
         this._isTransitioning = false;
 
@@ -4739,10 +4739,10 @@
       _proto._showBackdrop = function _showBackdrop(callback) {
         var _this8 = this;
 
-        var animate = $$$1(this._element).hasClass(ClassName.FADE) ? ClassName.FADE : '';
+        var animate = $$$1(this._element).hasClass(ClassName.FADE) ? ClassName.FADE : "";
 
         if (this._isShown && this._config.backdrop) {
-          this._backdrop = document.createElement('div');
+          this._backdrop = document.createElement("div");
           this._backdrop.className = ClassName.BACKDROP;
 
           if (animate) {
@@ -4760,7 +4760,7 @@
               return;
             }
 
-            if (_this8._config.backdrop === 'static') {
+            if (_this8._config.backdrop === "static") {
               _this8._element.focus();
             } else {
               _this8.hide();
@@ -4824,8 +4824,8 @@
       };
 
       _proto._resetAdjustments = function _resetAdjustments() {
-        this._element.style.paddingLeft = '';
-        this._element.style.paddingRight = '';
+        this._element.style.paddingLeft = "";
+        this._element.style.paddingRight = "";
       };
 
       _proto._checkScrollbar = function _checkScrollbar() {
@@ -4845,19 +4845,19 @@
 
           $$$1(fixedContent).each(function (index, element) {
             var actualPadding = element.style.paddingRight;
-            var calculatedPadding = $$$1(element).css('padding-right');
-            $$$1(element).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + _this9._scrollbarWidth + "px");
+            var calculatedPadding = $$$1(element).css("padding-right");
+            $$$1(element).data("padding-right", actualPadding).css("padding-right", parseFloat(calculatedPadding) + _this9._scrollbarWidth + "px");
           }); // Adjust sticky content margin
 
           $$$1(stickyContent).each(function (index, element) {
             var actualMargin = element.style.marginRight;
-            var calculatedMargin = $$$1(element).css('margin-right');
-            $$$1(element).data('margin-right', actualMargin).css('margin-right', parseFloat(calculatedMargin) - _this9._scrollbarWidth + "px");
+            var calculatedMargin = $$$1(element).css("margin-right");
+            $$$1(element).data("margin-right", actualMargin).css("margin-right", parseFloat(calculatedMargin) - _this9._scrollbarWidth + "px");
           }); // Adjust body padding
 
           var actualPadding = document.body.style.paddingRight;
-          var calculatedPadding = $$$1(document.body).css('padding-right');
-          $$$1(document.body).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + this._scrollbarWidth + "px");
+          var calculatedPadding = $$$1(document.body).css("padding-right");
+          $$$1(document.body).data("padding-right", actualPadding).css("padding-right", parseFloat(calculatedPadding) + this._scrollbarWidth + "px");
         }
       };
 
@@ -4865,28 +4865,28 @@
         // Restore fixed content padding
         var fixedContent = [].slice.call(document.querySelectorAll(Selector.FIXED_CONTENT));
         $$$1(fixedContent).each(function (index, element) {
-          var padding = $$$1(element).data('padding-right');
-          $$$1(element).removeData('padding-right');
-          element.style.paddingRight = padding ? padding : '';
+          var padding = $$$1(element).data("padding-right");
+          $$$1(element).removeData("padding-right");
+          element.style.paddingRight = padding ? padding : "";
         }); // Restore sticky content
 
         var elements = [].slice.call(document.querySelectorAll("" + Selector.STICKY_CONTENT));
         $$$1(elements).each(function (index, element) {
-          var margin = $$$1(element).data('margin-right');
+          var margin = $$$1(element).data("margin-right");
 
-          if (typeof margin !== 'undefined') {
-            $$$1(element).css('margin-right', margin).removeData('margin-right');
+          if (typeof margin !== "undefined") {
+            $$$1(element).css("margin-right", margin).removeData("margin-right");
           }
         }); // Restore body padding
 
-        var padding = $$$1(document.body).data('padding-right');
-        $$$1(document.body).removeData('padding-right');
-        document.body.style.paddingRight = padding ? padding : '';
+        var padding = $$$1(document.body).data("padding-right");
+        $$$1(document.body).removeData("padding-right");
+        document.body.style.paddingRight = padding ? padding : "";
       };
 
       _proto._getScrollbarWidth = function _getScrollbarWidth() {
         // thx d.walsh
-        var scrollDiv = document.createElement('div');
+        var scrollDiv = document.createElement("div");
         scrollDiv.className = ClassName.SCROLLBAR_MEASURER;
         document.body.appendChild(scrollDiv);
         var scrollbarWidth = scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth;
@@ -4899,15 +4899,15 @@
         return this.each(function () {
           var data = $$$1(this).data(DATA_KEY);
 
-          var _config = _objectSpread({}, Default, $$$1(this).data(), typeof config === 'object' && config ? config : {});
+          var _config = _objectSpread({}, Default, $$$1(this).data(), typeof config === "object" && config ? config : {});
 
           if (!data) {
             data = new Modal(this, _config);
             $$$1(this).data(DATA_KEY, data);
           }
 
-          if (typeof config === 'string') {
-            if (typeof data[config] === 'undefined') {
+          if (typeof config === "string") {
+            if (typeof data[config] === "undefined") {
               throw new TypeError("No method named \"" + config + "\"");
             }
 
@@ -4949,9 +4949,9 @@
         target = document.querySelector(selector);
       }
 
-      var config = $$$1(target).data(DATA_KEY) ? 'toggle' : _objectSpread({}, $$$1(target).data(), $$$1(this).data());
+      var config = $$$1(target).data(DATA_KEY) ? "toggle" : _objectSpread({}, $$$1(target).data(), $$$1(this).data());
 
-      if (this.tagName === 'A' || this.tagName === 'AREA') {
+      if (this.tagName === "A" || this.tagName === "AREA") {
         event.preventDefault();
       }
 
@@ -4962,7 +4962,7 @@
         }
 
         $target.one(Event.HIDDEN, function () {
-          if ($$$1(_this10).is(':visible')) {
+          if ($$$1(_this10).is(":visible")) {
             _this10.focus();
           }
         });
@@ -5000,51 +5000,51 @@
      * Constants
      * ------------------------------------------------------------------------
      */
-    var NAME = 'tooltip';
-    var VERSION = '4.1.3';
-    var DATA_KEY = 'bs.tooltip';
+    var NAME = "tooltip";
+    var VERSION = "4.1.3";
+    var DATA_KEY = "bs.tooltip";
     var EVENT_KEY = "." + DATA_KEY;
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
-    var CLASS_PREFIX = 'bs-tooltip';
-    var BSCLS_PREFIX_REGEX = new RegExp("(^|\\s)" + CLASS_PREFIX + "\\S+", 'g');
+    var CLASS_PREFIX = "bs-tooltip";
+    var BSCLS_PREFIX_REGEX = new RegExp("(^|\\s)" + CLASS_PREFIX + "\\S+", "g");
     var DefaultType = {
-      animation: 'boolean',
-      template: 'string',
-      title: '(string|element|function)',
-      trigger: 'string',
-      delay: '(number|object)',
-      html: 'boolean',
-      selector: '(string|boolean)',
-      placement: '(string|function)',
-      offset: '(number|string)',
-      container: '(string|element|boolean)',
-      fallbackPlacement: '(string|array)',
-      boundary: '(string|element)'
+      animation: "boolean",
+      template: "string",
+      title: "(string|element|function)",
+      trigger: "string",
+      delay: "(number|object)",
+      html: "boolean",
+      selector: "(string|boolean)",
+      placement: "(string|function)",
+      offset: "(number|string)",
+      container: "(string|element|boolean)",
+      fallbackPlacement: "(string|array)",
+      boundary: "(string|element)"
     };
     var AttachmentMap = {
-      AUTO: 'auto',
-      TOP: 'top',
-      RIGHT: 'right',
-      BOTTOM: 'bottom',
-      LEFT: 'left'
+      AUTO: "auto",
+      TOP: "top",
+      RIGHT: "right",
+      BOTTOM: "bottom",
+      LEFT: "left"
     };
     var Default = {
       animation: true,
       template: '<div class="tooltip" role="tooltip">' + '<div class="arrow"></div>' + '<div class="tooltip-inner"></div></div>',
-      trigger: 'hover focus',
-      title: '',
+      trigger: "hover focus",
+      title: "",
       delay: 0,
       html: false,
       selector: false,
-      placement: 'top',
+      placement: "top",
       offset: 0,
       container: false,
-      fallbackPlacement: 'flip',
-      boundary: 'scrollParent'
+      fallbackPlacement: "flip",
+      boundary: "scrollParent"
     };
     var HoverState = {
-      SHOW: 'show',
-      OUT: 'out'
+      SHOW: "show",
+      OUT: "out"
     };
     var Event = {
       HIDE: "hide" + EVENT_KEY,
@@ -5059,19 +5059,19 @@
       MOUSELEAVE: "mouseleave" + EVENT_KEY
     };
     var ClassName = {
-      FADE: 'fade',
-      SHOW: 'show'
+      FADE: "fade",
+      SHOW: "show"
     };
     var Selector = {
-      TOOLTIP: '.tooltip',
-      TOOLTIP_INNER: '.tooltip-inner',
-      ARROW: '.arrow'
+      TOOLTIP: ".tooltip",
+      TOOLTIP_INNER: ".tooltip-inner",
+      ARROW: ".arrow"
     };
     var Trigger = {
-      HOVER: 'hover',
-      FOCUS: 'focus',
-      CLICK: 'click',
-      MANUAL: 'manual'
+      HOVER: "hover",
+      FOCUS: "focus",
+      CLICK: "click",
+      MANUAL: "manual"
       /**
        * ------------------------------------------------------------------------
        * Class Definition
@@ -5088,14 +5088,14 @@
          * Check for Popper dependency
          * Popper - https://popper.js.org
          */
-        if (typeof Popper === 'undefined') {
-          throw new TypeError('Bootstrap tooltips require Popper.js (https://popper.js.org)');
+        if (typeof Popper === "undefined") {
+          throw new TypeError("Bootstrap tooltips require Popper.js (https://popper.js.org)");
         } // private
 
 
         this._isEnabled = true;
         this._timeout = 0;
-        this._hoverState = '';
+        this._hoverState = "";
         this._activeTrigger = {};
         this._popper = null; // Protected
 
@@ -5158,7 +5158,7 @@
         clearTimeout(this._timeout);
         $$$1.removeData(this.element, this.constructor.DATA_KEY);
         $$$1(this.element).off(this.constructor.EVENT_KEY);
-        $$$1(this.element).closest('.modal').off('hide.bs.modal');
+        $$$1(this.element).closest(".modal").off("hide.bs.modal");
 
         if (this.tip) {
           $$$1(this.tip).remove();
@@ -5182,8 +5182,8 @@
       _proto.show = function show() {
         var _this = this;
 
-        if ($$$1(this.element).css('display') === 'none') {
-          throw new Error('Please use show on visible elements');
+        if ($$$1(this.element).css("display") === "none") {
+          throw new Error("Please use show on visible elements");
         }
 
         var showEvent = $$$1.Event(this.constructor.Event.SHOW);
@@ -5198,15 +5198,15 @@
 
           var tip = this.getTipElement();
           var tipId = Util.getUID(this.constructor.NAME);
-          tip.setAttribute('id', tipId);
-          this.element.setAttribute('aria-describedby', tipId);
+          tip.setAttribute("id", tipId);
+          this.element.setAttribute("aria-describedby", tipId);
           this.setContent();
 
           if (this.config.animation) {
             $$$1(tip).addClass(ClassName.FADE);
           }
 
-          var placement = typeof this.config.placement === 'function' ? this.config.placement.call(this, tip, this.element) : this.config.placement;
+          var placement = typeof this.config.placement === "function" ? this.config.placement.call(this, tip, this.element) : this.config.placement;
 
           var attachment = this._getAttachment(placement);
 
@@ -5249,8 +5249,8 @@
           // only needed because of broken event delegation on iOS
           // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
 
-          if ('ontouchstart' in document.documentElement) {
-            $$$1(document.body).children().on('mouseover', null, $$$1.noop);
+          if ("ontouchstart" in document.documentElement) {
+            $$$1(document.body).children().on("mouseover", null, $$$1.noop);
           }
 
           var complete = function complete() {
@@ -5289,7 +5289,7 @@
 
           _this2._cleanTipClass();
 
-          _this2.element.removeAttribute('aria-describedby');
+          _this2.element.removeAttribute("aria-describedby");
 
           $$$1(_this2.element).trigger(_this2.constructor.Event.HIDDEN);
 
@@ -5311,8 +5311,8 @@
         $$$1(tip).removeClass(ClassName.SHOW); // If this is a touch-enabled device we remove the extra
         // empty mouseover listeners we added for iOS support
 
-        if ('ontouchstart' in document.documentElement) {
-          $$$1(document.body).children().off('mouseover', null, $$$1.noop);
+        if ("ontouchstart" in document.documentElement) {
+          $$$1(document.body).children().off("mouseover", null, $$$1.noop);
         }
 
         this._activeTrigger[Trigger.CLICK] = false;
@@ -5326,7 +5326,7 @@
           complete();
         }
 
-        this._hoverState = '';
+        this._hoverState = "";
       };
 
       _proto.update = function update() {
@@ -5358,7 +5358,7 @@
       _proto.setElementContent = function setElementContent($element, content) {
         var html = this.config.html;
 
-        if (typeof content === 'object' && (content.nodeType || content.jquery)) {
+        if (typeof content === "object" && (content.nodeType || content.jquery)) {
           // Content is a DOM node or a jQuery
           if (html) {
             if (!$$$1(content).parent().is($element)) {
@@ -5368,15 +5368,15 @@
             $element.text($$$1(content).text());
           }
         } else {
-          $element[html ? 'html' : 'text'](content);
+          $element[html ? "html" : "text"](content);
         }
       };
 
       _proto.getTitle = function getTitle() {
-        var title = this.element.getAttribute('data-original-title');
+        var title = this.element.getAttribute("data-original-title");
 
         if (!title) {
-          title = typeof this.config.title === 'function' ? this.config.title.call(this.element) : this.config.title;
+          title = typeof this.config.title === "function" ? this.config.title.call(this.element) : this.config.title;
         }
 
         return title;
@@ -5390,9 +5390,9 @@
       _proto._setListeners = function _setListeners() {
         var _this3 = this;
 
-        var triggers = this.config.trigger.split(' ');
+        var triggers = this.config.trigger.split(" ");
         triggers.forEach(function (trigger) {
-          if (trigger === 'click') {
+          if (trigger === "click") {
             $$$1(_this3.element).on(_this3.constructor.Event.CLICK, _this3.config.selector, function (event) {
               return _this3.toggle(event);
             });
@@ -5406,15 +5406,15 @@
             });
           }
 
-          $$$1(_this3.element).closest('.modal').on('hide.bs.modal', function () {
+          $$$1(_this3.element).closest(".modal").on("hide.bs.modal", function () {
             return _this3.hide();
           });
         });
 
         if (this.config.selector) {
           this.config = _objectSpread({}, this.config, {
-            trigger: 'manual',
-            selector: ''
+            trigger: "manual",
+            selector: ""
           });
         } else {
           this._fixTitle();
@@ -5422,11 +5422,11 @@
       };
 
       _proto._fixTitle = function _fixTitle() {
-        var titleType = typeof this.element.getAttribute('data-original-title');
+        var titleType = typeof this.element.getAttribute("data-original-title");
 
-        if (this.element.getAttribute('title') || titleType !== 'string') {
-          this.element.setAttribute('data-original-title', this.element.getAttribute('title') || '');
-          this.element.setAttribute('title', '');
+        if (this.element.getAttribute("title") || titleType !== "string") {
+          this.element.setAttribute("data-original-title", this.element.getAttribute("title") || "");
+          this.element.setAttribute("title", "");
         }
       };
 
@@ -5440,7 +5440,7 @@
         }
 
         if (event) {
-          context._activeTrigger[event.type === 'focusin' ? Trigger.FOCUS : Trigger.HOVER] = true;
+          context._activeTrigger[event.type === "focusin" ? Trigger.FOCUS : Trigger.HOVER] = true;
         }
 
         if ($$$1(context.getTipElement()).hasClass(ClassName.SHOW) || context._hoverState === HoverState.SHOW) {
@@ -5473,7 +5473,7 @@
         }
 
         if (event) {
-          context._activeTrigger[event.type === 'focusout' ? Trigger.FOCUS : Trigger.HOVER] = false;
+          context._activeTrigger[event.type === "focusout" ? Trigger.FOCUS : Trigger.HOVER] = false;
         }
 
         if (context._isWithActiveTrigger()) {
@@ -5506,20 +5506,20 @@
       };
 
       _proto._getConfig = function _getConfig(config) {
-        config = _objectSpread({}, this.constructor.Default, $$$1(this.element).data(), typeof config === 'object' && config ? config : {});
+        config = _objectSpread({}, this.constructor.Default, $$$1(this.element).data(), typeof config === "object" && config ? config : {});
 
-        if (typeof config.delay === 'number') {
+        if (typeof config.delay === "number") {
           config.delay = {
             show: config.delay,
             hide: config.delay
           };
         }
 
-        if (typeof config.title === 'number') {
+        if (typeof config.title === "number") {
           config.title = config.title.toString();
         }
 
-        if (typeof config.content === 'number') {
+        if (typeof config.content === "number") {
           config.content = config.content.toString();
         }
 
@@ -5543,10 +5543,10 @@
 
       _proto._cleanTipClass = function _cleanTipClass() {
         var $tip = $$$1(this.getTipElement());
-        var tabClass = $tip.attr('class').match(BSCLS_PREFIX_REGEX);
+        var tabClass = $tip.attr("class").match(BSCLS_PREFIX_REGEX);
 
         if (tabClass !== null && tabClass.length) {
-          $tip.removeClass(tabClass.join(''));
+          $tip.removeClass(tabClass.join(""));
         }
       };
 
@@ -5563,7 +5563,7 @@
         var tip = this.getTipElement();
         var initConfigAnimation = this.config.animation;
 
-        if (tip.getAttribute('x-placement') !== null) {
+        if (tip.getAttribute("x-placement") !== null) {
           return;
         }
 
@@ -5579,7 +5579,7 @@
         return this.each(function () {
           var data = $$$1(this).data(DATA_KEY);
 
-          var _config = typeof config === 'object' && config;
+          var _config = typeof config === "object" && config;
 
           if (!data && /dispose|hide/.test(config)) {
             return;
@@ -5590,8 +5590,8 @@
             $$$1(this).data(DATA_KEY, data);
           }
 
-          if (typeof config === 'string') {
-            if (typeof data[config] === 'undefined') {
+          if (typeof config === "string") {
+            if (typeof data[config] === "undefined") {
               throw new TypeError("No method named \"" + config + "\"");
             }
 
@@ -5670,32 +5670,32 @@
      * Constants
      * ------------------------------------------------------------------------
      */
-    var NAME = 'popover';
-    var VERSION = '4.1.3';
-    var DATA_KEY = 'bs.popover';
+    var NAME = "popover";
+    var VERSION = "4.1.3";
+    var DATA_KEY = "bs.popover";
     var EVENT_KEY = "." + DATA_KEY;
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
-    var CLASS_PREFIX = 'bs-popover';
-    var BSCLS_PREFIX_REGEX = new RegExp("(^|\\s)" + CLASS_PREFIX + "\\S+", 'g');
+    var CLASS_PREFIX = "bs-popover";
+    var BSCLS_PREFIX_REGEX = new RegExp("(^|\\s)" + CLASS_PREFIX + "\\S+", "g");
 
     var Default = _objectSpread({}, Tooltip.Default, {
-      placement: 'right',
-      trigger: 'click',
-      content: '',
+      placement: "right",
+      trigger: "click",
+      content: "",
       template: '<div class="popover" role="tooltip">' + '<div class="arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div></div>'
     });
 
     var DefaultType = _objectSpread({}, Tooltip.DefaultType, {
-      content: '(string|element|function)'
+      content: "(string|element|function)"
     });
 
     var ClassName = {
-      FADE: 'fade',
-      SHOW: 'show'
+      FADE: "fade",
+      SHOW: "show"
     };
     var Selector = {
-      TITLE: '.popover-header',
-      CONTENT: '.popover-body'
+      TITLE: ".popover-header",
+      CONTENT: ".popover-body"
     };
     var Event = {
       HIDE: "hide" + EVENT_KEY,
@@ -5748,7 +5748,7 @@
 
         var content = this._getContent();
 
-        if (typeof content === 'function') {
+        if (typeof content === "function") {
           content = content.call(this.element);
         }
 
@@ -5758,15 +5758,15 @@
 
 
       _proto._getContent = function _getContent() {
-        return this.element.getAttribute('data-content') || this.config.content;
+        return this.element.getAttribute("data-content") || this.config.content;
       };
 
       _proto._cleanTipClass = function _cleanTipClass() {
         var $tip = $$$1(this.getTipElement());
-        var tabClass = $tip.attr('class').match(BSCLS_PREFIX_REGEX);
+        var tabClass = $tip.attr("class").match(BSCLS_PREFIX_REGEX);
 
         if (tabClass !== null && tabClass.length > 0) {
-          $tip.removeClass(tabClass.join(''));
+          $tip.removeClass(tabClass.join(""));
         }
       }; // Static
 
@@ -5775,7 +5775,7 @@
         return this.each(function () {
           var data = $$$1(this).data(DATA_KEY);
 
-          var _config = typeof config === 'object' ? config : null;
+          var _config = typeof config === "object" ? config : null;
 
           if (!data && /destroy|hide/.test(config)) {
             return;
@@ -5786,8 +5786,8 @@
             $$$1(this).data(DATA_KEY, data);
           }
 
-          if (typeof config === 'string') {
-            if (typeof data[config] === 'undefined') {
+          if (typeof config === "string") {
+            if (typeof data[config] === "undefined") {
               throw new TypeError("No method named \"" + config + "\"");
             }
 
@@ -5867,21 +5867,21 @@
      * Constants
      * ------------------------------------------------------------------------
      */
-    var NAME = 'scrollspy';
-    var VERSION = '4.1.3';
-    var DATA_KEY = 'bs.scrollspy';
+    var NAME = "scrollspy";
+    var VERSION = "4.1.3";
+    var DATA_KEY = "bs.scrollspy";
     var EVENT_KEY = "." + DATA_KEY;
-    var DATA_API_KEY = '.data-api';
+    var DATA_API_KEY = ".data-api";
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
     var Default = {
       offset: 10,
-      method: 'auto',
-      target: ''
+      method: "auto",
+      target: ""
     };
     var DefaultType = {
-      offset: 'number',
-      method: 'string',
-      target: '(string|element)'
+      offset: "number",
+      method: "string",
+      target: "(string|element)"
     };
     var Event = {
       ACTIVATE: "activate" + EVENT_KEY,
@@ -5889,24 +5889,24 @@
       LOAD_DATA_API: "load" + EVENT_KEY + DATA_API_KEY
     };
     var ClassName = {
-      DROPDOWN_ITEM: 'dropdown-item',
-      DROPDOWN_MENU: 'dropdown-menu',
-      ACTIVE: 'active'
+      DROPDOWN_ITEM: "dropdown-item",
+      DROPDOWN_MENU: "dropdown-menu",
+      ACTIVE: "active"
     };
     var Selector = {
       DATA_SPY: '[data-spy="scroll"]',
-      ACTIVE: '.active',
-      NAV_LIST_GROUP: '.nav, .list-group',
-      NAV_LINKS: '.nav-link',
-      NAV_ITEMS: '.nav-item',
-      LIST_ITEMS: '.list-group-item',
-      DROPDOWN: '.dropdown',
-      DROPDOWN_ITEMS: '.dropdown-item',
-      DROPDOWN_TOGGLE: '.dropdown-toggle'
+      ACTIVE: ".active",
+      NAV_LIST_GROUP: ".nav, .list-group",
+      NAV_LINKS: ".nav-link",
+      NAV_ITEMS: ".nav-item",
+      LIST_ITEMS: ".list-group-item",
+      DROPDOWN: ".dropdown",
+      DROPDOWN_ITEMS: ".dropdown-item",
+      DROPDOWN_TOGGLE: ".dropdown-toggle"
     };
     var OffsetMethod = {
-      OFFSET: 'offset',
-      POSITION: 'position'
+      OFFSET: "offset",
+      POSITION: "position"
       /**
        * ------------------------------------------------------------------------
        * Class Definition
@@ -5922,7 +5922,7 @@
         var _this = this;
 
         this._element = element;
-        this._scrollElement = element.tagName === 'BODY' ? window : element;
+        this._scrollElement = element.tagName === "BODY" ? window : element;
         this._config = this._getConfig(config);
         this._selector = this._config.target + " " + Selector.NAV_LINKS + "," + (this._config.target + " " + Selector.LIST_ITEMS + ",") + (this._config.target + " " + Selector.DROPDOWN_ITEMS);
         this._offsets = [];
@@ -5945,7 +5945,7 @@
         var _this2 = this;
 
         var autoMethod = this._scrollElement === this._scrollElement.window ? OffsetMethod.OFFSET : OffsetMethod.POSITION;
-        var offsetMethod = this._config.method === 'auto' ? autoMethod : this._config.method;
+        var offsetMethod = this._config.method === "auto" ? autoMethod : this._config.method;
         var offsetBase = offsetMethod === OffsetMethod.POSITION ? this._getScrollTop() : 0;
         this._offsets = [];
         this._targets = [];
@@ -5995,14 +5995,14 @@
 
 
       _proto._getConfig = function _getConfig(config) {
-        config = _objectSpread({}, Default, typeof config === 'object' && config ? config : {});
+        config = _objectSpread({}, Default, typeof config === "object" && config ? config : {});
 
-        if (typeof config.target !== 'string') {
-          var id = $$$1(config.target).attr('id');
+        if (typeof config.target !== "string") {
+          var id = $$$1(config.target).attr("id");
 
           if (!id) {
             id = Util.getUID(NAME);
-            $$$1(config.target).attr('id', id);
+            $$$1(config.target).attr("id", id);
           }
 
           config.target = "#" + id;
@@ -6056,7 +6056,7 @@
         var offsetLength = this._offsets.length;
 
         for (var i = offsetLength; i--;) {
-          var isActiveTarget = this._activeTarget !== this._targets[i] && scrollTop >= this._offsets[i] && (typeof this._offsets[i + 1] === 'undefined' || scrollTop < this._offsets[i + 1]);
+          var isActiveTarget = this._activeTarget !== this._targets[i] && scrollTop >= this._offsets[i] && (typeof this._offsets[i + 1] === "undefined" || scrollTop < this._offsets[i + 1]);
 
           if (isActiveTarget) {
             this._activate(this._targets[i]);
@@ -6069,13 +6069,13 @@
 
         this._clear();
 
-        var queries = this._selector.split(','); // eslint-disable-next-line arrow-body-style
+        var queries = this._selector.split(","); // eslint-disable-next-line arrow-body-style
 
 
         queries = queries.map(function (selector) {
           return selector + "[data-target=\"" + target + "\"]," + (selector + "[href=\"" + target + "\"]");
         });
-        var $link = $$$1([].slice.call(document.querySelectorAll(queries.join(','))));
+        var $link = $$$1([].slice.call(document.querySelectorAll(queries.join(","))));
 
         if ($link.hasClass(ClassName.DROPDOWN_ITEM)) {
           $link.closest(Selector.DROPDOWN).find(Selector.DROPDOWN_TOGGLE).addClass(ClassName.ACTIVE);
@@ -6105,15 +6105,15 @@
         return this.each(function () {
           var data = $$$1(this).data(DATA_KEY);
 
-          var _config = typeof config === 'object' && config;
+          var _config = typeof config === "object" && config;
 
           if (!data) {
             data = new ScrollSpy(this, _config);
             $$$1(this).data(DATA_KEY, data);
           }
 
-          if (typeof config === 'string') {
-            if (typeof data[config] === 'undefined') {
+          if (typeof config === "string") {
+            if (typeof data[config] === "undefined") {
               throw new TypeError("No method named \"" + config + "\"");
             }
 
@@ -6183,11 +6183,11 @@
      * Constants
      * ------------------------------------------------------------------------
      */
-    var NAME = 'tab';
-    var VERSION = '4.1.3';
-    var DATA_KEY = 'bs.tab';
+    var NAME = "tab";
+    var VERSION = "4.1.3";
+    var DATA_KEY = "bs.tab";
     var EVENT_KEY = "." + DATA_KEY;
-    var DATA_API_KEY = '.data-api';
+    var DATA_API_KEY = ".data-api";
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
     var Event = {
       HIDE: "hide" + EVENT_KEY,
@@ -6197,20 +6197,20 @@
       CLICK_DATA_API: "click" + EVENT_KEY + DATA_API_KEY
     };
     var ClassName = {
-      DROPDOWN_MENU: 'dropdown-menu',
-      ACTIVE: 'active',
-      DISABLED: 'disabled',
-      FADE: 'fade',
-      SHOW: 'show'
+      DROPDOWN_MENU: "dropdown-menu",
+      ACTIVE: "active",
+      DISABLED: "disabled",
+      FADE: "fade",
+      SHOW: "show"
     };
     var Selector = {
-      DROPDOWN: '.dropdown',
-      NAV_LIST_GROUP: '.nav, .list-group',
-      ACTIVE: '.active',
-      ACTIVE_UL: '> li > .active',
+      DROPDOWN: ".dropdown",
+      NAV_LIST_GROUP: ".nav, .list-group",
+      ACTIVE: ".active",
+      ACTIVE_UL: "> li > .active",
       DATA_TOGGLE: '[data-toggle="tab"], [data-toggle="pill"], [data-toggle="list"]',
-      DROPDOWN_TOGGLE: '.dropdown-toggle',
-      DROPDOWN_ACTIVE_CHILD: '> .dropdown-menu .active'
+      DROPDOWN_TOGGLE: ".dropdown-toggle",
+      DROPDOWN_ACTIVE_CHILD: "> .dropdown-menu .active"
       /**
        * ------------------------------------------------------------------------
        * Class Definition
@@ -6243,7 +6243,7 @@
         var selector = Util.getSelectorFromElement(this._element);
 
         if (listElement) {
-          var itemSelector = listElement.nodeName === 'UL' ? Selector.ACTIVE_UL : Selector.ACTIVE;
+          var itemSelector = listElement.nodeName === "UL" ? Selector.ACTIVE_UL : Selector.ACTIVE;
           previous = $$$1.makeArray($$$1(listElement).find(itemSelector));
           previous = previous[previous.length - 1];
         }
@@ -6300,7 +6300,7 @@
 
         var activeElements;
 
-        if (container.nodeName === 'UL') {
+        if (container.nodeName === "UL") {
           activeElements = $$$1(container).find(Selector.ACTIVE_UL);
         } else {
           activeElements = $$$1(container).children(Selector.ACTIVE);
@@ -6330,15 +6330,15 @@
             $$$1(dropdownChild).removeClass(ClassName.ACTIVE);
           }
 
-          if (active.getAttribute('role') === 'tab') {
-            active.setAttribute('aria-selected', false);
+          if (active.getAttribute("role") === "tab") {
+            active.setAttribute("aria-selected", false);
           }
         }
 
         $$$1(element).addClass(ClassName.ACTIVE);
 
-        if (element.getAttribute('role') === 'tab') {
-          element.setAttribute('aria-selected', true);
+        if (element.getAttribute("role") === "tab") {
+          element.setAttribute("aria-selected", true);
         }
 
         Util.reflow(element);
@@ -6352,7 +6352,7 @@
             $$$1(dropdownToggleList).addClass(ClassName.ACTIVE);
           }
 
-          element.setAttribute('aria-expanded', true);
+          element.setAttribute("aria-expanded", true);
         }
 
         if (callback) {
@@ -6371,8 +6371,8 @@
             $this.data(DATA_KEY, data);
           }
 
-          if (typeof config === 'string') {
-            if (typeof data[config] === 'undefined') {
+          if (typeof config === "string") {
+            if (typeof data[config] === "undefined") {
               throw new TypeError("No method named \"" + config + "\"");
             }
 
@@ -6400,7 +6400,7 @@
     $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
       event.preventDefault();
 
-      Tab._jQueryInterface.call($$$1(this), 'show');
+      Tab._jQueryInterface.call($$$1(this), "show");
     });
     /**
      * ------------------------------------------------------------------------
@@ -6427,11 +6427,11 @@
    */
 
   (function ($$$1) {
-    if (typeof $$$1 === 'undefined') {
-      throw new TypeError('Bootstrap\'s JavaScript requires jQuery. jQuery must be included before Bootstrap\'s JavaScript.');
+    if (typeof $$$1 === "undefined") {
+      throw new TypeError("Bootstrap's JavaScript requires jQuery. jQuery must be included before Bootstrap's JavaScript.");
     }
 
-    var version = $$$1.fn.jquery.split(' ')[0].split('.');
+    var version = $$$1.fn.jquery.split(" ")[0].split(".");
     var minMajor = 1;
     var ltMajor = 2;
     var minMinor = 9;
@@ -6439,7 +6439,7 @@
     var maxMajor = 4;
 
     if (version[0] < ltMajor && version[1] < minMinor || version[0] === minMajor && version[1] === minMinor && version[2] < minPatch || version[0] >= maxMajor) {
-      throw new Error('Bootstrap\'s JavaScript requires at least jQuery v1.9.1 but less than v4.0.0');
+      throw new Error("Bootstrap's JavaScript requires at least jQuery v1.9.1 but less than v4.0.0");
     }
   })($);
 
@@ -6455,7 +6455,7 @@
   exports.Tab = Tab;
   exports.Tooltip = Tooltip;
 
-  Object.defineProperty(exports, '__esModule', { value: true });
+  Object.defineProperty(exports, "__esModule", { value: true });
 
 })));
 //# sourceMappingURL=bootstrap.bundle.js.map

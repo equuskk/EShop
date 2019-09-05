@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MediatR;
+﻿using MediatR;
 using Newtonsoft.Json;
 
 namespace EShop.Application.Cart.Queries.GetUserOrder
@@ -13,6 +10,7 @@ namespace EShop.Application.Cart.Queries.GetUserOrder
         {
             UserId = shopUserId;
         }
-        public string UserId { get; private set; }
+
+        public string UserId { get; }
     }
 }

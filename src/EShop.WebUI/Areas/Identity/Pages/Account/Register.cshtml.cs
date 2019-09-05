@@ -1,10 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using EShop.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -19,9 +17,9 @@ namespace EShop.WebUI.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
 
         public RegisterModel(
-                UserManager<ShopUser> userManager,
-                SignInManager<ShopUser> signInManager,
-                ILogger<RegisterModel> logger)
+            UserManager<ShopUser> userManager,
+            SignInManager<ShopUser> signInManager,
+            ILogger<RegisterModel> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -62,7 +60,7 @@ namespace EShop.WebUI.Areas.Identity.Pages.Account
 
             [Required]
             [StringLength(100, ErrorMessage = "{0} должен содержать минимум {2} и максимум {1} символов.",
-                    MinimumLength = 6)]
+                MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Пароль")]
             public string Password { get; set; }
@@ -94,10 +92,7 @@ namespace EShop.WebUI.Areas.Identity.Pages.Account
                     return LocalRedirect(returnUrl);
                 }
 
-                foreach(var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                foreach(var error in result.Errors) ModelState.AddModelError(string.Empty, error.Description);
             }
 
             // If we got this far, something failed, redisplay form
