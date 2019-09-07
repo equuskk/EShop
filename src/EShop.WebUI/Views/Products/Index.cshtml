@@ -13,7 +13,7 @@
                 {
                     <option class="dropdown-item">@category.Name</option>
                 }
-                <option selected="">Любая</option>
+                <option class="dropdown-item" selected>Любая</option>
             </select>
             <label>Производитель:</label>
             <select class="form-control" name="vendor">
@@ -21,7 +21,7 @@
                 {
                     <option class="dropdown-item">@vendor.Name</option>
                 }
-                <option selected="">Любой</option>
+                <option class="dropdown-item" selected="">Любой</option>
             </select>
             <label>Сортировка по цене</label>
             <select class="form-control" name="sort">
@@ -55,7 +55,7 @@
                     </a>
                     @if(User.IsInRole("Admin"))
                     {
-                        <a class="btn btn-success btn-block" asp-controller="Admin" asp-action="DeleteProduct" asp-route-ProductId="@product.Id">
+                        <a class="btn btn-danger btn-block" asp-controller="Admin" asp-action="DeleteProduct" asp-route-ProductId="@product.Id">
                             Удалить товар
                         </a>
                     }

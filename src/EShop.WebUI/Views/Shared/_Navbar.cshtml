@@ -15,10 +15,10 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-controller="Home" asp-action="About">О нас</a>
                     </li>
-                    @if(User.IsInRole("Admin"))
+                    @if (User.IsInRole("Admin"))
                     {
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Добавить...
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,6 +30,20 @@
                                 </a>
                                 <a class="dropdown-item" asp-controller="Admin" asp-action="AddVendorView">
                                     Добавить поставщика
+                                </a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Удалить...
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-controller="Admin" asp-action="DeleteCategoryView">
+                                    Удалить категорию
+                                </a>
+                                <a class="dropdown-item" asp-controller="Admin" asp-action="DeleteVendorView">
+                                    Удалить поставщика
                                 </a>
                             </div>
                         </li>

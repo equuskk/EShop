@@ -1,0 +1,15 @@
+﻿@model EShop.Application.Categories.Queries.GetCategories.CategoriesViewModel;
+
+    <form asp-action="DeleteCategory" asp-controller="Admin" method="post">
+       
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Категория</label>
+            <select name="categoryID" class="form-control">
+                @foreach (var categories in Model.Categories)
+                {
+                    <option value="@categories.Id">@categories.Name</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Удалить</button>
+    </form>
