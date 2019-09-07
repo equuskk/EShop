@@ -1,10 +1,12 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 using EShop.Application.Categories.Commands.AddCategory;
+using EShop.Application.Categories.Commands.DeleteCategory;
 using EShop.Application.Categories.Queries.GetCategories;
 using EShop.Application.Products.Commands.AddProduct;
 using EShop.Application.Products.Commands.DeleteProduct;
 using EShop.Application.Vendors.Commands.AddVendor;
+using EShop.Application.Vendors.Commands.DeleteVendor;
 using EShop.Application.Vendors.Queries.GetVendors;
 using EShop.Domain.Entities;
 using EShop.WebUI.ViewModels;
@@ -38,18 +40,42 @@ namespace EShop.WebUI.Controllers
             return RedirectToAction("Index", "Products");
         }
 
+        public async Task<IActionResult> DeleteVendorView()
+        {
+            var model = await _mediator.Send(new GetVendorsQuery());
+            return View("Remove/DeleteVendorView", model);
+        }
+
+        public async Task<IActionResult> DeleteVendor(int vendorId)
+        {
+            await _mediator.Send(new DeleteVendorCommand(vendorId));
+            return RedirectToAction("Index", "Products");
+        }
+
+        public async Task<IActionResult> DeleteCategoryView()
+        {
+            var model = await _mediator.Send(new GetCategoriesQuery());
+            return View("Remove/DeleteCategoryView", model);
+        }
+
+        public async Task<IActionResult> DeleteCategory(int categoryId)
+        {
+            await _mediator.Send(new DeleteCategoryCommand(categoryId));
+            return RedirectToAction("Index", "Products");
+        }
+
         public async Task<IActionResult> AddProductView()
         {
             var categories = await _mediator.Send(new GetCategoriesQuery());
             var vendors = await _mediator.Send(new GetVendorsQuery());
 
 
-            return View(new AddProductViewModels { Categories = categories, Vendors = vendors });
+            return View("Add/AddProductView",new AddProductViewModels { Categories = categories, Vendors = vendors });
         }
 
         public async Task<IActionResult> AddVendorView()
         {
-            return View();
+            return View("Add/AddVendorView");
         }
 
         public async Task<IActionResult> AddVendor(string name, string description)
@@ -60,7 +86,7 @@ namespace EShop.WebUI.Controllers
 
         public async Task<IActionResult> AddCategoryView()
         {
-            return View();
+            return View("Add/AddCategoryView");
         }
 
         public async Task<IActionResult> AddCategory(string name)
