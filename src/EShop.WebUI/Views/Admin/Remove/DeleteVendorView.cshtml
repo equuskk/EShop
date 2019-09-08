@@ -1,15 +1,31 @@
 ﻿@model EShop.Application.Vendors.Queries.GetVendors.VendorsViewModel
 
-<form asp-action="DeleteVendor" asp-controller="Admin" method="post">
-       
-    <div class="form-group">
-        <label for="exampleFormControlSelect1">Поставщик</label>
-        <select name="vendorId" class="form-control">
-            @foreach (var vendor in Model.Vendors)
-            {
-                <option value="@vendor.Id">@vendor.Name</option>
-            }
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Удалить</button>
-</form>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Описание</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var vendor in Model.Vendors)
+    {
+        <tr>
+            <td>
+                <span>
+                    @vendor.Name
+                </span>
+            </td>
+            <td>
+                <span>
+                    @vendor.Description
+                </span>
+            </td>
+            <td>
+                <a class="btn btn-danger btn-block" asp-controller="Admin" asp-action="DeleteVendor" asp-route-vendorId="@vendor.Id">Убрать</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
