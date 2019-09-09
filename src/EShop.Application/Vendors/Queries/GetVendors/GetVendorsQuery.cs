@@ -2,5 +2,7 @@
 
 namespace EShop.Application.Vendors.Queries.GetVendors
 {
-    public class GetVendorsQuery : IRequest<VendorsViewModel> { }
+    public class GetVendorsQuery : IRequest<VendorsViewModel>
+    {
+    }
 }

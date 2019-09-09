@@ -15,7 +15,9 @@ namespace EShop.Domain.Entities
         public virtual Product Product { get; private set; }
         public virtual Order Order { get; private set; }
 
-        private ProductInCart() { }
+        private ProductInCart()
+        {
+        }
 
         public ProductInCart(string userId, int productId, int quantity, int? orderId = null)
         {

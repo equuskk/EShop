@@ -27,7 +27,7 @@ namespace EShop.Application.Tests.Reviews.Commands
             var handler = new DeleteReviewCommandHandler(GetDbContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                                                            await handler.Handle(cmd, CancellationToken.None));
+                                                                await handler.Handle(cmd, CancellationToken.None));
         }
 
         [Fact]
@@ -37,7 +37,7 @@ namespace EShop.Application.Tests.Reviews.Commands
             var handler = new DeleteReviewCommandHandler(GetDbContext());
 
             await Assert.ThrowsAsync<AccessDeniedException>(async () =>
-                                                                await handler.Handle(cmd, CancellationToken.None));
+                                                                    await handler.Handle(cmd, CancellationToken.None));
         }
     }
 }

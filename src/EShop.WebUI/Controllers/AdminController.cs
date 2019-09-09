@@ -70,7 +70,7 @@ namespace EShop.WebUI.Controllers
             var vendors = await _mediator.Send(new GetVendorsQuery());
 
 
-            return View("Add/AddProductView",new AddProductViewModels { Categories = categories, Vendors = vendors });
+            return View("Add/AddProductView", new AddProductViewModels { Categories = categories, Vendors = vendors });
         }
 
         public async Task<IActionResult> AddVendorView()
@@ -80,7 +80,7 @@ namespace EShop.WebUI.Controllers
 
         public async Task<IActionResult> AddVendor(string name, string description)
         {
-            await _mediator.Send(new AddVendorCommand(name,description));
+            await _mediator.Send(new AddVendorCommand(name, description));
             return RedirectToAction("Index", "Products");
         }
 
