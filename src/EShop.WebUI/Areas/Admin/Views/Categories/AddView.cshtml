@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Добавление категории";
+}
+
+<form asp-area="Admin"  asp-controller="Categories" asp-action="Add">
+    <div class="form-group">
+        <label>Название категории</label>
+        <input type="text" name="name" class="form-control" placeholder="Название категории">
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form>

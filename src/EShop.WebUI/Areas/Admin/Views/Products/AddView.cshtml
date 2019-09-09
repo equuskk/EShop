@@ -1,9 +1,11 @@
 ﻿@model EShop.WebUI.ViewModels.AddProductViewModels
+@{
+    ViewData["Title"] = "Добавление товара";
+}
 
-
-<form asp-action="AddProduct" asp-controller="Admin" method="post" enctype="multipart/form-data">
+<form asp-area="Admin" asp-controller="Products" asp-action="Add" method="post" enctype="multipart/form-data">
     <div class="form-group">
-        <label>Заголовок товара</label>
+        <label>Название товара</label>
         <input type="text" name="title" class="form-control">
     </div>
     <div class="form-group">
@@ -26,7 +28,7 @@
     </div>
     <div class="form-group">
         <label>Описание товара</label>
-        <textarea class="form-control" name="description" placeholder="Описание..." rows="3"></textarea>
+        <textarea class="form-control" name="description" placeholder="Описание товара" rows="3"></textarea>
     </div>
     <label>Цена</label>
     <input type="number" name="price" class="form-control">

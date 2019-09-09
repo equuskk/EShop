@@ -1,0 +1,34 @@
+@model EShop.Application.Categories.Queries.GetCategories.CategoriesViewModel;
+@{
+    ViewData["Title"] = "Управление категориями";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var category in Model.Categories)
+    {
+        <tr>
+            <td>
+                @category.Name
+            </td>
+            <td>
+                <a class="btn btn-danger btn-block" asp-area="Admin" asp-controller="Categories" asp-action="Delete" asp-route-categoryId="@category.Id">
+                    Удалить
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<a class="btn btn-info" asp-area="Admin" asp-controller="Categories" asp-action="AddView">
+    Добавить производителя
+</a>
