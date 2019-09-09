@@ -26,7 +26,7 @@ namespace EShop.Application.Tests.Reviews.Commands
             var handler = new AddReviewCommandHandler(GetDbContext());
 
             await Assert.ThrowsAsync<DbUpdateException>(async () =>
-                                                            await handler.Handle(cmd, CancellationToken.None));
+                                                                await handler.Handle(cmd, CancellationToken.None));
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace EShop.Application.Tests.Reviews.Commands
             var handler = new AddReviewCommandHandler(GetDbContext());
 
             await Assert.ThrowsAsync<DbUpdateException>(async () =>
-                                                            await handler.Handle(cmd, CancellationToken.None));
+                                                                await handler.Handle(cmd, CancellationToken.None));
         }
     }
 }

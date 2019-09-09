@@ -26,7 +26,7 @@ namespace EShop.Application.Tests.Categories.Commands
             var handler = new DeleteCategoryCommandHandler(GetDbContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                                                            await handler.Handle(cmd, CancellationToken.None));
+                                                                await handler.Handle(cmd, CancellationToken.None));
         }
     }
 }

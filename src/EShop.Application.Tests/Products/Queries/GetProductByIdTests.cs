@@ -26,7 +26,7 @@ namespace EShop.Application.Tests.Products.Queries
             var handler = new GetProductByIdQueryHandler(GetDbContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                                                            await handler.Handle(cmd, CancellationToken.None));
+                                                                await handler.Handle(cmd, CancellationToken.None));
         }
     }
 }

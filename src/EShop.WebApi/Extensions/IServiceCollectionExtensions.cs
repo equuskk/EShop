@@ -15,25 +15,25 @@ namespace EShop.WebApi.Extensions
         {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
             services
-                .AddAuthentication(options =>
-                {
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(cfg =>
-                {
-                    cfg.RequireHttpsMetadata = false;
-                    cfg.SaveToken = true;
-                    cfg.TokenValidationParameters = new TokenValidationParameters
+                    .AddAuthentication(options =>
                     {
-                        ValidIssuer = configuration["JwtAuth:Issuer"],
-                        ValidAudience = configuration["JwtAuth:Issuer"],
-                        IssuerSigningKey =
-                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtAuth:Key"])),
-                        ClockSkew = TimeSpan.Zero // remove delay of token when expire
-                    };
-                });
+                        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    })
+                    .AddJwtBearer(cfg =>
+                    {
+                        cfg.RequireHttpsMetadata = false;
+                        cfg.SaveToken = true;
+                        cfg.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidIssuer = configuration["JwtAuth:Issuer"],
+                            ValidAudience = configuration["JwtAuth:Issuer"],
+                            IssuerSigningKey =
+                                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtAuth:Key"])),
+                            ClockSkew = TimeSpan.Zero // remove delay of token when expire
+                        };
+                    });
             services.AddScoped<GenerateTokenService>();
         }
     }

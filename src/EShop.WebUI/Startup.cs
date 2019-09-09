@@ -39,7 +39,7 @@ namespace EShop.WebUI
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                                                            options.UseSqlServer(connectionString));
+                                                                options.UseSqlServer(connectionString));
             services.AddIdentity<ShopUser, IdentityRole>(options =>
                     {
                         options.User.RequireUniqueEmail = true;

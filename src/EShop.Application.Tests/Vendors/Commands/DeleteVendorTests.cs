@@ -26,7 +26,7 @@ namespace EShop.Application.Tests.Vendors.Commands
             var handler = new DeleteVendorCommandHandler(GetDbContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                                                            await handler.Handle(cmd, CancellationToken.None));
+                                                                await handler.Handle(cmd, CancellationToken.None));
         }
     }
 }

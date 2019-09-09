@@ -19,7 +19,9 @@ namespace EShop.Domain.Entities
 
         //TODO: category & image
 
-        private Product() { }
+        private Product()
+        {
+        }
 
         public Product(string title, string description, double price, int vendorId, int categoryId, string ImagePath)
         {
@@ -30,7 +32,6 @@ namespace EShop.Domain.Entities
             SetCategoryId(categoryId);
             SetImagePath(ImagePath);
         }
-
 
         public void SetImagePath(string Path)
         {

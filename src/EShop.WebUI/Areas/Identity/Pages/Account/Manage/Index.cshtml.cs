@@ -17,9 +17,9 @@ namespace EShop.WebUI.Areas.Identity.Pages.Account.Manage
         private readonly IEmailSender _emailSender;
 
         public IndexModel(
-            UserManager<ShopUser> userManager,
-            SignInManager<ShopUser> signInManager,
-            IEmailSender emailSender)
+                UserManager<ShopUser> userManager,
+                SignInManager<ShopUser> signInManager,
+                IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -93,7 +93,7 @@ namespace EShop.WebUI.Areas.Identity.Pages.Account.Manage
                 {
                     var userId = await _userManager.GetUserIdAsync(user);
                     throw new
-                        InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
+                            InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
                 }
             }
 
@@ -105,7 +105,7 @@ namespace EShop.WebUI.Areas.Identity.Pages.Account.Manage
                 {
                     var userId = await _userManager.GetUserIdAsync(user);
                     throw new
-                        InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
+                            InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
             }
 

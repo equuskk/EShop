@@ -28,7 +28,10 @@ namespace EShop.Application.Cart.Commands.MakeOrder
             }
 
             var orderSum = 0.0;
-            foreach(var item in productsInCart) orderSum += item.Product.Price * item.Quantity;
+            foreach(var item in productsInCart)
+            {
+                orderSum += item.Product.Price * item.Quantity;
+            }
 
             var order = new Order(orderSum);
             _db.Orders.Add(order);

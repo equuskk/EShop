@@ -14,7 +14,7 @@ namespace EShop.WebUI.Extensions
         /// <typeparam name="T">Database Context</typeparam>
         /// <param name="host">Web Host</param>
         public static IWebHost InitializeDatabase<T>(this IWebHost host)
-            where T : DbContext
+                where T : DbContext
         {
             using(var serviceScope = host.Services.CreateScope())
             {

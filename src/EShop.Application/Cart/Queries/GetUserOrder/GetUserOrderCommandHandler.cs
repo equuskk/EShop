@@ -17,8 +17,7 @@ namespace EShop.Application.Cart.Queries.GetUserOrder
             _db = db;
         }
 
-
-        public async Task<OrderViewModel> Handle(GetUserOrderCommand request, CancellationToken cancellationToken)
+        public Task<OrderViewModel> Handle(GetUserOrderCommand request, CancellationToken cancellationToken)
         {
             var productInCarts = _db.ProductsInCarts.Include(x => x.Order)
                                     .Include(x => x.Product)
@@ -31,10 +30,10 @@ namespace EShop.Application.Cart.Queries.GetUserOrder
                 throw new NotFoundException(nameof(productInCarts), "Не найдено продуктов.");
             }
 
-            return new OrderViewModel
+            return Task.FromResult(new OrderViewModel
             {
                 ProductInCarts = productInCarts
-            };
+            });
         }
     }
 }
