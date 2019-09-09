@@ -58,7 +58,9 @@ namespace EShop.WebUI
 
             services.AddHangfire(config => { config.UseMemoryStorage(); });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options => 
+                                    options.EnableEndpointRouting = false)
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -85,6 +87,10 @@ namespace EShop.WebUI
 
             app.UseMvc(routes =>
             {
+                routes.MapAreaRoute(
+                                name: "AdminArea",
+                                areaName: "Admin",
+                                template: "Admin/{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(
                                 "default",
                                 "{controller=Home}/{action=Index}/{id?}");

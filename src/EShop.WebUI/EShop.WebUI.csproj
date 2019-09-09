@@ -23,4 +23,9 @@
     <ProjectReference Include="..\EShop.Domain\EShop.Domain.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Admin\Views\Admin\Add\AddProductView.cshtml" />
+  </ItemGroup>
+
 </Project>

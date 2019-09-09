@@ -1,0 +1,42 @@
+@model EShop.Application.Products.Queries.GetProducts.ProductsViewModel;
+@{
+    ViewData["Title"] = "Управление товарами";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Цена</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var product in Model.Products)
+    {
+        <tr>
+            <td>
+                @product.Name
+            </td>
+            <td>
+                @product.Description
+            </td>
+            <td>
+                @product.Price.ToString("C")
+            </td>
+            <td>
+                <a class="btn btn-danger btn-block" asp-area="Admin" asp-controller="Vendors" asp-action="Delete" asp-route-vendorId="@product.Id">
+                    Удалить
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<a class="btn btn-info" asp-area="Admin" asp-controller="Products" asp-action="AddView">
+    Добавить товар
+</a>
