@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
+using EShop.Application.Hangfire;
 using EShop.Application.Products.Queries.GetProducts;
 using EShop.DataAccess;
 using EShop.Domain.Entities;
-using EShop.WebUI.Helpers;
 using Hangfire;
 using Hangfire.MemoryStorage;
 using MediatR;
@@ -26,7 +26,7 @@ namespace EShop.WebUI
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private readonly IConfiguration Configuration;
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -94,7 +94,7 @@ namespace EShop.WebUI
 
         private void CreateRoles()
         {
-            BackgroundJob.Enqueue<RolesHelper>(x => x.CreateRole());
+            BackgroundJob.Enqueue<CreateRolesTask>(x => x.Execute());
         }
     }
 }

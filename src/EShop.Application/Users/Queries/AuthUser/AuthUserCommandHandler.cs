@@ -26,13 +26,14 @@ namespace EShop.Application.Users.Queries.AuthUser
         {
             var auth = await _signInManager.PasswordSignInAsync(request.UserName, request.Password,
                                                                 true, false);
-            if(auth.Succeeded)
+            if(!auth.Succeeded)
             {
-                var user = await _userManager.FindByNameAsync(request.UserName);
-                return _tokenService.GenerateJwtToken(user);
+                throw new AuthenticationException("login failed");
             }
 
-            throw new AuthenticationException("login failed");
+            var user = await _userManager.FindByNameAsync(request.UserName);
+            return _tokenService.GenerateJwtToken(user);
+
         }
     }
 }

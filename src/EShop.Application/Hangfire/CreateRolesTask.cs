@@ -1,20 +1,20 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-namespace EShop.WebUI.Helpers
+namespace EShop.Application.Hangfire
 {
-    public class RolesHelper
+    public class CreateRolesTask
     {
-        public RoleManager<IdentityRole> _manager { get; set; }
+        private readonly RoleManager<IdentityRole> _manager;
 
-        public RolesHelper(RoleManager<IdentityRole> manager)
+        public CreateRolesTask(RoleManager<IdentityRole> manager)
         {
             _manager = manager;
         }
 
-        public async Task CreateRole()
+        public async Task Execute()
         {
-            var roleName = "Admin";
+            const string roleName = "Admin";
 
             if(await _manager.RoleExistsAsync(roleName))
             {

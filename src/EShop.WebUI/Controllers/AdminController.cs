@@ -8,12 +8,10 @@ using EShop.Application.Products.Commands.DeleteProduct;
 using EShop.Application.Vendors.Commands.AddVendor;
 using EShop.Application.Vendors.Commands.DeleteVendor;
 using EShop.Application.Vendors.Queries.GetVendors;
-using EShop.Domain.Entities;
 using EShop.WebUI.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.WebUI.Controllers
@@ -21,22 +19,17 @@ namespace EShop.WebUI.Controllers
     public class AdminController : Controller
     {
         private readonly IHostingEnvironment _appEnvironment;
-        private readonly Helpers.Helpers _helpers;
-        private readonly UserManager<ShopUser> _manager;
         private readonly IMediator _mediator;
 
-        public AdminController(IMediator mediator, Helpers.Helpers helpers, UserManager<ShopUser> manager,
-                               IHostingEnvironment appEnvironment)
+        public AdminController(IMediator mediator, IHostingEnvironment appEnvironment)
         {
             _mediator = mediator;
-            _helpers = helpers;
-            _manager = manager;
             _appEnvironment = appEnvironment;
         }
 
-        public async Task<IActionResult> DeleteProduct(int ProductId)
+        public async Task<IActionResult> DeleteProduct(int productId)
         {
-            await _mediator.Send(new DeleteProductCommand(ProductId));
+            await _mediator.Send(new DeleteProductCommand(productId));
             return RedirectToAction("Index", "Products");
         }
 
@@ -73,7 +66,7 @@ namespace EShop.WebUI.Controllers
             return View("Add/AddProductView", new AddProductViewModels { Categories = categories, Vendors = vendors });
         }
 
-        public async Task<IActionResult> AddVendorView()
+        public IActionResult AddVendorView()
         {
             return View("Add/AddVendorView");
         }
@@ -84,7 +77,7 @@ namespace EShop.WebUI.Controllers
             return RedirectToAction("Index", "Products");
         }
 
-        public async Task<IActionResult> AddCategoryView()
+        public IActionResult AddCategoryView()
         {
             return View("Add/AddCategoryView");
         }
@@ -97,25 +90,26 @@ namespace EShop.WebUI.Controllers
 
         [HttpPost]
         public async Task<IActionResult> AddProduct(string title, string description, int price, IFormFile file,
-                                                    int vendorID, int categoryId)
+                                                    int vendorId, int categoryId)
         {
-            if(file != null)
+            if(file is null)
             {
-                // путь к папке Files
-                var path = "/Images/ProductImages/" + file.FileName;
-
-                // сохраняем файл в папку Files в каталоге wwwroot
-                using(var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
-                {
-                    await file.CopyToAsync(fileStream);
-                }
-
-                await _mediator.Send(new AddProductCommand(title, description, price, vendorID, categoryId,
-                                                           file.FileName));
                 return RedirectToAction("Index", "Products");
             }
 
+            // путь к папке Files
+            var path = "/Images/ProductImages/" + file.FileName;
+
+            // сохраняем файл в папку Files в каталоге wwwroot
+            using(var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+            {
+                await file.CopyToAsync(fileStream);
+            }
+
+            await _mediator.Send(new AddProductCommand(title, description, price, vendorId, categoryId,
+                                                       file.FileName));
             return RedirectToAction("Index", "Products");
+
         }
     }
 }

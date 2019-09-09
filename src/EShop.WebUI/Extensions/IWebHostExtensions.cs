@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace EShop.WebUI.Extensions
 {
-    public static class IWebHostExtensions
+    public static class WebHostExtensions
     {
         /// <summary>
         ///     Initialize Database
