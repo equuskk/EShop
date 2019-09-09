@@ -26,8 +26,7 @@ namespace EShop.Application.Cart.Commands.AddProductToCart
             productInCart = new ProductInCart(request.ShopUserId, request.ProductId, request.Quantity);
 
             _db.ProductsInCarts.Add(productInCart);
-
-
+            
             await _db.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;

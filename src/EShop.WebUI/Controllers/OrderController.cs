@@ -32,8 +32,8 @@ namespace EShop.WebUI.Controllers
         public async Task<IActionResult> GetOrder()
         {
             var user = await _manager.GetUserAsync(User);
-            var Order = await _mediator.Send(new GetUserOrderCommand(user.Id));
-            return View("Index", Order);
+            var order = await _mediator.Send(new GetUserOrderCommand(user.Id));
+            return View("Index", order);
         }
     }
 }

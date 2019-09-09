@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace EShop.WebApi.Extensions
 {
-    public static class IServiceCollectionExtensions
+    public static class ServiceCollectionExtensions
     {
         public static void AddJwtAuth(this IServiceCollection services, IConfiguration configuration)
         {
