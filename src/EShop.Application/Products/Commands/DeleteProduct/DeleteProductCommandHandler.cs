@@ -4,29 +4,36 @@ using EShop.DataAccess;
 using EShop.Domain.Entities;
 using EShop.Domain.Exceptions;
 using MediatR;
+using Serilog;
 
 namespace EShop.Application.Products.Commands.DeleteProduct
 {
     public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, Unit>
     {
         private readonly ApplicationDbContext _db;
-
+        private readonly ILogger _logger;
         public DeleteProductCommandHandler(ApplicationDbContext db)
         {
             _db = db;
+            _logger = Log.ForContext<DeleteProductCommandHandler>();
         }
 
         public async Task<Unit> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
             var product = await _db.Products.FindAsync(request.ProductId);
 
+            _logger.Debug("Удаление продукта с именем {0} (ID: {1})", product.Name, product.Id);
+
             if(product is null)
             {
+                _logger.Debug("Удаление продукта с именем {0} не найден", product.Name);
                 throw new NotFoundException(nameof(Product), request.ProductId);
             }
 
             _db.Products.Remove(product);
             await _db.SaveChangesAsync(cancellationToken);
+
+            _logger.Debug("Удаление продукта с именем {0} удалён", product.Name);
 
             return Unit.Value;
         }

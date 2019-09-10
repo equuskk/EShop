@@ -12,7 +12,7 @@
     }
     @if(SignInManager.IsSignedIn(User))
     {
-        <a class="fas fa-shopping-cart nav-link" asp-controller="Cart" asp-action="Index">
+        <a class="fas fa-shopping-cart nav-link" asp-area="" asp-controller="Cart" asp-action="Index">
             <span id="amount" class="badge badge-primary badge-pill">
                 0
             </span>
