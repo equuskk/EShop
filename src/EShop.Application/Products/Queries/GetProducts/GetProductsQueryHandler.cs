@@ -12,6 +12,7 @@ namespace EShop.Application.Products.Queries.GetProducts
     {
         private readonly ApplicationDbContext _db;
         private readonly ILogger _logger;
+
         public GetProductsQueryHandler(ApplicationDbContext db)
         {
             _db = db;

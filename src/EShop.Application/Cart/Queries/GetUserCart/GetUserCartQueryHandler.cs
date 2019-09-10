@@ -12,6 +12,7 @@ namespace EShop.Application.Cart.Queries.GetUserCart
     {
         private readonly ApplicationDbContext _db;
         private readonly ILogger _logger;
+
         public GetUserCartQueryHandler(ApplicationDbContext db)
         {
             _db = db;
@@ -23,7 +24,7 @@ namespace EShop.Application.Cart.Queries.GetUserCart
             var cart = _db.ProductsInCarts.Include(x => x.Product).Where(x => x.UserId == request.ShopUserId &&
                                                                               x.OrderId == null).Select(x => x.Product);
 
-            _logger.Debug("Получение корзниы пользователя с ID {0}",request.ShopUserId);
+            _logger.Debug("РџРѕР»СѓС‡РµРЅРёРµ РєРѕСЂР·РЅРёС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃ ID {0}", request.ShopUserId);
 
             return Task.FromResult(new CartViewModel
             {

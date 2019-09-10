@@ -12,6 +12,7 @@ namespace EShop.Application.Products.Commands.EditProduct
     {
         private readonly ApplicationDbContext _db;
         private readonly ILogger _logger;
+
         public EditProductCommandHandler(ApplicationDbContext db)
         {
             _db = db;

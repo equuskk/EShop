@@ -11,6 +11,7 @@ namespace EShop.Application.Reviews.Commands.AddReview
     {
         private readonly ApplicationDbContext _db;
         private readonly ILogger _logger;
+
         public AddReviewCommandHandler(ApplicationDbContext db)
         {
             _db = db;
@@ -25,7 +26,7 @@ namespace EShop.Application.Reviews.Commands.AddReview
             _db.Reviews.Add(review);
             await _db.SaveChangesAsync(cancellationToken);
 
-            _logger.Debug("Отзыв добавлен, ID отзыва:{0}",review.Id);
+            _logger.Debug("Отзыв добавлен, ID отзыва:{0}", review.Id);
 
             return review.Id;
         }

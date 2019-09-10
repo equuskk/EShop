@@ -11,6 +11,7 @@ namespace EShop.Application.Products.Commands.AddProduct
     {
         private readonly ApplicationDbContext _db;
         private readonly ILogger _logger;
+
         public AddProductCommandHandler(ApplicationDbContext db)
         {
             _db = db;

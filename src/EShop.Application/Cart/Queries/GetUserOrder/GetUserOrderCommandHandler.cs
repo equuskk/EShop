@@ -13,6 +13,7 @@ namespace EShop.Application.Cart.Queries.GetUserOrder
     {
         private readonly ApplicationDbContext _db;
         private readonly ILogger _logger;
+
         public GetUserOrderCommandHandler(ApplicationDbContext db)
         {
             _db = db;

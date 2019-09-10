@@ -13,6 +13,7 @@ namespace EShop.Application.Products.Queries.GetProductById
     {
         private readonly ApplicationDbContext _db;
         private readonly ILogger _logger;
+
         public GetProductByIdQueryHandler(ApplicationDbContext db)
         {
             _db = db;
@@ -21,7 +22,7 @@ namespace EShop.Application.Products.Queries.GetProductById
 
         public async Task<Product> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
-            _logger.Debug("Получение продукта с ID = {0}",request.ProductId);
+            _logger.Debug("Получение продукта с ID = {0}", request.ProductId);
             var product = await _db.Products.Include(x => x.Vendor).Include(x => x.Category)
                                    .SingleOrDefaultAsync(x => x.Id == request.ProductId,
                                                          cancellationToken);

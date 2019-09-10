@@ -25,7 +25,7 @@ namespace EShop.Application.Cart.Commands.MakeOrder
             var productsInCart = _db.ProductsInCarts.Include(x => x.Product)
                                     .Where(x => x.UserId == request.ShopUserId && x.OrderId == null);
 
-            _logger.Debug("Добавление заказа для пользователя с ID {0}",request.ShopUserId);
+            _logger.Debug("Добавление заказа для пользователя с ID {0}", request.ShopUserId);
 
             if(!productsInCart.Any())
             {

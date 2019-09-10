@@ -12,6 +12,7 @@ namespace EShop.Application.Categories.Commands.EditCategory
     {
         private readonly ApplicationDbContext _db;
         private readonly ILogger _logger;
+
         public EditCategoryCommandHandler(ApplicationDbContext db)
         {
             _db = db;
@@ -21,11 +22,11 @@ namespace EShop.Application.Categories.Commands.EditCategory
         public async Task<Category> Handle(EditCategoryCommand request, CancellationToken cancellationToken)
         {
             var category = await _db.Categories.FindAsync(request.CategoryId);
-            _logger.Debug("Редактирование категории с именем {0}", category.Name);
+            _logger.Debug("Редактирование категории с ID {0}", request.CategoryId);
 
             if(category is null)
             {
-                _logger.Debug("Категории с именем {0} не найдено", category.Name);
+                _logger.Debug("Категории с ID {0} не найдено", request.CategoryId);
                 throw new NotFoundException(nameof(Product), request.CategoryId);
             }
 

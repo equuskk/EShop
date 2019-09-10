@@ -13,6 +13,7 @@ namespace EShop.Application.Reviews.Commands.DeleteReview
     {
         private readonly ApplicationDbContext _db;
         private readonly ILogger _logger;
+
         public DeleteReviewCommandHandler(ApplicationDbContext db)
         {
             _db = db;

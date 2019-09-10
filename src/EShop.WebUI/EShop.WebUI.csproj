@@ -16,8 +16,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="Serilog.AspNetCore" Version="3.0.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
-    <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" />
-    <PackageReference Include="Serilog.Sinks.Loggly" Version="5.3.0" />
   </ItemGroup>
 
 
@@ -26,10 +24,5 @@
     <ProjectReference Include="..\EShop.DataAccess\EShop.DataAccess.csproj" />
     <ProjectReference Include="..\EShop.Domain\EShop.Domain.csproj" />
   </ItemGroup>
-
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Areas\Admin\Views\Admin\Add\AddProductView.cshtml" />
-  </ItemGroup>
-
+  
 </Project>

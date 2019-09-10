@@ -12,6 +12,7 @@ namespace EShop.Application.Reviews.Queries.GetReviewsByProductId
     {
         private readonly ApplicationDbContext _db;
         private readonly ILogger _logger;
+
         public GetReviewsByProductIdQueryHandler(ApplicationDbContext db)
         {
             _db = db;
@@ -21,7 +22,7 @@ namespace EShop.Application.Reviews.Queries.GetReviewsByProductId
         public Task<ReviewsViewModel> Handle(GetReviewsByProductIdQuery request,
                                              CancellationToken cancellationToken)
         {
-            _logger.Debug("Получение отзывов по ID продукта (ID: {0})",request.ProductId);
+            _logger.Debug("Получение отзывов по ID продукта (ID: {0})", request.ProductId);
 
             return Task.FromResult(new ReviewsViewModel
             {

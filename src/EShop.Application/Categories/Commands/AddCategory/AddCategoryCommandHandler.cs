@@ -11,6 +11,7 @@ namespace EShop.Application.Categories.Commands.AddCategory
     {
         private readonly ApplicationDbContext _db;
         private readonly ILogger _logger;
+
         public AddCategoryCommandHandler(ApplicationDbContext db)
         {
             _db = db;
@@ -27,7 +28,7 @@ namespace EShop.Application.Categories.Commands.AddCategory
 
             await _db.SaveChangesAsync(cancellationToken);
 
-            _logger.Debug("Категория с именем {0} добавлена. ID категории {1}",request.Name,category.Id);
+            _logger.Debug("Категория с именем {0} добавлена. ID категории {1}", request.Name, category.Id);
 
             return category.Id;
         }

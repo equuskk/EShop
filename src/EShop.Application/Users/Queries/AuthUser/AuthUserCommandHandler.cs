@@ -33,7 +33,6 @@ namespace EShop.Application.Users.Queries.AuthUser
 
             var user = await _userManager.FindByNameAsync(request.UserName);
             return _tokenService.GenerateJwtToken(user);
-
         }
     }
 }

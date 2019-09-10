@@ -11,6 +11,7 @@ namespace EShop.Application.Categories.Queries.GetCategories
     {
         private readonly ApplicationDbContext _db;
         private readonly ILogger _logger;
+
         public GetCategoriesQueryHandler(ApplicationDbContext db)
         {
             _db = db;
