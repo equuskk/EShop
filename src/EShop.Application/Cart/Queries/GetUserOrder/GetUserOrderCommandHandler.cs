@@ -22,7 +22,7 @@ namespace EShop.Application.Cart.Queries.GetUserOrder
 
         public Task<OrderViewModel> Handle(GetUserOrderCommand request, CancellationToken cancellationToken)
         {
-            _logger.Debug("Получение заказов пользователя с ID {0}", request.UserId);
+            _logger.Debug("Получение заказов пользователя {0}", request.UserId);
 
             var productInCarts = _db.ProductsInCarts.Include(x => x.Order)
                                     .Include(x => x.Product)
@@ -32,10 +32,11 @@ namespace EShop.Application.Cart.Queries.GetUserOrder
 
             if(productInCarts == null)
             {
-                _logger.Debug("Не найдено продуктов у пользователя с ID {0}", request.UserId);
+                _logger.Debug("У пользователя {0} отсутствуют товары в корзине", request.UserId);
                 throw new NotFoundException(nameof(productInCarts), "Не найдено продуктов.");
             }
 
+            _logger.Debug("Заказы пользователя {0} успешно получены", request.UserId);
             return Task.FromResult(new OrderViewModel
             {
                 ProductInCarts = productInCarts

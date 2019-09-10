@@ -21,19 +21,20 @@ namespace EShop.Application.Categories.Commands.EditCategory
 
         public async Task<Category> Handle(EditCategoryCommand request, CancellationToken cancellationToken)
         {
-            var category = await _db.Categories.FindAsync(request.CategoryId);
-            _logger.Debug("Редактирование категории с ID {0}", request.CategoryId);
+            _logger.Debug("Редактирование категории {0}", request.CategoryId);
 
+            var category = await _db.Categories.FindAsync(request.CategoryId);
+            
             if(category is null)
             {
-                _logger.Debug("Категории с ID {0} не найдено", request.CategoryId);
+                _logger.Debug("Категория {0} не найдена", request.CategoryId);
                 throw new NotFoundException(nameof(Product), request.CategoryId);
             }
 
             category.SetName(request.Name);
             await _db.SaveChangesAsync(cancellationToken);
 
-            _logger.Debug("Редактирование категории с именем {0} завершено успешно", category.Name);
+            _logger.Debug("Редактирование категории {0} завершено успешно", request.CategoryId);
 
             return category;
         }

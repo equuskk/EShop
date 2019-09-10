@@ -20,13 +20,14 @@ namespace EShop.Application.Reviews.Commands.AddReview
 
         public async Task<int> Handle(AddReviewCommand request, CancellationToken cancellationToken)
         {
-            var review = new Review(request.Text, request.Rate, request.ShopUserId, request.ProductId);
-
             _logger.Debug("Добавление отзыва");
+            var review = new Review(request.Text, request.Rate, request.ShopUserId, request.ProductId);
+            
             _db.Reviews.Add(review);
             await _db.SaveChangesAsync(cancellationToken);
 
-            _logger.Debug("Отзыв добавлен, ID отзыва:{0}", review.Id);
+            _logger.Debug("Добавлен отзыв {0} для товара {1}", review.Id,
+                          request.ProductId);
 
             return review.Id;
         }

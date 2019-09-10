@@ -21,13 +21,13 @@ namespace EShop.Application.Products.Commands.EditProduct
 
         public async Task<Product> Handle(EditProductCommand request, CancellationToken cancellationToken)
         {
-            _logger.Debug("Редактирование продукта с именем {0}", request.Name);
+            _logger.Debug("Редактирование продукта {0}", request.ProductId);
 
             var product = await _db.Products.FindAsync(request.ProductId);
 
             if(product is null)
             {
-                _logger.Debug("Продукта с именем {0 не найден}", request.Name);
+                _logger.Debug("Продукта {0} не найден", request.ProductId);
                 throw new NotFoundException(nameof(Product), request.ProductId);
             }
 
@@ -39,7 +39,7 @@ namespace EShop.Application.Products.Commands.EditProduct
 
             await _db.SaveChangesAsync(cancellationToken);
 
-            _logger.Debug("Редактирование продукта с именем {0} завершено.", request.Name);
+            _logger.Debug("Продукт {0} успешно отредактирован", request.ProductId);
 
             return product;
         }

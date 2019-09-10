@@ -22,7 +22,7 @@ namespace EShop.Application.Products.Queries.GetProductsByCategory
         public Task<ProductsViewModel> Handle(GetProductsByCategoryQuery request,
                                               CancellationToken cancellationToken)
         {
-            _logger.Debug("Получение продуктов по категории, ID категории: {0}", request.CategoryId);
+            _logger.Debug("Получение продуктов в категории {0}", request.CategoryId);
             return Task.FromResult(new ProductsViewModel
             {
                 Products = _db.Products.Where(x => x.CategoryId == request.CategoryId).ToArray()

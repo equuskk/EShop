@@ -22,13 +22,14 @@ namespace EShop.Application.Cart.Commands.MakeOrder
 
         public async Task<bool> Handle(MakeOrderCommand request, CancellationToken cancellationToken)
         {
+            _logger.Debug("Оформление заказа для пользователя {0}", request.ShopUserId);
+
             var productsInCart = _db.ProductsInCarts.Include(x => x.Product)
                                     .Where(x => x.UserId == request.ShopUserId && x.OrderId == null);
-
-            _logger.Debug("Добавление заказа для пользователя с ID {0}", request.ShopUserId);
-
+            
             if(!productsInCart.Any())
             {
+                _logger.Debug("Продукты в корзине пользователя {0} отсутствуют", request.ShopUserId);
                 return false;
             }
 
@@ -42,11 +43,13 @@ namespace EShop.Application.Cart.Commands.MakeOrder
             _db.Orders.Add(order);
             await _db.SaveChangesAsync(cancellationToken); // для того, чтобы получить ID заказа
 
+            _logger.Debug("Обновление ID заказа в корзине пользователя {0}", request.ShopUserId);
             await productsInCart.ForEachAsync(x => x.SetOrderId(order.Id),
                                               cancellationToken);
 
             await _db.SaveChangesAsync(cancellationToken);
-
+            _logger.Debug("Заказ для пользователя {0} успешно оформлен", request.ShopUserId);
+            
             return true;
         }
     }

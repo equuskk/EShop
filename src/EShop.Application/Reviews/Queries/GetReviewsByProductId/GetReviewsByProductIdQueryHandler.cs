@@ -22,7 +22,7 @@ namespace EShop.Application.Reviews.Queries.GetReviewsByProductId
         public Task<ReviewsViewModel> Handle(GetReviewsByProductIdQuery request,
                                              CancellationToken cancellationToken)
         {
-            _logger.Debug("Получение отзывов по ID продукта (ID: {0})", request.ProductId);
+            _logger.Debug("Получение отзывов у продукта {0}", request.ProductId);
 
             return Task.FromResult(new ReviewsViewModel
             {

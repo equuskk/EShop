@@ -21,6 +21,9 @@ namespace EShop.Application.Cart.Commands.AddProductToCart
 
         public async Task<Unit> Handle(AddProductToCartCommand request, CancellationToken cancellationToken)
         {
+            _logger.Debug("Пользователь {0} добавляет продукт {1} в корзину", request.ShopUserId,
+                          request.ProductId);
+            
             var productInCart =
                     _db.ProductsInCarts.FirstOrDefault(x => x.ProductId == request.ProductId &&
                                                             x.UserId == request.ShopUserId &&
@@ -28,14 +31,11 @@ namespace EShop.Application.Cart.Commands.AddProductToCart
 
             productInCart = new ProductInCart(request.ShopUserId, request.ProductId, request.Quantity);
 
-            _logger.Debug("Пользователь с ID {0} добавляет продукт c ID {1} в корзину", request.ShopUserId,
-                          request.ProductId);
-
             _db.ProductsInCarts.Add(productInCart);
 
             await _db.SaveChangesAsync(cancellationToken);
 
-            _logger.Debug("Пользователь с ID {0} добавил продукт c ID {1} в корзину", request.ShopUserId,
+            _logger.Debug("Пользователь {0} добавил продукт {1} в корзину", request.ShopUserId,
                           request.ProductId);
 
             return Unit.Value;

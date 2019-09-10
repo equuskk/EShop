@@ -22,16 +22,17 @@ namespace EShop.Application.Products.Queries.GetProductById
 
         public async Task<Product> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
-            _logger.Debug("Получение продукта с ID = {0}", request.ProductId);
+            _logger.Debug("Получение продукта {0}", request.ProductId);
             var product = await _db.Products.Include(x => x.Vendor).Include(x => x.Category)
                                    .SingleOrDefaultAsync(x => x.Id == request.ProductId,
                                                          cancellationToken);
             if(product is null)
             {
-                _logger.Debug("Продукт c ID = {0} не найден", request.ProductId);
+                _logger.Debug("Продукт {0} не найден", request.ProductId);
                 throw new NotFoundException(nameof(Product), request.ProductId);
             }
-
+            
+            _logger.Debug("Продукт {0} получен", request.ProductId);
             return product;
         }
     }

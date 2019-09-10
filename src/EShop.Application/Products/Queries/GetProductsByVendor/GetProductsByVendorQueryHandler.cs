@@ -22,7 +22,7 @@ namespace EShop.Application.Products.Queries.GetProductsByVendor
         public Task<ProductsViewModel> Handle(GetProductsByVendorQuery request,
                                               CancellationToken cancellationToken)
         {
-            _logger.Debug("Получение продуктов по поставщику, ID поставщика: {0}", request.VendorId);
+            _logger.Debug("Получение продуктов поставщика {0}", request.VendorId);
 
             return Task.FromResult(new ProductsViewModel
             {

@@ -21,11 +21,12 @@ namespace EShop.Application.Cart.Queries.GetUserCart
 
         public Task<CartViewModel> Handle(GetUserCartQuery request, CancellationToken cancellationToken)
         {
-            var cart = _db.ProductsInCarts.Include(x => x.Product).Where(x => x.UserId == request.ShopUserId &&
-                                                                              x.OrderId == null).Select(x => x.Product);
+            _logger.Debug("Получение корзины пользователя {0}", request.ShopUserId);
 
-            _logger.Debug("Получение корзниы пользователя с ID {0}", request.ShopUserId);
-
+            var cart = _db.ProductsInCarts.Include(x => x.Product)
+                          .Where(x => x.UserId == request.ShopUserId && x.OrderId == null)
+                          .Select(x => x.Product);
+            
             return Task.FromResult(new CartViewModel
             {
                 Products = cart.ToArray()

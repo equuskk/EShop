@@ -20,15 +20,15 @@ namespace EShop.Application.Products.Commands.AddProduct
 
         public async Task<int> Handle(AddProductCommand request, CancellationToken cancellationToken)
         {
+            _logger.Debug("Добавление продукта");
+
             var product = new Product(request.Name, request.Description, request.Price,
                                       request.VendorId, request.CategoryId, request.ImagePath);
-
-            _logger.Debug("Добавление продукта с именем {0}", request.Name);
-
+            
             _db.Products.Add(product);
             await _db.SaveChangesAsync(cancellationToken);
 
-            _logger.Debug("Продукта с именем {0} добавлен. Его ID : {1}", request.Name, product.Id);
+            _logger.Debug("Продукт {0} успешно добавлен", product.Id);
 
             return product.Id;
         }

@@ -23,18 +23,18 @@ namespace EShop.Application.Products.Commands.DeleteProduct
         {
             var product = await _db.Products.FindAsync(request.ProductId);
 
-            _logger.Debug("Удаление продукта с ID {0}", request.ProductId);
+            _logger.Debug("Удаление продукта {0}", request.ProductId);
 
             if(product is null)
             {
-                _logger.Debug("Удаление продукта с ID {0}", request.ProductId);
+                _logger.Debug("Продукт {0} не найден", request.ProductId);
                 throw new NotFoundException(nameof(Product), request.ProductId);
             }
 
             _db.Products.Remove(product);
             await _db.SaveChangesAsync(cancellationToken);
 
-            _logger.Debug("Удаление продукта с именем {0} удалён", product.Name);
+            _logger.Debug("Продукт {0} удалён", request.ProductId);
 
             return Unit.Value;
         }

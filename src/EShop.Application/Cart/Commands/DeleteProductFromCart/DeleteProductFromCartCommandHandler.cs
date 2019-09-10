@@ -27,8 +27,8 @@ namespace EShop.Application.Cart.Commands.DeleteProductFromCart
                                                             x.UserId == request.ShopUserId &&
                                                             x.OrderId == null);
 
-            _logger.Debug("Пользователь с ID {request.ProductId} удаляет из корзины продукт с ID {0}",
-                          request.ProductId);
+            _logger.Debug("Пользователь {0} удаляет из корзины продукт {1}",
+                          request.ShopUserId, request.ProductId);
 
             if(productInCart is null)
             {
@@ -46,7 +46,7 @@ namespace EShop.Application.Cart.Commands.DeleteProductFromCart
 
 
             await _db.SaveChangesAsync(cancellationToken);
-            _logger.Debug("Пользователь с ID {0} удалил из корзины продукт с ID {1}", request.ShopUserId,
+            _logger.Debug("Пользователь {0} удалил из корзины продукт {1}", request.ShopUserId,
                           request.ProductId);
 
             return Unit.Value;

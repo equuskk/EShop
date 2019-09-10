@@ -20,15 +20,15 @@ namespace EShop.Application.Categories.Commands.AddCategory
 
         public async Task<int> Handle(AddCategoryCommand request, CancellationToken cancellationToken)
         {
-            var category = new Category(request.Name);
+            _logger.Debug("Добавление категории {0}", request.Name);
 
-            _logger.Debug("Добавление новой категории с именем {0}", request.Name);
+            var category = new Category(request.Name);
 
             _db.Categories.Add(category);
 
             await _db.SaveChangesAsync(cancellationToken);
 
-            _logger.Debug("Категория с именем {0} добавлена. ID категории {1}", request.Name, category.Id);
+            _logger.Debug("Категория {0} добавлена", request.Name);
 
             return category.Id;
         }
