@@ -102,3 +102,4 @@ orleans.codegen.cs
 *.sln.iml
 
 *.min.*
+/src/EShop.WebUI/wwwroot/Images/ProductImages

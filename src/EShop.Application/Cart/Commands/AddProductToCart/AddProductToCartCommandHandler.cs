@@ -24,12 +24,8 @@ namespace EShop.Application.Cart.Commands.AddProductToCart
             _logger.Debug("Пользователь {0} добавляет продукт {1} в корзину", request.ShopUserId,
                           request.ProductId);
             
-            var productInCart =
-                    _db.ProductsInCarts.FirstOrDefault(x => x.ProductId == request.ProductId &&
-                                                            x.UserId == request.ShopUserId &&
-                                                            x.OrderId == null);
-
-            productInCart = new ProductInCart(request.ShopUserId, request.ProductId, request.Quantity);
+            
+            var productInCart = new ProductInCart(request.ShopUserId, request.ProductId, request.Quantity);
 
             _db.ProductsInCarts.Add(productInCart);
 

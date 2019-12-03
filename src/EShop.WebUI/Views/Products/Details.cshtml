@@ -33,11 +33,9 @@
                 <td>@Model.Product.Price.ToString("C")</td>
             </tr>
         </table>
-        <button onclick="addToCart(@Model.Product.Id)" class="btn btn-success"
-                data-toggle="modal" data-target="#addToCartModal">
+            <a onclick="AddProduct(@Model.Product.Id)" class="btn btn-success">
             Купить
-
-        </button>
+            </a>
     </div>
 </div>
 
