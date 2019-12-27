@@ -11,7 +11,7 @@ steps:
 - task: DotNetCoreInstaller@0
   displayName: 'installing dotnet'
   inputs:
-    version: '2.2.103'
+    version: '3.1.100'
 - script: dotnet restore
   workingDirectory: "src/"
   displayName: 'restoring packages'
