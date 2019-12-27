@@ -51,7 +51,8 @@ namespace EShop.Application.Tests
 
             var firstProduct = new Product("Продукт1", "Описание1", 111.11, 1, 1, "test/test.png");
             var secondProduct = new Product("Продукт2", "Описание2", 222.22, 2, 2, "test/test.png");
-            context.Products.AddRange(firstProduct, secondProduct);
+            context.Products.Add(secondProduct);
+            context.Products.Add(firstProduct);
             context.SaveChanges();
 
             InitUsers(context);
