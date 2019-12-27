@@ -82,6 +82,10 @@ namespace EShop.WebUI
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
