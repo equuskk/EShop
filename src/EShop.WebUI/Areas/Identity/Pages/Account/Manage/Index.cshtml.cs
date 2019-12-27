@@ -4,7 +4,6 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using EShop.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -14,16 +13,14 @@ namespace EShop.WebUI.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<ShopUser> _userManager;
         private readonly SignInManager<ShopUser> _signInManager;
-        private readonly IEmailSender _emailSender;
 
         public IndexModel(
                 UserManager<ShopUser> userManager,
-                SignInManager<ShopUser> signInManager,
-                IEmailSender emailSender)
+                SignInManager<ShopUser> signInManager
+                )
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailSender = emailSender;
         }
 
         public string Username { get; set; }
@@ -136,11 +133,7 @@ namespace EShop.WebUI.Areas.Identity.Pages.Account.Manage
                                        null,
                                        new { userId, code },
                                        Request.Scheme);
-            await _emailSender.SendEmailAsync(
-                                              email,
-                                              "Confirm your email",
-                                              $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
+          
             StatusMessage = "Verification email sent. Please check your email.";
             return RedirectToPage();
         }

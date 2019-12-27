@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -50,7 +49,7 @@ namespace EShop.WebUI
                         options.Password.RequireNonAlphanumeric = false;
                         options.Password.RequiredUniqueChars = 0;
                     })
-                    .AddDefaultUI(UIFramework.Bootstrap4)
+                    .AddDefaultUI()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMediatR(typeof(GetProductsQuery).GetTypeInfo().Assembly);
@@ -58,9 +57,9 @@ namespace EShop.WebUI
 
             services.AddHangfire(config => { config.UseMemoryStorage(); });
 
-            services.AddMvc(options => 
-                                    options.EnableEndpointRouting = false)
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllersWithViews()
+                    .AddNewtonsoftJson();
+            services.AddRazorPages();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -80,20 +79,26 @@ namespace EShop.WebUI
             app.UseHangfireServer(options);
 
             app.UseHttpsRedirection();
+
+            app.UseRouting();
+
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
             app.UseAuthentication();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapAreaRoute(
-                                name: "AdminArea",
-                                areaName: "Admin",
-                                template: "Admin/{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute(
+                endpoints.MapAreaControllerRoute(
+                                                 "Admin",
+                                                 "Admin",
+                                                 "Admin/{Controller=Home}/{Action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
                                 "default",
                                 "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
             CreateRoles();
         }
