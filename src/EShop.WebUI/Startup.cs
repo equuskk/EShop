@@ -1,11 +1,8 @@
-﻿using System;
-using System.Reflection;
-using EShop.Application.Hangfire;
+﻿using System.Reflection;
 using EShop.Application.Products.Queries.GetProducts;
 using EShop.DataAccess;
 using EShop.Domain.Entities;
-using Hangfire;
-using Hangfire.MemoryStorage;
+using EShop.WebUI.HostedServices;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -54,11 +51,12 @@ namespace EShop.WebUI
 
             services.AddMediatR(typeof(GetProductsQuery).GetTypeInfo().Assembly);
 
-            services.AddHangfire(config => { config.UseMemoryStorage(); });
-
             services.AddControllersWithViews()
                     .AddNewtonsoftJson();
             services.AddRazorPages();
+
+            services.AddHostedService<MigrationHostedService>()
+                    .AddHostedService<CreateDefaultRolesHostedService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -73,9 +71,6 @@ namespace EShop.WebUI
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
-            var options = new BackgroundJobServerOptions { WorkerCount = Environment.ProcessorCount * 2 };
-            app.UseHangfireServer(options);
 
             app.UseHttpsRedirection();
 
@@ -98,17 +93,11 @@ namespace EShop.WebUI
                                                  "Admin/{Controller=Home}/{Action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
-                                "default",
-                                "{controller=Home}/{action=Index}/{id?}");
+                                             "default",
+                                             "{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapRazorPages();
             });
-            CreateRoles();
-        }
-
-        private void CreateRoles()
-        {
-            BackgroundJob.Enqueue<CreateRolesTask>(x => x.Execute());
         }
     }
 }
