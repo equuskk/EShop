@@ -50,11 +50,10 @@ namespace EShop.WebUI.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Products");
             }
 
-            // путь к папке Files
-            var path = "/Images/ProductImages/" + file.FileName;
+            var path = Path.Combine(_appEnvironment.WebRootPath, "Images", "ProductImages", file.FileName);
 
             // сохраняем файл в папку Files в каталоге wwwroot
-            using(var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+            using(var fileStream = new FileStream(path, FileMode.Create))
             {
                 await file.CopyToAsync(fileStream);
             }
