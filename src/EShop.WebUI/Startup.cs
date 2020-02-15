@@ -11,10 +11,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace EShop.WebUI
 {
@@ -22,10 +22,10 @@ namespace EShop.WebUI
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        private readonly IConfiguration Configuration;
+        private readonly IConfiguration _configuration;
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -35,7 +35,7 @@ namespace EShop.WebUI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            var connectionString = _configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<ApplicationDbContext>(options =>
                                                                 options.UseSqlServer(connectionString));
@@ -53,7 +53,6 @@ namespace EShop.WebUI
                     .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMediatR(typeof(GetProductsQuery).GetTypeInfo().Assembly);
-            services.AddScoped<Helpers.Helpers>();
 
             services.AddHangfire(config => { config.UseMemoryStorage(); });
 
@@ -62,7 +61,7 @@ namespace EShop.WebUI
             services.AddRazorPages();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if(env.IsDevelopment())
             {
