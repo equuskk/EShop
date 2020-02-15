@@ -18,10 +18,10 @@ namespace EShop.WebUI.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
-        private readonly IHostingEnvironment _appEnvironment;
+        private readonly IWebHostEnvironment _appEnvironment;
         private readonly IMediator _mediator;
 
-        public ProductsController(IMediator mediator, IHostingEnvironment appEnvironment)
+        public ProductsController(IMediator mediator, IWebHostEnvironment appEnvironment)
         {
             _mediator = mediator;
             _appEnvironment = appEnvironment;
