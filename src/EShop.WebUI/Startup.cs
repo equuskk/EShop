@@ -1,20 +1,17 @@
-﻿using System;
-using System.Reflection;
-using EShop.Application.Hangfire;
+﻿using System.Reflection;
 using EShop.Application.Products.Queries.GetProducts;
 using EShop.DataAccess;
 using EShop.Domain.Entities;
-using Hangfire;
-using Hangfire.MemoryStorage;
+using EShop.WebUI.HostedServices;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace EShop.WebUI
 {
@@ -22,10 +19,10 @@ namespace EShop.WebUI
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        private readonly IConfiguration Configuration;
+        private readonly IConfiguration _configuration;
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -35,7 +32,7 @@ namespace EShop.WebUI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            var connectionString = _configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<ApplicationDbContext>(options =>
                                                                 options.UseSqlServer(connectionString));
@@ -53,16 +50,16 @@ namespace EShop.WebUI
                     .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMediatR(typeof(GetProductsQuery).GetTypeInfo().Assembly);
-            services.AddScoped<Helpers.Helpers>();
-
-            services.AddHangfire(config => { config.UseMemoryStorage(); });
 
             services.AddControllersWithViews()
                     .AddNewtonsoftJson();
             services.AddRazorPages();
+
+            services.AddHostedService<MigrationHostedService>()
+                    .AddHostedService<CreateDefaultRolesHostedService>();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if(env.IsDevelopment())
             {
@@ -74,9 +71,6 @@ namespace EShop.WebUI
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
-            var options = new BackgroundJobServerOptions { WorkerCount = Environment.ProcessorCount * 2 };
-            app.UseHangfireServer(options);
 
             app.UseHttpsRedirection();
 
@@ -99,17 +93,11 @@ namespace EShop.WebUI
                                                  "Admin/{Controller=Home}/{Action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
-                                "default",
-                                "{controller=Home}/{action=Index}/{id?}");
+                                             "default",
+                                             "{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapRazorPages();
             });
-            CreateRoles();
-        }
-
-        private void CreateRoles()
-        {
-            BackgroundJob.Enqueue<CreateRolesTask>(x => x.Execute());
         }
     }
 }

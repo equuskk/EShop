@@ -1,9 +1,11 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using EShop.Application.Cart.Commands.AddProductToCart;
+using EShop.Application.Categories.Queries.GetCategories;
 using EShop.Application.Products.Queries.GetProductById;
 using EShop.Application.Products.Queries.GetProducts;
 using EShop.Application.Reviews.Queries.GetReviewsByProductId;
+using EShop.Application.Vendors.Queries.GetVendors;
 using EShop.Domain.Entities;
 using EShop.WebUI.ViewModels;
 using MediatR;
@@ -15,22 +17,20 @@ namespace EShop.WebUI.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly Helpers.Helpers _helpers;
         private readonly IMediator _mediator;
         private readonly UserManager<ShopUser> _manager;
 
-        public ProductsController(IMediator mediator, Helpers.Helpers helpers, UserManager<ShopUser> manager)
+        public ProductsController(IMediator mediator, UserManager<ShopUser> manager)
         {
             _mediator = mediator;
-            _helpers = helpers;
             _manager = manager;
         }
 
         public async Task<IActionResult> Index()
         {
             var products = await _mediator.Send(new GetProductsQuery());
-            var categories = await _helpers.GetAllCategories();
-            var vendors = await _helpers.GetAllVendors();
+            var categories = await _mediator.Send(new GetCategoriesQuery());
+            var vendors = await _mediator.Send(new GetVendorsQuery());
 
             var model = new CommonViewModels
             {
@@ -69,8 +69,8 @@ namespace EShop.WebUI.Controllers
             }
 
 
-            var categories = await _helpers.GetAllCategories();
-            var vendors = await _helpers.GetAllVendors();
+            var categories = await _mediator.Send(new GetCategoriesQuery());
+            var vendors = await _mediator.Send(new GetVendorsQuery());
 
             var model = new CommonViewModels
             {

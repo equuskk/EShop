@@ -18,10 +18,10 @@ namespace EShop.WebUI.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
-        private readonly IHostingEnvironment _appEnvironment;
+        private readonly IWebHostEnvironment _appEnvironment;
         private readonly IMediator _mediator;
 
-        public ProductsController(IMediator mediator, IHostingEnvironment appEnvironment)
+        public ProductsController(IMediator mediator, IWebHostEnvironment appEnvironment)
         {
             _mediator = mediator;
             _appEnvironment = appEnvironment;
@@ -50,11 +50,10 @@ namespace EShop.WebUI.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Products");
             }
 
-            // путь к папке Files
-            var path = "/Images/ProductImages/" + file.FileName;
+            var path = Path.Combine(_appEnvironment.WebRootPath, "Images", "ProductImages", file.FileName);
 
             // сохраняем файл в папку Files в каталоге wwwroot
-            using(var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+            using(var fileStream = new FileStream(path, FileMode.Create))
             {
                 await file.CopyToAsync(fileStream);
             }
