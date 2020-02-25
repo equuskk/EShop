@@ -42,23 +42,23 @@ namespace EShop.WebUI.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Filter(string category, string vendor, string sort)
+        public async Task<IActionResult> Filter(int category, int vendor, int sort)
         {
             var products = (await _mediator.Send(new GetProductsQuery())).Products;
 
-            if(!string.IsNullOrWhiteSpace(category) && category != "Любая")
+            if( category != 0)
             {
-                products = products.Where(x => x.Category.Name == category).ToArray();
+                products = products.Where(x => x.Category.Id == category).ToArray();
             }
 
-            if(!string.IsNullOrWhiteSpace(vendor) && vendor != "Любой")
+            if( vendor != 0)
             {
-                products = products.Where(x => x.Vendor.Name == vendor).ToArray();
+                products = products.Where(x => x.Vendor.Id == vendor).ToArray();
             }
 
-            if(!string.IsNullOrWhiteSpace(sort) && sort != "Не сортировать")
+            if( sort != 0)
             {
-                if(sort == "Сначала дорогие")
+                if(sort == 1)
                 {
                     products = products.OrderByDescending(x => x.Price).ToArray();
                 }

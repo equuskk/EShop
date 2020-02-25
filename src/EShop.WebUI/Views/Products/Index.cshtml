@@ -11,23 +11,23 @@
             <select class="form-control" name="category">
                 @foreach(var category in Model.Categories.Categories)
                 {
-                    <option class="dropdown-item">@category.Name</option>
+                    <option class="dropdown-item" value="@category.Id">@category.Name</option>
                 }
-                <option class="dropdown-item" selected>Любая</option>
+                <option class="dropdown-item" selected value="0">Любая</option>
             </select>
             <label>Производитель:</label>
             <select class="form-control" name="vendor">
                 @foreach(var vendor in Model.Vendors.Vendors)
                 {
-                    <option class="dropdown-item">@vendor.Name</option>
+                    <option class="dropdown-item" value="@vendor.Id">@vendor.Name</option>
                 }
-                <option class="dropdown-item" selected>Любой</option>
+                <option class="dropdown-item" selected value="0">Любой</option>
             </select>
             <label>Сортировка по цене</label>
             <select class="form-control" name="sort">
-                <option class="dropdown-item">Сначала дорогие</option>
-                <option class="dropdown-item">Сначала дешёвые</option>
-                <option class="dropdown-item" selected>Не сортировать</option>
+                <option class="dropdown-item" value="1">Сначала дорогие</option>
+                <option class="dropdown-item" value="-1">Сначала дешёвые</option>
+                <option class="dropdown-item" selected value="0">Не сортировать</option>
             </select>
             <br/>
             <button type="submit" class="btn btn-outline-primary">Применить фильтр</button>
