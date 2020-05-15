@@ -20,7 +20,7 @@ namespace EShop.WebUI
                           .UseSerilog((hostingContext, loggerConfiguration) =>
                           {
                               loggerConfiguration
-                                      .ReadFrom.Configuration(hostingContext.Configuration);
+                                  .ReadFrom.Configuration(hostingContext.Configuration);
                           })
                           .UseStartup<Startup>();
         }

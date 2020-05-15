@@ -26,7 +26,7 @@ namespace EShop.Application.Cart.Queries.GetUserCart
             var cart = _db.ProductsInCarts.Include(x => x.Product)
                           .Where(x => x.UserId == request.ShopUserId && x.OrderId == null)
                           .Select(x => x.Product);
-            
+
             return Task.FromResult(new CartViewModel
             {
                 Products = cart.ToArray()

@@ -22,19 +22,19 @@ namespace EShop.WebUI.HostedServices
             const string roleName = "Admin";
             var logger = Log.ForContext<CreateDefaultRolesHostedService>();
             logger.Debug("Создание {0} роли", roleName);
-            
+
             using var scope = _serviceProvider.CreateScope();
             var manager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            
+
             if(await manager.RoleExistsAsync(roleName))
             {
                 logger.Debug("Роль {0} уже создана", roleName);
                 return;
             }
-            
+
             var role = new IdentityRole(roleName);
             await manager.CreateAsync(role);
-            
+
             logger.Debug("Роль {0} создана", roleName);
         }
 

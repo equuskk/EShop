@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using EShop.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -15,9 +14,9 @@ namespace EShop.WebUI.Areas.Identity.Pages.Account.Manage
         private readonly SignInManager<ShopUser> _signInManager;
 
         public IndexModel(
-                UserManager<ShopUser> userManager,
-                SignInManager<ShopUser> signInManager
-                )
+            UserManager<ShopUser> userManager,
+            SignInManager<ShopUser> signInManager
+        )
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -90,7 +89,7 @@ namespace EShop.WebUI.Areas.Identity.Pages.Account.Manage
                 {
                     var userId = await _userManager.GetUserIdAsync(user);
                     throw new
-                            InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
+                        InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
                 }
             }
 
@@ -102,7 +101,7 @@ namespace EShop.WebUI.Areas.Identity.Pages.Account.Manage
                 {
                     var userId = await _userManager.GetUserIdAsync(user);
                     throw new
-                            InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
+                        InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
             }
 
@@ -133,7 +132,7 @@ namespace EShop.WebUI.Areas.Identity.Pages.Account.Manage
                                        null,
                                        new { userId, code },
                                        Request.Scheme);
-          
+
             StatusMessage = "Verification email sent. Please check your email.";
             return RedirectToPage();
         }

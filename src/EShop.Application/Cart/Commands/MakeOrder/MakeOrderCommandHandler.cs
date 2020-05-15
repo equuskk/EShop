@@ -26,7 +26,7 @@ namespace EShop.Application.Cart.Commands.MakeOrder
 
             var productsInCart = _db.ProductsInCarts.Include(x => x.Product)
                                     .Where(x => x.UserId == request.ShopUserId && x.OrderId == null);
-            
+
             if(!productsInCart.Any())
             {
                 _logger.Debug("Продукты в корзине пользователя {0} отсутствуют", request.ShopUserId);
@@ -34,10 +34,7 @@ namespace EShop.Application.Cart.Commands.MakeOrder
             }
 
             var orderSum = 0.0;
-            foreach(var item in productsInCart)
-            {
-                orderSum += item.Product.Price * item.Quantity;
-            }
+            foreach(var item in productsInCart) orderSum += item.Product.Price * item.Quantity;
 
             var order = new Order(orderSum);
             _db.Orders.Add(order);
@@ -49,7 +46,7 @@ namespace EShop.Application.Cart.Commands.MakeOrder
 
             await _db.SaveChangesAsync(cancellationToken);
             _logger.Debug("Заказ для пользователя {0} успешно оформлен", request.ShopUserId);
-            
+
             return true;
         }
     }

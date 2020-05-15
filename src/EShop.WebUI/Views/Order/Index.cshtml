@@ -8,25 +8,25 @@
     <h1>История покупок</h1>
 
     @foreach(var orders in Model.ProductInCarts.GroupBy(x => x.OrderId))
-    {
-        <div class="card">
-            <div class="card-header">
-                Дата: @orders.First().Order.OrderDate
-            </div>
-            <ul class="list-group list-group-flush">
-                @foreach(var product in orders)
-                {
-                    <li class="list-group-item list-group-item-success">
-                        <h3>@product.Product.Name - @product.Product.Price.ToString("C")</h3>
-                    </li>
-                }
-            </ul>
-            <div class="card-footer">
-                <h3>Общая стоимость - @orders.First().Order.Cost.ToString("C")</h3>
-            </div>
-        </div>
-        <br/>
-    }
+     {
+         <div class="card">
+             <div class="card-header">
+                 Дата: @orders.First().Order.OrderDate
+             </div>
+             <ul class="list-group list-group-flush">
+                 @foreach(var product in orders)
+                 {
+                     <li class="list-group-item list-group-item-success">
+                         <h3>@product.Product.Name - @product.Product.Price.ToString("C")</h3>
+                     </li>
+                 }
+             </ul>
+             <div class="card-footer">
+                 <h3>Общая стоимость - @orders.First().Order.Cost.ToString("C")</h3>
+             </div>
+         </div>
+         <br/>
+     }
     <br/>
 }
 else

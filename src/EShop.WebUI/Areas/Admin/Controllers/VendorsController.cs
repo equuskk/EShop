@@ -18,13 +18,13 @@ namespace EShop.WebUI.Areas.Admin.Controllers
         {
             _mediator = mediator;
         }
-        
+
         public async Task<IActionResult> Index()
         {
             var vendors = await _mediator.Send(new GetVendorsQuery());
             return View(vendors);
         }
-        
+
         public IActionResult AddView()
         {
             return View();
@@ -36,7 +36,7 @@ namespace EShop.WebUI.Areas.Admin.Controllers
             await _mediator.Send(new AddVendorCommand(name, description));
             return RedirectToAction("Index", "Vendors");
         }
-        
+
         //TODO: post
         public async Task<IActionResult> Delete(int vendorId)
         {

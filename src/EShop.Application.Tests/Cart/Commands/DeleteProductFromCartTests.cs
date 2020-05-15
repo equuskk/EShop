@@ -26,7 +26,7 @@ namespace EShop.Application.Tests.Cart.Commands
             var handler = new DeleteProductFromCartCommandHandler(GetDbContext());
 
             await Assert.ThrowsAsync<NotFoundException>(async () =>
-                                                                await handler.Handle(cmd, CancellationToken.None));
+                                                            await handler.Handle(cmd, CancellationToken.None));
         }
     }
 }

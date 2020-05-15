@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using EShop.DataAccess;
 using EShop.Domain.Entities;
@@ -23,8 +22,8 @@ namespace EShop.Application.Cart.Commands.AddProductToCart
         {
             _logger.Debug("Пользователь {0} добавляет продукт {1} в корзину", request.ShopUserId,
                           request.ProductId);
-            
-            
+
+
             var productInCart = new ProductInCart(request.ShopUserId, request.ProductId, request.Quantity);
 
             _db.ProductsInCarts.Add(productInCart);

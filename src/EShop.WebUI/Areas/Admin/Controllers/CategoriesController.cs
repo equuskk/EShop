@@ -18,13 +18,13 @@ namespace EShop.WebUI.Areas.Admin.Controllers
         {
             _mediator = mediator;
         }
-        
+
         public async Task<IActionResult> Index()
         {
             var categories = await _mediator.Send(new GetCategoriesQuery());
             return View(categories);
         }
-        
+
         public IActionResult AddView()
         {
             return View("AddView");
@@ -36,7 +36,7 @@ namespace EShop.WebUI.Areas.Admin.Controllers
             await _mediator.Send(new AddCategoryCommand(name));
             return RedirectToAction("Index", "Categories");
         }
-        
+
         //TODO: post
         public async Task<IActionResult> Delete(int categoryId)
         {

@@ -46,17 +46,17 @@ namespace EShop.WebUI.Controllers
         {
             var products = (await _mediator.Send(new GetProductsQuery())).Products;
 
-            if( category != 0)
+            if(category != 0)
             {
                 products = products.Where(x => x.Category.Id == category).ToArray();
             }
 
-            if( vendor != 0)
+            if(vendor != 0)
             {
                 products = products.Where(x => x.Vendor.Id == vendor).ToArray();
             }
 
-            if( sort != 0)
+            if(sort != 0)
             {
                 if(sort == 1)
                 {

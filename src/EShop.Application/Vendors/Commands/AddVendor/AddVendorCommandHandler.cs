@@ -27,7 +27,7 @@ namespace EShop.Application.Vendors.Commands.AddVendor
 
             await _db.SaveChangesAsync(cancellationToken);
             _logger.Debug("Добавлен производитель {0}", vendor.Id);
-            
+
             return vendor.Id;
         }
     }

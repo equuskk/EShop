@@ -23,9 +23,9 @@ namespace EShop.Application.Cart.Commands.DeleteProductFromCart
         public async Task<Unit> Handle(DeleteProductFromCartCommand request, CancellationToken cancellationToken)
         {
             var productInCart =
-                    _db.ProductsInCarts.FirstOrDefault(x => x.ProductId == request.ProductId &&
-                                                            x.UserId == request.ShopUserId &&
-                                                            x.OrderId == null);
+                _db.ProductsInCarts.FirstOrDefault(x => x.ProductId == request.ProductId &&
+                                                        x.UserId == request.ShopUserId &&
+                                                        x.OrderId == null);
 
             _logger.Debug("Пользователь {0} удаляет из корзины продукт {1}",
                           request.ShopUserId, request.ProductId);

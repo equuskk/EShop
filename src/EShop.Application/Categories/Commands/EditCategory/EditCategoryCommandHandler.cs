@@ -24,7 +24,7 @@ namespace EShop.Application.Categories.Commands.EditCategory
             _logger.Debug("Редактирование категории {0}", request.CategoryId);
 
             var category = await _db.Categories.FindAsync(request.CategoryId);
-            
+
             if(category is null)
             {
                 _logger.Debug("Категория {0} не найдена", request.CategoryId);

@@ -31,7 +31,7 @@ namespace EShop.Application.Products.Queries.GetProductById
                 _logger.Debug("Продукт {0} не найден", request.ProductId);
                 throw new NotFoundException(nameof(Product), request.ProductId);
             }
-            
+
             _logger.Debug("Продукт {0} получен", request.ProductId);
             return product;
         }

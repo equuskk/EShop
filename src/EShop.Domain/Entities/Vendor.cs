@@ -12,9 +12,7 @@ namespace EShop.Domain.Entities
 
         //TODO: image
 
-        private Vendor()
-        {
-        }
+        private Vendor() { }
 
         public Vendor(string name, string description)
         {

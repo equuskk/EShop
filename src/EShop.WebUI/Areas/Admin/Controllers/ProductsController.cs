@@ -35,7 +35,7 @@ namespace EShop.WebUI.Areas.Admin.Controllers
             var products = await _mediator.Send(new GetProductsQuery());
             return View(products);
         }
-        
+
         public async Task<IActionResult> AddView()
         {
             var categories = await _mediator.Send(new GetCategoriesQuery());
@@ -43,10 +43,10 @@ namespace EShop.WebUI.Areas.Admin.Controllers
 
             return View("AddView", new AddProductViewModels { Categories = categories, Vendors = vendors });
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Add(string title, string description, int price, IFormFile file,
-                                                    int vendorId, int categoryId)
+                                             int vendorId, int categoryId)
         {
             if(file is null)
             {
@@ -64,9 +64,8 @@ namespace EShop.WebUI.Areas.Admin.Controllers
             await _mediator.Send(new AddProductCommand(title, description, price, vendorId, categoryId,
                                                        file.FileName));
             return RedirectToAction("Index", "Products");
-
         }
-        
+
         public async Task<IActionResult> Delete(int productId)
         {
             await _mediator.Send(new DeleteProductCommand(productId));
@@ -74,7 +73,7 @@ namespace EShop.WebUI.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditView( int productId)
+        public async Task<IActionResult> EditView(int productId)
         {
             var product = await _mediator.Send(new GetProductByIdQuery(productId));
             var review = await _mediator.Send(new GetReviewsByProductIdQuery(productId));
@@ -85,7 +84,7 @@ namespace EShop.WebUI.Areas.Admin.Controllers
             var vendors = await _mediator.Send(new GetVendorsQuery());
 
             var commonData = new AddProductViewModels { Categories = categories, Vendors = vendors };
-            return View("Edit", new EditProductViewModels()
+            return View("Edit", new EditProductViewModels
             {
                 Product = productViewModel,
                 CommonData = commonData

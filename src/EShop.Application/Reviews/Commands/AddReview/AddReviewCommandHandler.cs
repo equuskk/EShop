@@ -22,7 +22,7 @@ namespace EShop.Application.Reviews.Commands.AddReview
         {
             _logger.Debug("Добавление отзыва");
             var review = new Review(request.Text, request.Rate, request.ShopUserId, request.ProductId);
-            
+
             _db.Reviews.Add(review);
             await _db.SaveChangesAsync(cancellationToken);
 
