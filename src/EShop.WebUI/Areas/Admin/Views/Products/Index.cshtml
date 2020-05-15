@@ -11,7 +11,7 @@
             <th>Название</th>
             <th>Описание</th>
             <th>Цена</th>
-            <th>Действия</th>
+            <th colspan="2">Действия</th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +30,11 @@
             <td>
                 <a class="btn btn-danger btn-block" asp-area="Admin" asp-controller="Products" asp-action="Delete" asp-route-productId="@product.Id">
                     Удалить
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-warning btn-block" asp-area="Admin" asp-controller="Products" asp-action="EditView" asp-route-productId="@product.Id">
+                    Редактировать
                 </a>
             </td>
         </tr>

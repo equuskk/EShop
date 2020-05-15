@@ -1,0 +1,39 @@
+﻿@model EShop.WebUI.ViewModels.EditProductViewModels
+@{
+    ViewData["Title"] = "Редактирование товара";
+}
+
+    <form asp-area="Admin" asp-controller="Products" asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Название товара</label>
+            <input type="text" name="title" value="@Model.Product.Product.Name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Категория</label>
+            <select name="categoryID" class="form-control">
+                @foreach (var categories in Model.CommonData.Categories.Categories)
+                {
+                    <option selected="@(categories.Name == Model.Product.Product.Category.Name)" value="@categories.Id">@categories.Name</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Поставщик</label>
+            <select name="vendorID" class="form-control">
+                @foreach (var vendor in Model.CommonData.Vendors.Vendors)
+                {
+                    <option selected="@(vendor.Name == Model.Product.Product.Vendor.Name)" value="@vendor.Id">@vendor.Name</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Описание товара</label>
+            <textarea class="form-control" name="description" placeholder="Описание товара" rows="3">@Model.Product.Product.Description</textarea>
+        </div>
+        <label>Цена</label>
+        <input type="number" name="price" value="@Model.Product.Product.Price" class="form-control">
+
+        <input visibility="hidden" type="hidden" name="productId" value="@Model.Product.Product.Id">
+        <br />
+        <button type="submit" class="btn btn-primary">Редактировать</button>
+    </form>
